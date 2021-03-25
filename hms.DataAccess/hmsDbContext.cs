@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using hms.DataModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace hms.DataAccess
 {
@@ -13,6 +9,6 @@ namespace hms.DataAccess
         {
 
         }
-       // public DbSet<US_USER> US_USER { get; set; }
+        public DbSet<US_USER> US_USER { get; set; }
     }
 }
