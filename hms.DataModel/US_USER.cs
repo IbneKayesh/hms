@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataModel
+namespace hms.DataModel
 {
     public class US_USER : DEFAULT
     {
@@ -42,5 +42,13 @@ namespace DataModel
         [Display(Name = "User Image")]
         [StringLength(150, MinimumLength = 3, ErrorMessage = "{0} length is {2} between {1}")]
         public string PROFILE_IMAGE { get; set; }
+
+
+        public int GENDER_ID { get; set; }
+        public int RELIGION_ID { get; set; }
+        public int BLOOD_GROUP_ID { get; set; }
+        public int MARITAIL_STATUS_ID { get; set; }
+        public int TYPE_ID { get; set; }
+
     }
 }

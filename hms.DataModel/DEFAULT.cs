@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataModel
+namespace hms.DataModel
 {
     [NotMapped]
     public class DEFAULT
