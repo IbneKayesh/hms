@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    
     public class DEFAULT
     {
         public DEFAULT()
