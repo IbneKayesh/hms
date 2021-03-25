@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,11 +45,26 @@ namespace hms.DataModel
         public string PROFILE_IMAGE { get; set; }
 
 
-        public int GENDER_ID { get; set; }
-        public int RELIGION_ID { get; set; }
-        public int BLOOD_GROUP_ID { get; set; }
-        public int MARITAIL_STATUS_ID { get; set; }
-        public int TYPE_ID { get; set; }
+        public int US_GENDER_ID { get; set; }
+        [ForeignKey("US_GENDER_ID")]
+        public US_GENDER US_GENDER { get; set; }
+
+        public int US_RELIGION_ID { get; set; }
+        [ForeignKey("US_RELIGION_ID")]
+        public US_RELIGION US_RELIGION { get; set; }
+
+        public int US_BLOOD_GROUP_ID { get; set; }
+        [ForeignKey("US_BLOOD_GROUP_ID")]
+        public US_BLOOD_GROUP US_BLOOD_GROUP { get; set; }
+
+        public int US_MARITAIL_STATUS_ID { get; set; }
+        [ForeignKey("US_MARITAIL_STATUS_ID")]
+        public US_MARITAIL_STATUS US_MARITAIL_STATUS { get; set; }
+
+        public int US_TYPE_ID { get; set; }
+        [ForeignKey("US_TYPE_ID")]
+        public US_TYPE US_TYPE { get; set; }
+
 
     }
 }

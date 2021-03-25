@@ -10,8 +10,8 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210325163027_initalize")]
-    partial class initalize
+    [Migration("20210325171919_add-menu-table")]
+    partial class addmenutable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,7 @@ namespace hms.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BLOOD_GROUP_NAME")
+                        .IsConcurrencyToken()
                         .IsRequired()
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
@@ -47,8 +48,10 @@ namespace hms.DataAccess.Migrations
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -112,8 +115,10 @@ namespace hms.DataAccess.Migrations
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -126,7 +131,17 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("US_MODULE_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("US_PARENT_MENU_ID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("US_MODULE_ID");
+
+                    b.HasIndex("US_PARENT_MENU_ID");
 
                     b.ToTable("US_CHILD_MENU");
                 });
@@ -157,8 +172,10 @@ namespace hms.DataAccess.Migrations
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -202,8 +219,10 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -229,7 +248,8 @@ namespace hms.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CONTROLLER_NAME")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -243,13 +263,15 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ICON_NAME")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
                     b.Property<string>("METHOD_NAME")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("MODULE_BN_NAME")
                         .HasMaxLength(10)
@@ -260,8 +282,10 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -274,12 +298,37 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("VIEW_ORDER")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("VIEW_ORDER")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.ToTable("US_MODULE");
+                });
+
+            modelBuilder.Entity("hms.DataModel.US_PARENT_MENU", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PARENT_BN_NAME")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PARENT_ICON")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PARENT_NAME")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("US_PARENT_MENU");
                 });
 
             modelBuilder.Entity("hms.DataModel.US_RELIGION", b =>
@@ -308,8 +357,10 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -353,8 +404,10 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -393,8 +446,10 @@ namespace hms.DataAccess.Migrations
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("TYPE_NAME")
                         .IsRequired()
@@ -424,9 +479,6 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BLOOD_GROUP_ID")
-                        .HasColumnType("int");
-
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
@@ -445,9 +497,6 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("GENDER_ID")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
@@ -455,9 +504,6 @@ namespace hms.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<int>("MARITAIL_STATUS_ID")
-                        .HasColumnType("int");
 
                     b.Property<string>("MOBILE_NO")
                         .IsRequired()
@@ -473,14 +519,10 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int>("RELIGION_ID")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("TYPE_ID")
-                        .HasColumnType("int");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -498,17 +540,43 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("US_BLOOD_GROUP_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("US_GENDER_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("US_MARITAIL_STATUS_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("US_RELIGION_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("US_TYPE_ID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("US_BLOOD_GROUP_ID");
+
+                    b.HasIndex("US_GENDER_ID");
+
+                    b.HasIndex("US_MARITAIL_STATUS_ID");
+
+                    b.HasIndex("US_RELIGION_ID");
+
+                    b.HasIndex("US_TYPE_ID");
 
                     b.ToTable("US_USER");
                 });
 
             modelBuilder.Entity("hms.DataModel.US_USER_ROLE", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("USER_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ROLE_ID")
+                        .HasColumnType("int");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -524,11 +592,10 @@ namespace hms.DataAccess.Migrations
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ROLE_ID")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("ROWVERSION")
-                        .HasColumnType("tinyint");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -541,12 +608,72 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("USER_ID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
+                    b.HasKey("USER_ID", "ROLE_ID")
+                        .HasName("PK_US_USER_ROLE_ID");
 
                     b.ToTable("US_USER_ROLE");
+                });
+
+            modelBuilder.Entity("hms.DataModel.US_CHILD_MENU", b =>
+                {
+                    b.HasOne("hms.DataModel.US_MODULE", "US_MODULE")
+                        .WithMany()
+                        .HasForeignKey("US_MODULE_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.US_PARENT_MENU", "US_PARENT_MENU")
+                        .WithMany()
+                        .HasForeignKey("US_PARENT_MENU_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("US_MODULE");
+
+                    b.Navigation("US_PARENT_MENU");
+                });
+
+            modelBuilder.Entity("hms.DataModel.US_USER", b =>
+                {
+                    b.HasOne("hms.DataModel.US_BLOOD_GROUP", "US_BLOOD_GROUP")
+                        .WithMany()
+                        .HasForeignKey("US_BLOOD_GROUP_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.US_GENDER", "US_GENDER")
+                        .WithMany()
+                        .HasForeignKey("US_GENDER_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.US_MARITAIL_STATUS", "US_MARITAIL_STATUS")
+                        .WithMany()
+                        .HasForeignKey("US_MARITAIL_STATUS_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.US_RELIGION", "US_RELIGION")
+                        .WithMany()
+                        .HasForeignKey("US_RELIGION_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.US_TYPE", "US_TYPE")
+                        .WithMany()
+                        .HasForeignKey("US_TYPE_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("US_BLOOD_GROUP");
+
+                    b.Navigation("US_GENDER");
+
+                    b.Navigation("US_MARITAIL_STATUS");
+
+                    b.Navigation("US_RELIGION");
+
+                    b.Navigation("US_TYPE");
                 });
 #pragma warning restore 612, 618
         }

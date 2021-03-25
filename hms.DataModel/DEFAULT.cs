@@ -36,7 +36,10 @@ namespace hms.DataModel
         //[Display(Name = "Device")]
         [StringLength(50)]
         public string UPDATE_DEVICE { get; set; }
-        public byte ROWVERSION { get; set; }
+        
+        
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
     }
 }

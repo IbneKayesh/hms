@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace hms.DataAccess.Migrations
 {
-    public partial class initalize : Migration
+    public partial class addmenutable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,37 +21,11 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_US_BLOOD_GROUP", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "US_CHILD_MENU",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CHILD_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CHILD_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    CHILD_ICON = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    AREA_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ACTION_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
-                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_US_CHILD_MENU", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,7 +42,7 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,7 +63,7 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,10 +78,10 @@ namespace hms.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MODULE_NAME = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     MODULE_BN_NAME = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    ICON_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VIEW_ORDER = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    METHOD_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ICON_NAME = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    VIEW_ORDER = table.Column<int>(type: "int", nullable: false),
+                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    METHOD_NAME = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
                     CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
@@ -115,11 +89,26 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_US_MODULE", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "US_PARENT_MENU",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PARENT_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PARENT_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    PARENT_ICON = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_US_PARENT_MENU", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -136,7 +125,7 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -157,7 +146,7 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -178,11 +167,71 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_US_TYPE", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "US_USER_ROLE",
+                columns: table => new
+                {
+                    USER_ID = table.Column<int>(type: "int", nullable: false),
+                    ROLE_ID = table.Column<int>(type: "int", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_US_USER_ROLE_ID", x => new { x.USER_ID, x.ROLE_ID });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "US_CHILD_MENU",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CHILD_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CHILD_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    CHILD_ICON = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    AREA_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    ACTION_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    US_MODULE_ID = table.Column<int>(type: "int", nullable: false),
+                    US_PARENT_MENU_ID = table.Column<int>(type: "int", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_US_CHILD_MENU", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_US_CHILD_MENU_US_MODULE_US_MODULE_ID",
+                        column: x => x.US_MODULE_ID,
+                        principalTable: "US_MODULE",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_US_CHILD_MENU_US_PARENT_MENU_US_PARENT_MENU_ID",
+                        column: x => x.US_PARENT_MENU_ID,
+                        principalTable: "US_PARENT_MENU",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -198,11 +247,11 @@ namespace hms.DataAccess.Migrations
                     EMAIL_ID = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     DATE_OF_BIRTH = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PROFILE_IMAGE = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    GENDER_ID = table.Column<int>(type: "int", nullable: false),
-                    RELIGION_ID = table.Column<int>(type: "int", nullable: false),
-                    BLOOD_GROUP_ID = table.Column<int>(type: "int", nullable: false),
-                    MARITAIL_STATUS_ID = table.Column<int>(type: "int", nullable: false),
-                    TYPE_ID = table.Column<int>(type: "int", nullable: false),
+                    US_GENDER_ID = table.Column<int>(type: "int", nullable: false),
+                    US_RELIGION_ID = table.Column<int>(type: "int", nullable: false),
+                    US_BLOOD_GROUP_ID = table.Column<int>(type: "int", nullable: false),
+                    US_MARITAIL_STATUS_ID = table.Column<int>(type: "int", nullable: false),
+                    US_TYPE_ID = table.Column<int>(type: "int", nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
                     CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
@@ -210,43 +259,101 @@ namespace hms.DataAccess.Migrations
                     UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_US_USER", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_US_USER_US_BLOOD_GROUP_US_BLOOD_GROUP_ID",
+                        column: x => x.US_BLOOD_GROUP_ID,
+                        principalTable: "US_BLOOD_GROUP",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_US_USER_US_GENDER_US_GENDER_ID",
+                        column: x => x.US_GENDER_ID,
+                        principalTable: "US_GENDER",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_US_USER_US_MARITAIL_STATUS_US_MARITAIL_STATUS_ID",
+                        column: x => x.US_MARITAIL_STATUS_ID,
+                        principalTable: "US_MARITAIL_STATUS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_US_USER_US_RELIGION_US_RELIGION_ID",
+                        column: x => x.US_RELIGION_ID,
+                        principalTable: "US_RELIGION",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_US_USER_US_TYPE_US_TYPE_ID",
+                        column: x => x.US_TYPE_ID,
+                        principalTable: "US_TYPE",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "US_USER_ROLE",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_ID = table.Column<int>(type: "int", nullable: false),
-                    ROLE_ID = table.Column<int>(type: "int", nullable: false),
-                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
-                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ROWVERSION = table.Column<byte>(type: "tinyint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_US_USER_ROLE", x => x.ID);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_US_CHILD_MENU_US_MODULE_ID",
+                table: "US_CHILD_MENU",
+                column: "US_MODULE_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_US_CHILD_MENU_US_PARENT_MENU_ID",
+                table: "US_CHILD_MENU",
+                column: "US_PARENT_MENU_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_US_USER_US_BLOOD_GROUP_ID",
+                table: "US_USER",
+                column: "US_BLOOD_GROUP_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_US_USER_US_GENDER_ID",
+                table: "US_USER",
+                column: "US_GENDER_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_US_USER_US_MARITAIL_STATUS_ID",
+                table: "US_USER",
+                column: "US_MARITAIL_STATUS_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_US_USER_US_RELIGION_ID",
+                table: "US_USER",
+                column: "US_RELIGION_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_US_USER_US_TYPE_ID",
+                table: "US_USER",
+                column: "US_TYPE_ID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "US_BLOOD_GROUP");
+                name: "US_CHILD_MENU");
 
             migrationBuilder.DropTable(
-                name: "US_CHILD_MENU");
+                name: "US_ROLE");
+
+            migrationBuilder.DropTable(
+                name: "US_USER");
+
+            migrationBuilder.DropTable(
+                name: "US_USER_ROLE");
+
+            migrationBuilder.DropTable(
+                name: "US_MODULE");
+
+            migrationBuilder.DropTable(
+                name: "US_PARENT_MENU");
+
+            migrationBuilder.DropTable(
+                name: "US_BLOOD_GROUP");
 
             migrationBuilder.DropTable(
                 name: "US_GENDER");
@@ -255,22 +362,10 @@ namespace hms.DataAccess.Migrations
                 name: "US_MARITAIL_STATUS");
 
             migrationBuilder.DropTable(
-                name: "US_MODULE");
-
-            migrationBuilder.DropTable(
                 name: "US_RELIGION");
 
             migrationBuilder.DropTable(
-                name: "US_ROLE");
-
-            migrationBuilder.DropTable(
                 name: "US_TYPE");
-
-            migrationBuilder.DropTable(
-                name: "US_USER");
-
-            migrationBuilder.DropTable(
-                name: "US_USER_ROLE");
         }
     }
 }

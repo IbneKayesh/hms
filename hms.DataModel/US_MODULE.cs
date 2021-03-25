@@ -11,17 +11,20 @@ namespace hms.DataModel
     {
         public int ID { get; set; }
 
-        [Display(Name = "Module Name")]
+        [Display(Name = "Name")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
         public string MODULE_NAME { get; set; }
 
-        [Display(Name = "Module Name Bangla")]
+        [Display(Name = "Name Bangla")]
         [StringLength(10)]
         public string MODULE_BN_NAME { get; set; }
+        [StringLength(10)]
         public string ICON_NAME { get; set; }
-        public string VIEW_ORDER { get; set; }
+        public int VIEW_ORDER { get; set; }
+        [StringLength(10)]
         public string CONTROLLER_NAME { get; set; }
+        [StringLength(10)]
         public string METHOD_NAME { get; set; }
     }
 }
