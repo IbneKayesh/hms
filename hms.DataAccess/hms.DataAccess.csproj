@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\hms.DataModel\hms.DataModel.csproj" />
     <ProjectReference Include="..\hms.Utility\hms.Utility.csproj" />
   </ItemGroup>
