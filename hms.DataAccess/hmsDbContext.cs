@@ -10,5 +10,10 @@ namespace hms.DataAccess
 
         }
         public DbSet<US_USER> US_USER { get; set; }
+        public DbSet<US_CHILD_MENU> US_CHILD_MENU { get; set; }
+        public DbSet<US_GENDER> US_GENDER { get; set; }
+        public DbSet<US_MARITAIL_STATUS> US_MARITAIL_STATUS { get; set; }
+        public DbSet<US_MODULE> US_MODULE { get; set; }
+        public DbSet<US_RELIGION> US_RELIGION { get; set; }
     }
 }
