@@ -37,9 +37,5 @@ namespace hms.Controllers
         {
 
         }
-        private void test_git_hub1()
-        {
-
-        }
     }
 }
