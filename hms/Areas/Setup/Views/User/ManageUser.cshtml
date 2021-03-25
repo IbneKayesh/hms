@@ -1,0 +1,78 @@
+﻿@model hms.DataModel.US_USER
+
+@{
+    ViewData["Title"] = "Manage User";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ManageUser" asp-controller="User" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LOGIN_ID" class="control-label"></label>
+                <input asp-for="LOGIN_ID" class="form-control" />
+                <span asp-validation-for="LOGIN_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PASSWORD" class="control-label"></label>
+                <input asp-for="PASSWORD" class="form-control" />
+                <span asp-validation-for="PASSWORD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="USER_NAME" class="control-label"></label>
+                <input asp-for="USER_NAME" class="form-control" />
+                <span asp-validation-for="USER_NAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MOBILE_NO" class="control-label"></label>
+                <input asp-for="MOBILE_NO" class="form-control" />
+                <span asp-validation-for="MOBILE_NO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMAIL_ID" class="control-label"></label>
+                <input asp-for="EMAIL_ID" class="form-control" />
+                <span asp-validation-for="EMAIL_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DATE_OF_BIRTH" class="control-label"></label>
+                <input asp-for="DATE_OF_BIRTH" class="form-control" />
+                <span asp-validation-for="DATE_OF_BIRTH" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PROFILE_IMAGE" class="control-label"></label>
+                <input asp-for="PROFILE_IMAGE" class="form-control" />
+                <span asp-validation-for="PROFILE_IMAGE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GENDER_ID" class="control-label"></label>
+                <input asp-for="GENDER_ID" class="form-control" />
+                <span asp-validation-for="GENDER_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RELIGION_ID" class="control-label"></label>
+                <input asp-for="RELIGION_ID" class="form-control" />
+                <span asp-validation-for="RELIGION_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BLOOD_GROUP_ID" class="control-label"></label>
+                <input asp-for="BLOOD_GROUP_ID" class="form-control" />
+                <span asp-validation-for="BLOOD_GROUP_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MARITAIL_STATUS_ID" class="control-label"></label>
+                <input asp-for="MARITAIL_STATUS_ID" class="form-control" />
+                <span asp-validation-for="MARITAIL_STATUS_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TYPE_ID" class="control-label"></label>
+                <input asp-for="TYPE_ID" class="form-control" />
+                <span asp-validation-for="TYPE_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

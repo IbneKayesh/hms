@@ -13,8 +13,9 @@ namespace hms.DataAccess.Repository
         public UnitOfWork(hmsDbContext db)
         {
             _db = db;
+            US_USER = new US_USERRepository(_db);
         }
-
+        public IUS_USERRepository US_USER { get; private set; }
 
 
         public void Dispose()

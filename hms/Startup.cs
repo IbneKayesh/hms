@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Razor;
+using hms.DataAccess.Repository.IRepository;
+using hms.DataAccess.Repository;
 
 namespace hms
 {
@@ -21,8 +24,17 @@ namespace hms
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<hmsDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.Configure<RazorViewEngineOptions>(options =>
+            //{
+            //    options.AreaViewLocationFormats.Clear();
+            //    options.AreaViewLocationFormats.Add("/Setup/{2}/Views/{1}/{0}.cshtml");
+            //    options.AreaViewLocationFormats.Add("/Setup/{2}/Views/Shared/{0}.cshtml");
+            //    options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            //});
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddMvc(options => { options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute()); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,18 +58,25 @@ namespace hms
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            { 
+            {
+                endpoints.MapAreaControllerRoute(
+                       name: "Setup",
+                       areaName: "Setup",
+                       pattern: "Setup/{controller=User}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=User}/{action=Index}/{id?}"
-                );
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //      name: "areas",
+            //      pattern: "{area:exists}/{controller=User}/{action=Index}/{id?}"
+            //    );
+            //});
         }
     }
 }
