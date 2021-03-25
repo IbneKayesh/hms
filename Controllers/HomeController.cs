@@ -33,5 +33,9 @@ namespace hms.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        private void test_git_hub()
+        {
+
+        }
     }
 }
