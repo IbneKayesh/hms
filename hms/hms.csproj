@@ -10,16 +10,19 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
-    <ProjectReference Include="..\DataModel\DataModel.csproj" />
+    <Folder Include="wwwroot\app_theme\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\app_theme\" />
+    <ProjectReference Include="..\hms.DataAccess\hms.DataAccess.csproj" />
+    <ProjectReference Include="..\hms.DataModel\hms.DataModel.csproj" />
+    <ProjectReference Include="..\hms.Utility\hms.Utility.csproj" />
   </ItemGroup>
 
 </Project>
