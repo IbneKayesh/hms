@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace hms.DataAccess.Repository
 {
-    public class US_USERRepository : Repository<US_USER>, IUS_USERRepository
+    public class US_MODULERepository : Repository<US_MODULE>, IUS_MODULERepository
     {
         private readonly hmsDbContext _db;
-        public US_USERRepository(hmsDbContext db) : base(db)
+        public US_MODULERepository(hmsDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(US_USER obj)
+        public void Update(US_MODULE obj)
         {
-            var dBobj = _db.US_USER.FirstOrDefault(x => x.ID == obj.ID);
+            var dBobj = _db.US_MODULE.FirstOrDefault(x => x.ID == obj.ID);
             if (dBobj != null)
             {
-                dBobj.PASSWORD = obj.PASSWORD;
-                dBobj.EMAIL_ID = obj.EMAIL_ID;
+                dBobj.MODULE_NAME = obj.MODULE_NAME;
+                dBobj.MODULE_BN_NAME = obj.MODULE_BN_NAME;
+                dBobj.MODULE_ICON = obj.MODULE_ICON;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;

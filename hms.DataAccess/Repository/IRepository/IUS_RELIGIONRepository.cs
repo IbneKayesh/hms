@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace hms.DataAccess.Repository.IRepository
 {
-    public interface IUS_USERRepository : IRepository<US_USER>
+    public interface IUS_RELIGIONRepository : IRepository<US_RELIGION>
     {
-        void Update(US_USER objData);
+        void Update(US_RELIGION objData);
     }
 }

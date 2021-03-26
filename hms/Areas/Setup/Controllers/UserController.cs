@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace hms.Areas.Setup.Controllers
 {
-    [Area("Setup")]
+    [Area(nameof(Setup))]
+    [Route("Setup/[controller]/[action]")]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,7 +21,7 @@ namespace hms.Areas.Setup.Controllers
         public IActionResult ManageUser()
         {
             US_USER _user = new US_USER();
-            _user.DATE_OF_BIRTH=DateTime.Now;
+            _user.DATE_OF_BIRTH = DateTime.Now;
             return View(_user);
         }
         [HttpPost]
@@ -34,5 +35,6 @@ namespace hms.Areas.Setup.Controllers
             }
             return View(_user);
         }
+
     }
 }

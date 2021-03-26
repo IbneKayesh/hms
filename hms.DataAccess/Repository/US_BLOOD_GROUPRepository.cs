@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 
 namespace hms.DataAccess.Repository
 {
-    public class US_USERRepository : Repository<US_USER>, IUS_USERRepository
+    public class US_BLOOD_GROUPRepository : Repository<US_BLOOD_GROUP>, IUS_BLOOD_GROUPRepository
     {
         private readonly hmsDbContext _db;
-        public US_USERRepository(hmsDbContext db) : base(db)
+        public US_BLOOD_GROUPRepository(hmsDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(US_USER obj)
+        public void Update(US_BLOOD_GROUP obj)
         {
-            var dBobj = _db.US_USER.FirstOrDefault(x => x.ID == obj.ID);
+            var dBobj = _db.US_BLOOD_GROUP.FirstOrDefault(x => x.ID == obj.ID);
             if (dBobj != null)
             {
-                dBobj.PASSWORD = obj.PASSWORD;
-                dBobj.EMAIL_ID = obj.EMAIL_ID;
+                dBobj.BLOOD_GROUP_NAME = obj.BLOOD_GROUP_NAME;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;

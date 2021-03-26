@@ -59,10 +59,12 @@ namespace hms
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapAreaControllerRoute(
-                       name: "Setup",
-                       areaName: "Setup",
-                       pattern: "Setup/{controller=User}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(name: "areas", "areas", pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}");
+
+                //endpoints.MapAreaControllerRoute(
+                //       name: "Setup",
+                //       areaName: "Setup",
+                //       pattern: "Setup/{controller=User}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

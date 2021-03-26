@@ -13,6 +13,8 @@ namespace hms.DataModel
         public DEFAULT()
         {
             IS_ACTIVE = true;
+            CREATE_BY = "Admin";
+            UPDATE_BY = "Admin";
             CREATE_DATE = DateTime.Now;
             UPDATE_DATE = DateTime.Now;
             CREATE_DEVICE = Environment.MachineName;

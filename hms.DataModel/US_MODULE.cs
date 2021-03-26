@@ -20,7 +20,7 @@ namespace hms.DataModel
         [StringLength(10)]
         public string MODULE_BN_NAME { get; set; }
         [StringLength(10)]
-        public string ICON_NAME { get; set; }
+        public string MODULE_ICON{ get; set; }
         public int VIEW_ORDER { get; set; }
         [StringLength(10)]
         public string CONTROLLER_NAME { get; set; }
