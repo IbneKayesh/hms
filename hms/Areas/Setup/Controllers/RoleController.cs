@@ -9,32 +9,29 @@ using System.Threading.Tasks;
 namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
-    //[Route("Setup/[controller]/[action]")]
-    public class UserController : Controller
+    public class RoleController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public UserController(IUnitOfWork unitOfWork)
+        public RoleController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         [HttpGet]
-        public IActionResult ManageUser()
+        public IActionResult ManageRole()
         {
-            US_USER _obj = new US_USER();
-            _obj.DATE_OF_BIRTH = DateTime.Now;
+            US_ROLE _obj = new US_ROLE();
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManageUser(US_USER _obj)
+        public IActionResult ManageRole(US_ROLE _obj)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.US_USER.Add(_obj);
+                _unitOfWork.US_ROLE.Add(_obj);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(ManageUser));
+                return RedirectToAction(nameof(ManageRole));
             }
             return View(_obj);
         }
-
     }
 }

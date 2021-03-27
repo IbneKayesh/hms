@@ -20,6 +20,8 @@ namespace hms.DataModel
             CREATE_DEVICE = Environment.MachineName;
             UPDATE_DEVICE = Environment.MachineName;
         }
+
+        [Display(Name = "Status")]
         public bool IS_ACTIVE { get; set; }
         public DateTime CREATE_DATE { get; set; }
 

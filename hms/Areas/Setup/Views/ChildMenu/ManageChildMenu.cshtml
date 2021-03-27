@@ -1,0 +1,93 @@
+﻿@model hms.DataModel.US_CHILD_MENU
+
+@{
+    ViewData["Title"] = "Child Menu";
+}
+
+<div class="col-md-12">
+    <form asp-action="ManageChildMenu" asp-controller="Manage" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="CHILD_NAME" class="control-label"></label>
+                    <input asp-for="CHILD_NAME" class="form-control form-control-sm" />
+                    <span asp-validation-for="CHILD_NAME" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="CHILD_BN_NAME" class="control-label"></label>
+                    <input asp-for="CHILD_BN_NAME" class="form-control form-control-sm" />
+                    <span asp-validation-for="CHILD_BN_NAME" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="CHILD_ICON" class="control-label"></label>
+                    <input asp-for="CHILD_ICON" class="form-control form-control-sm" />
+                    <span asp-validation-for="CHILD_ICON" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="AREA_NAME" class="control-label"></label>
+                    <input asp-for="AREA_NAME" class="form-control form-control-sm" />
+                    <span asp-validation-for="AREA_NAME" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="CONTROLLER_NAME" class="control-label"></label>
+                    <input asp-for="CONTROLLER_NAME" class="form-control form-control-sm" />
+                    <span asp-validation-for="CONTROLLER_NAME" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="ACTION_NAME" class="control-label"></label>
+                    <input asp-for="ACTION_NAME" class="form-control form-control-sm" />
+                    <span asp-validation-for="ACTION_NAME" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="US_MODULE_ID" class="control-label"></label>
+                    <select asp-for="US_MODULE_ID" class="form-control form-control-sm" asp-items="ViewBag.US_MODULE_ID"></select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="US_PARENT_MENU_ID" class="control-label"></label>
+                    <select asp-for="US_PARENT_MENU_ID" class="form-control form-control-sm" asp-items="ViewBag.US_PARENT_MENU_ID"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="IS_ACTIVE" class="control-label"></label>
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="IS_ACTIVE" checked />
+                        <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

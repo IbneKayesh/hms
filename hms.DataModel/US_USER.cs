@@ -34,6 +34,7 @@ namespace hms.DataModel
         [DataType(DataType.EmailAddress)]
         public string EMAIL_ID { get; set; }
 
+        [Display(Name = "Date of Birth")]
         public DateTime DATE_OF_BIRTH { get; set; }
 
         [Display(Name = "User Image")]
@@ -41,22 +42,32 @@ namespace hms.DataModel
         public string PROFILE_IMAGE { get; set; }
 
 
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "{0} is required")]
         public int US_GENDER_ID { get; set; }
         [ForeignKey("US_GENDER_ID")]
         public US_GENDER US_GENDER { get; set; }
 
+        [Display(Name = "Religion")]
+        [Required(ErrorMessage = "{0} is required")]
         public int US_RELIGION_ID { get; set; }
         [ForeignKey("US_RELIGION_ID")]
         public US_RELIGION US_RELIGION { get; set; }
 
+        [Display(Name = "Blood Group")]
+        [Required(ErrorMessage = "{0} is required")]
         public int US_BLOOD_GROUP_ID { get; set; }
         [ForeignKey("US_BLOOD_GROUP_ID")]
         public US_BLOOD_GROUP US_BLOOD_GROUP { get; set; }
 
+        [Display(Name = "Marital Status")]
+        [Required(ErrorMessage = "{0} is required")]
         public int US_MARITAIL_STATUS_ID { get; set; }
         [ForeignKey("US_MARITAIL_STATUS_ID")]
         public US_MARITAIL_STATUS US_MARITAIL_STATUS { get; set; }
 
+        [Display(Name = "User Type")]
+        [Required(ErrorMessage = "{0} is required")]
         public int US_TYPE_ID { get; set; }
         [ForeignKey("US_TYPE_ID")]
         public US_TYPE US_TYPE { get; set; }

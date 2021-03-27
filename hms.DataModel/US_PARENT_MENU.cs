@@ -17,6 +17,7 @@ namespace hms.DataModel
         [StringLength(20)]
         public string PARENT_BN_NAME { get; set; }
 
+        [Display(Name = "Icon")]
         [StringLength(20)]
         public string PARENT_ICON { get; set; }
     }

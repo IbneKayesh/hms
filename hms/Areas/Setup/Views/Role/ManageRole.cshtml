@@ -1,0 +1,42 @@
+﻿@model hms.DataModel.US_ROLE
+
+@{
+    ViewData["Title"] = "Role";
+}
+
+
+<div class="col-md-12">
+    <form asp-action="ManageRole" asp-controller="Role" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="ROLE_NAME" class="control-label"></label>
+                    <input asp-for="ROLE_NAME" class="form-control form-control-sm" />
+                    <span asp-validation-for="ROLE_NAME" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="IS_ACTIVE" class="control-label"></label>
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="IS_ACTIVE" checked />
+                        <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label"></label>
+                    <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
