@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor;
 using hms.DataAccess.Repository.IRepository;
 using hms.DataAccess.Repository;
+using System;
 
 namespace hms
 {
@@ -32,8 +33,20 @@ namespace hms
             //    options.AreaViewLocationFormats.Add("/Setup/{2}/Views/Shared/{0}.cshtml");
             //    options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             //});
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddRazorPages();
+
+            //services.AddDistributedMemoryCache();
+            //services.AddSession(options =>
+            //{
+            //    options.Cookie.Name = ".hmsApps.Session";
+            //    options.IdleTimeout = TimeSpan.FromSeconds(10);
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.IsEssential = true;
+            //});
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation().AddSessionStateTempDataProvider();
+            services.AddRazorPages().AddSessionStateTempDataProvider();
+            services.AddSession();
+
             services.AddMvc(options => { options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute()); });
         }
 
@@ -56,6 +69,8 @@ namespace hms
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

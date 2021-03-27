@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace hms.DataAccess.Repository
 {
-    public class US_GENDERRepository : Repository<US_GENDER>, IUS_GENDERRepository
+    public class US_RELIGIONRepository : Repository<US_RELIGION>, IUS_RELIGIONRepository
     {
         private readonly hmsDbContext _db;
-        public US_GENDERRepository(hmsDbContext db) : base(db)
+        public US_RELIGIONRepository(hmsDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(US_GENDER obj)
+        public void Update(US_RELIGION obj)
         {
-            var dBobj = _db.US_GENDER.FirstOrDefault(x => x.ID == obj.ID);
+            var dBobj = _db.US_RELIGION.FirstOrDefault(x => x.ID == obj.ID);
             if (dBobj != null)
             {
-                dBobj.GENDER_NAME = obj.GENDER_NAME;
+                dBobj.RELIGION_NAME = obj.RELIGION_NAME;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;

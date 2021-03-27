@@ -183,43 +183,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
     with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Starter Pages
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+
+                        @if (TempData["_menu"] != null)
+                        {
+                            List<hms.DataModel.US_CHILD_MENU> _menu = (List<hms.DataModel.US_CHILD_MENU>)TempData["_menu"];
+                            var _parent = _menu.GroupBy(x => x.US_PARENT_MENU.PARENT_NAME).ToList();
+                            foreach (var childs in _parent)
+                            {
+
                                 <li class="nav-item">
                                     <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Active Page</p>
+                                        <i class="nav-icon @childs.First().US_PARENT_MENU.PARENT_ICON"></i>
+                                        <p>
+                                            @childs.Key
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        @foreach (var baby in childs)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" asp-action="@baby.ACTION_NAME" asp-controller="@baby.CONTROLLER_NAME" asp-area="@baby.AREA_NAME">
+                                                    <i class="nav-icon @baby.CHILD_ICON"></i>
+                                                    <p>@baby.CHILD_NAME</p>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inactive Page</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            }
+                        }
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Simple Link
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Setup" asp-controller="User" asp-action="ManageUser">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Setup" asp-controller="DataConfig" asp-action="Insert">Temp</a>
+                            <a class="nav-link" asp-area="Setup" asp-controller="DataConfig" asp-action="Initialize">Init</a>
                         </li>
                     </ul>
                 </nav>
@@ -235,12 +230,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Starter Page</h1>
+                            <h1 class="m-0">@ViewData["Title"]</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Starter Page</li>
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

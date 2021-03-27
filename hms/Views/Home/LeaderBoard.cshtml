@@ -1,0 +1,26 @@
+﻿@model IEnumerable<hms.DataModel.US_MODULE>;
+@{
+    ViewData["Title"] = "Leader Board";
+}
+<div class="row">
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model.OrderBy(x => x.VIEW_ORDER))
+        {
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="@item.MODULE_ICON"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">@item.MODULE_NAME</span>
+                        <span class="info-box-number"><a asp-controller="@item.CONTROLLER_NAME" asp-action="@item.METHOD_NAME" asp-route-id="@item.ID">Options</a></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        }
+    }
+
+</div>

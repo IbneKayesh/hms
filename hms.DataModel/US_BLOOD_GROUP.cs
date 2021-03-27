@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hms.DataModel
 {
     public class US_BLOOD_GROUP : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Display(Name = "Blood Group")]

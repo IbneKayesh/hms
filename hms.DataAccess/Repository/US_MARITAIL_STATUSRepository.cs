@@ -22,6 +22,7 @@ namespace hms.DataAccess.Repository
             if (dBobj != null)
             {
                 dBobj.MARITAIL_STATUS_NAME = obj.MARITAIL_STATUS_NAME;
+                dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;
                 dBobj.UPDATE_DATE = new DEFAULT().UPDATE_DATE;

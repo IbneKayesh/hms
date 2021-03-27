@@ -17,6 +17,8 @@ namespace hms.DataAccess.Repository.IRepository
         IUS_PARENT_MENURepository US_PARENT_MENU { get; }
         IUS_RELIGIONRepository US_RELIGION { get; }
         IUS_ROLERepository US_ROLE { get; }
+        IUS_ROLE_MENURepository US_ROLE_MENU { get; }
+        IUS_USER_ROLERepository US_USER_ROLE { get; }
         IUS_TYPERepository US_TYPE { get; }
         void Save();
     }

@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace hms.DataAccess.Repository
 {
-    public class US_GENDERRepository : Repository<US_GENDER>, IUS_GENDERRepository
+    public class US_TYPERepository : Repository<US_TYPE>, IUS_TYPERepository
     {
         private readonly hmsDbContext _db;
-        public US_GENDERRepository(hmsDbContext db) : base(db)
+        public US_TYPERepository(hmsDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(US_GENDER obj)
+        public void Update(US_TYPE obj)
         {
-            var dBobj = _db.US_GENDER.FirstOrDefault(x => x.ID == obj.ID);
+            var dBobj = _db.US_TYPE.FirstOrDefault(x => x.ID == obj.ID);
             if (dBobj != null)
             {
-                dBobj.GENDER_NAME = obj.GENDER_NAME;
+                dBobj.TYPE_NAME = obj.TYPE_NAME;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;
