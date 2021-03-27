@@ -10,9 +10,6 @@ namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
     //[Route("Setup/[controller]/[action]")]
-
-
-
     public class DataConfigController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
