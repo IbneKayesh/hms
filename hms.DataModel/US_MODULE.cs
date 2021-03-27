@@ -17,10 +17,18 @@ namespace hms.DataModel
         [StringLength(20)]
         public string MODULE_BN_NAME { get; set; }
         [StringLength(30)]
-        public string MODULE_ICON{ get; set; }
+
+        [Display(Name = "Icon")]
+        public string MODULE_ICON { get; set; }
+
+        [Display(Name = "View Order")]
         public int VIEW_ORDER { get; set; }
         [StringLength(20)]
+
+        [Display(Name = "Controller Name")]
         public string CONTROLLER_NAME { get; set; }
+
+        [Display(Name = "Method Name")]
         [StringLength(30)]
         public string METHOD_NAME { get; set; }
     }

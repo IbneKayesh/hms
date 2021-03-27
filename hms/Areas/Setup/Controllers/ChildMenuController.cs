@@ -9,32 +9,29 @@ using System.Threading.Tasks;
 namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
-    //[Route("Setup/[controller]/[action]")]
-    public class UserController : Controller
+    public class ChildMenuController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public UserController(IUnitOfWork unitOfWork)
+        public ChildMenuController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         [HttpGet]
-        public IActionResult ManageUser()
+        public IActionResult ManageChildMenu()
         {
-            US_USER _obj = new US_USER();
-            _obj.DATE_OF_BIRTH = DateTime.Now;
+            US_CHILD_MENU _obj = new US_CHILD_MENU();
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManageUser(US_USER _obj)
+        public IActionResult ManageChildMenu(US_CHILD_MENU _obj)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.US_USER.Add(_obj);
+                _unitOfWork.US_CHILD_MENU.Add(_obj);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(ManageUser));
+                return RedirectToAction(nameof(ManageChildMenu));
             }
             return View(_obj);
         }
-
     }
 }

@@ -18,7 +18,7 @@ namespace hms.Areas.Setup.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        
+
         [HttpGet]
         public IActionResult Initialize()
         {
@@ -32,7 +32,7 @@ namespace hms.Areas.Setup.Controllers
             US_PARENT_MENU_Ins();
             US_CHILD_MENU_Ins();
             US_USER_Ins();
-            US_ROLE_MENU_Ins();            
+            US_ROLE_MENU_Ins();
             return View();
         }
         [HttpPost]
@@ -113,7 +113,7 @@ namespace hms.Areas.Setup.Controllers
                 new US_TYPE{ ID=1,TYPE_NAME="General" },
                 new US_TYPE{ ID=2,TYPE_NAME="Entry" },
                 new US_TYPE{ ID=3,TYPE_NAME="Approver" },
-                new US_TYPE{ ID=4,TYPE_NAME="EntryApprover" }                
+                new US_TYPE{ ID=4,TYPE_NAME="EntryApprover" }
             };
             _unitOfWork.US_TYPE.AddRange(_d);
             _unitOfWork.Save();
@@ -146,6 +146,7 @@ namespace hms.Areas.Setup.Controllers
                 new US_CHILD_MENU{ ID=2,CHILD_NAME="User", CHILD_BN_NAME="User", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="User",ACTION_NAME="ManageUser",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
                 new US_CHILD_MENU{ ID=3,CHILD_NAME="Blood Group", CHILD_BN_NAME="Blood Group", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="BloodGroup",ACTION_NAME="ManageBloodGroup",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
                  new US_CHILD_MENU{ ID=4,CHILD_NAME="Sales", CHILD_BN_NAME="Sales", CHILD_ICON="fa fa-users", AREA_NAME="Order",CONTROLLER_NAME="Sales",ACTION_NAME="Sale",US_MODULE_ID=2,US_PARENT_MENU_ID=2 },
+                new US_CHILD_MENU{ ID=5,CHILD_NAME="Role", CHILD_BN_NAME="Role", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="Role",ACTION_NAME="ManageRole",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
             };
             _unitOfWork.US_CHILD_MENU.AddRange(_d);
             _unitOfWork.Save();
