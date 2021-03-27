@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 
 namespace hms.DataModel
 {
@@ -11,6 +12,7 @@ namespace hms.DataModel
         [Display(Name = "Role Name")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
+        [Remote(action: "VerifyRole", controller: "Role")]
         public string ROLE_NAME { get; set; }
     }
 }

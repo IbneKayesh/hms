@@ -29,9 +29,20 @@ namespace hms.Areas.Setup.Controllers
             {
                 _unitOfWork.US_ROLE.Add(_obj);
                 _unitOfWork.Save();
+                TempData["msg"] = "Swal.fire('success','Role saved','success')";
                 return RedirectToAction(nameof(ManageRole));
             }
+            TempData["msg"] = "Swal.fire('error','Role saved failed','error')";
             return View(_obj);
+        }
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerifyRole(string ROLE_NAME)
+        {
+            if (_unitOfWork.US_ROLE.GetAll(x => x.ROLE_NAME == ROLE_NAME).Any())
+            {
+                return Json($"Role {ROLE_NAME} is already in use.");
+            }
+            return Json(true);
         }
     }
 }

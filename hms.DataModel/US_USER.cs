@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,11 +12,13 @@ namespace hms.DataModel
         [Display(Name = "Login Id")]
         [StringLength(15, MinimumLength = 6, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
+        [Remote(action: "VerifyLoginId", controller: "User")]
         public string LOGIN_ID { get; set; }
 
         [Display(Name = "Password")]
         [StringLength(50, MinimumLength = 6, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
+        [Remote(action: "VerifyPassword", controller: "User")]
         public string PASSWORD { get; set; }
 
         [Display(Name = "User Name")]
