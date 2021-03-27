@@ -10,8 +10,8 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210326075110_init")]
-    partial class init
+    [Migration("20210327041737_initalize")]
+    partial class initalize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace hms.Areas.Setup.Controllers
 {
-    [Area(nameof(Setup))]
-    [Route("Setup/[controller]/[action]")]
+    [Area("Setup")]
+    //[Route("Setup/[controller]/[action]")]
     public class DataConfigController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -61,7 +61,8 @@ namespace hms.Areas.Setup.Controllers
             List<US_GENDER> _d = new List<US_GENDER>
             {
                 new US_GENDER{ID=1, GENDER_NAME="Male" },
-                new US_GENDER{ ID=2,GENDER_NAME="Female" }
+                new US_GENDER{ ID=2,GENDER_NAME="Female" },
+                new US_GENDER{ ID=3,GENDER_NAME="3rdGender" },
             };
             _unitOfWork.US_GENDER.AddRange(_d);
             _unitOfWork.Save();
@@ -144,6 +145,7 @@ namespace hms.Areas.Setup.Controllers
                 new US_CHILD_MENU{ ID=1,CHILD_NAME="Data Config", CHILD_BN_NAME="Data Config", CHILD_ICON="fa fa-cogs",AREA_NAME="Setup",CONTROLLER_NAME="DataConfig",ACTION_NAME="Insert",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
                 new US_CHILD_MENU{ ID=2,CHILD_NAME="User", CHILD_BN_NAME="User", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="User",ACTION_NAME="ManageUser",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
                 new US_CHILD_MENU{ ID=3,CHILD_NAME="Blood Group", CHILD_BN_NAME="Blood Group", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="BloodGroup",ACTION_NAME="ManageBloodGroup",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
+                 new US_CHILD_MENU{ ID=4,CHILD_NAME="Sales", CHILD_BN_NAME="Sales", CHILD_ICON="fa fa-users", AREA_NAME="Order",CONTROLLER_NAME="Sales",ACTION_NAME="Sale",US_MODULE_ID=2,US_PARENT_MENU_ID=2 },
             };
             _unitOfWork.US_CHILD_MENU.AddRange(_d);
             _unitOfWork.Save();

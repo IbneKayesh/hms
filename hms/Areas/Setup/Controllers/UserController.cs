@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace hms.Areas.Setup.Controllers
 {
-    [Area(nameof(Setup))]
-    [Route("Setup/[controller]/[action]")]
+    [Area("Setup")]
+    //[Route("Setup/[controller]/[action]")]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
