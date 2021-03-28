@@ -142,11 +142,22 @@ namespace hms.Areas.Setup.Controllers
         {
             List<US_CHILD_MENU> _d = new List<US_CHILD_MENU>
             {
-                new US_CHILD_MENU{ ID=1,CHILD_NAME="Data Config", CHILD_BN_NAME="Data Config", CHILD_ICON="fa fa-cogs",AREA_NAME="Setup",CONTROLLER_NAME="DataConfig",ACTION_NAME="Initialize",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
-                new US_CHILD_MENU{ ID=2,CHILD_NAME="User", CHILD_BN_NAME="User", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="User",ACTION_NAME="ManageUser",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
-                new US_CHILD_MENU{ ID=3,CHILD_NAME="Blood Group", CHILD_BN_NAME="Blood Group", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="BloodGroup",ACTION_NAME="ManageBloodGroup",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
-                 new US_CHILD_MENU{ ID=4,CHILD_NAME="Sales", CHILD_BN_NAME="Sales", CHILD_ICON="fa fa-users", AREA_NAME="Order",CONTROLLER_NAME="Sales",ACTION_NAME="Sale",US_MODULE_ID=2,US_PARENT_MENU_ID=2 },
-                new US_CHILD_MENU{ ID=5,CHILD_NAME="Role", CHILD_BN_NAME="Role", CHILD_ICON="fa fa-users", AREA_NAME="Setup",CONTROLLER_NAME="Role",ACTION_NAME="ManageRole",US_MODULE_ID=1,US_PARENT_MENU_ID=1 },
+                //=================Setup====================
+                new US_CHILD_MENU{ ID=1, CHILD_NAME="Data Config", CHILD_BN_NAME="Data Config", CHILD_ICON="fa fa-cogs", AREA_NAME="Setup", CONTROLLER_NAME="DataConfig", ACTION_NAME="Initialize", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=2, CHILD_NAME="User", CHILD_BN_NAME="User", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="User", ACTION_NAME="ManageUser", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=3, CHILD_NAME="Blood Group", CHILD_BN_NAME="Blood Group", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="BloodGroup", ACTION_NAME="ManageBloodGroup", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=5, CHILD_NAME="Role", CHILD_BN_NAME="Role", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="Role", ACTION_NAME="ManageRole", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=6, CHILD_NAME="Child Menu", CHILD_BN_NAME="Child Menu", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="ChildMenu", ACTION_NAME="ManageChildMenu", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=7, CHILD_NAME="Module", CHILD_BN_NAME="Module", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="Module", ACTION_NAME="ManageModule", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=8, CHILD_NAME="Parent Menu", CHILD_BN_NAME="Parent Menu", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="ParentMenu", ACTION_NAME="ManageParentMenu", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=9, CHILD_NAME="Role Menu", CHILD_BN_NAME="Role Menu", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="RoleMenu", ACTION_NAME="ManageRoleMenu", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=10, CHILD_NAME="User Role", CHILD_BN_NAME="User Role", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="UserRole", ACTION_NAME="ManageUserRole", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                
+                 //=================Order====================
+                 new US_CHILD_MENU{ ID=4, CHILD_NAME="Sales", CHILD_BN_NAME="Sales", CHILD_ICON="fa fa-users", AREA_NAME="Order", CONTROLLER_NAME="Sales", ACTION_NAME="Sale", US_MODULE_ID=2, US_PARENT_MENU_ID=2 },
+
+
+
             };
             _unitOfWork.US_CHILD_MENU.AddRange(_d);
             _unitOfWork.Save();

@@ -8,65 +8,62 @@
     <form asp-action="ManageModule" asp-controller="Manage" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="MODULE_NAME" class="control-label"></label>
                     <input asp-for="MODULE_NAME" class="form-control form-control-sm" />
                     <span asp-validation-for="MODULE_NAME" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="MODULE_BN_NAME" class="control-label"></label>
                     <input asp-for="MODULE_BN_NAME" class="form-control form-control-sm" />
                     <span asp-validation-for="MODULE_BN_NAME" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="MODULE_ICON" class="control-label"></label>
                     <input asp-for="MODULE_ICON" class="form-control form-control-sm" />
                     <span asp-validation-for="MODULE_ICON" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="VIEW_ORDER" class="control-label"></label>
                     <input asp-for="VIEW_ORDER" class="form-control form-control-sm" />
                     <span asp-validation-for="VIEW_ORDER" class="text-danger"></span>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="CONTROLLER_NAME" class="control-label"></label>
                     <input asp-for="CONTROLLER_NAME" class="form-control form-control-sm" />
                     <span asp-validation-for="CONTROLLER_NAME" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="METHOD_NAME" class="control-label"></label>
                     <input asp-for="METHOD_NAME" class="form-control form-control-sm" />
                     <span asp-validation-for="METHOD_NAME" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <label asp-for="IS_ACTIVE" class="control-label"></label>
+                    @*<label asp-for="IS_ACTIVE" class="control-label"></label>*@
                     <div class="form-check">
                         <input class="form-check-input" asp-for="IS_ACTIVE" checked />
                         <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary btn-sm" />
                 </div>

@@ -27,6 +27,8 @@ namespace hms.Areas.Setup.Controllers
         {
             if (ModelState.IsValid)
             {
+                _obj.ID = _unitOfWork.US_ROLE.GetAll().Max(x => x.ID) + 1;
+                _obj.IS_ACTIVE = true;
                 _unitOfWork.US_ROLE.Add(_obj);
                 _unitOfWork.Save();
                 TempData["msg"] = "Swal.fire('success','Role saved','success')";
@@ -35,8 +37,20 @@ namespace hms.Areas.Setup.Controllers
             TempData["msg"] = "Swal.fire('error','Role saved failed','error')";
             return View(_obj);
         }
+
+        //[AcceptVerbs("GET", "POST")]
+        //public IActionResult VerifyRoleId(int ID)
+        //{
+        //    if (_unitOfWork.US_ROLE.GetAll(x => x.ID == ID).Any())
+        //    {
+        //       int _maxId =  _unitOfWork.US_ROLE.GetMaxId();
+        //        return Json($"Role {ID} is already in use. {_maxId} will be next Id");
+        //    }
+        //    return Json(true);
+        //}
+
         [AcceptVerbs("GET", "POST")]
-        public IActionResult VerifyRole(string ROLE_NAME)
+        public IActionResult VerifyRoleName(string ROLE_NAME)
         {
             if (_unitOfWork.US_ROLE.GetAll(x => x.ROLE_NAME == ROLE_NAME).Any())
             {

@@ -27,11 +27,23 @@ namespace hms.Areas.Setup.Controllers
         {
             if (ModelState.IsValid)
             {
+                _obj.ID = _unitOfWork.US_MODULE.GetAll().Max(x => x.ID) + 1;
+                _obj.IS_ACTIVE = true;
                 _unitOfWork.US_MODULE.Add(_obj);
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(ManageModule));
             }
             return View(_obj);
+        }
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerifyModuleName(string MODULE_NAME)
+        {
+            if (_unitOfWork.US_MODULE.GetAll(x => x.MODULE_NAME == MODULE_NAME).Any())
+            {
+                return Json($"Name {MODULE_NAME} is already in use.");
+            }
+            return Json(true);
         }
     }
 }

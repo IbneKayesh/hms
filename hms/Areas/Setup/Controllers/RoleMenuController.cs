@@ -27,6 +27,7 @@ namespace hms.Areas.Setup.Controllers
         {
             if (ModelState.IsValid)
             {
+                _obj.IS_ACTIVE = true;
                 _unitOfWork.US_ROLE_MENU.Add(_obj);
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(ManageRoleMenu));
