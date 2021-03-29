@@ -1,6 +1,7 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,8 @@ namespace hms.Areas.Setup.Controllers
         [HttpGet]
         public IActionResult ManageChildMenu()
         {
-            //ViewBag.US_MODULE_ID = _unitOfWork.US_MODULE.GetAll();
-            //ViewBag.US_PARENT_MENU_ID = _unitOfWork.US_PARENT_MENU.GetAll();
+            ViewBag.US_MODULE_ID = _unitOfWork.US_MODULE.GetAll().Select(i=> new SelectListItem { Value=i.ID.ToString(), Text=i.MODULE_NAME});
+            ViewBag.US_PARENT_MENU_ID = _unitOfWork.US_PARENT_MENU.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.PARENT_NAME });
             US_CHILD_MENU _obj = new US_CHILD_MENU();
             return View(_obj);
         }
@@ -32,9 +33,11 @@ namespace hms.Areas.Setup.Controllers
                 _obj.ID = _unitOfWork.US_CHILD_MENU.GetAll().Max(x => x.ID) + 1;
                 _obj.IS_ACTIVE = true;
                 _unitOfWork.US_CHILD_MENU.Add(_obj);
-                _unitOfWork.Save();
+                _unitOfWork.Save(); 
+                TempData["msg"] = "Swal.fire('success','Role saved','success')";
                 return RedirectToAction(nameof(ManageChildMenu));
             }
+            TempData["msg"] = "Swal.fire('error','Role saved failed','error')";
             return View(_obj);
         }
 

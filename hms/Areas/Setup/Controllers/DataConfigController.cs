@@ -40,6 +40,8 @@ namespace hms.Areas.Setup.Controllers
         {
             return View();
         }
+
+        #region No Change
         private void US_BLOOD_GROUP_Ins()
         {
             List<US_BLOOD_GROUP> _d = new List<US_BLOOD_GROUP>
@@ -93,6 +95,8 @@ namespace hms.Areas.Setup.Controllers
             _unitOfWork.US_RELIGION.AddRange(_d);
             _unitOfWork.Save();
         }
+        #endregion
+
         private void US_ROLE_Ins()
         {
             List<US_ROLE> _d = new List<US_ROLE>

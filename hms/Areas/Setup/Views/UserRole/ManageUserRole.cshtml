@@ -5,20 +5,20 @@
 }
 
 <div class="col-md-12">
-    <form asp-action="ManageRoleMenu" asp-controller="Manage" method="post">
+    <form asp-action="ManageUserRole" asp-controller="UserRole" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="US_USER_ID" class="control-label"></label>
-                    <select asp-for="US_USER_ID" class="form-control form-control-sm" asp-items="ViewBag.US_USER_ID"></select>
+                    <select asp-for="US_USER_ID" class="form-control form-control-sm" asp-items="ViewBag.US_USER_ID"><option selected>-Select-</option></select>
                     <span asp-validation-for="US_USER_ID" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="US_ROLE_ID" class="control-label"></label>
-                    <select asp-for="US_ROLE_ID" class="form-control form-control-sm" asp-items="ViewBag.US_ROLE_ID"></select>
+                    <select asp-for="US_ROLE_ID" class="form-control form-control-sm" asp-items="ViewBag.US_ROLE_ID"><option selected>-Select-</option></select>
                     <span asp-validation-for="US_ROLE_ID" class="text-danger"></span>
                 </div>
             </div>

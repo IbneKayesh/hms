@@ -1,47 +1,78 @@
-﻿@model hms.DataModel.US_ROLE_MENU
+﻿@model IEnumerable<hms.DataModel.ViewModels.US_ROLE_MENU_VM>
 
 @{
     ViewData["Title"] = "Role Menu";
 }
 
-<div class="col-md-12">
-    <form asp-action="ManageRoleMenu" asp-controller="Manage" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="US_ROLE_ID" class="control-label"></label>
-                    <select asp-for="US_ROLE_ID" class="form-control form-control-sm" asp-items="ViewBag.US_ROLE_ID"></select>
-                    <span asp-validation-for="US_ROLE_ID" class="text-danger"></span>
+@*<div class="col-md-12">
+        <form asp-action="ManageRoleMenu" asp-controller="Manage" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="US_ROLE_ID" class="control-label"></label>
+                        <select asp-for="US_ROLE_ID" class="form-control form-control-sm" asp-items="ViewBag.US_ROLE_ID"><option selected>-Select-</option></select>
+                        <span asp-validation-for="US_ROLE_ID" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="US_CHILD_MENU_ID" class="control-label"></label>
-                    <select asp-for="US_CHILD_MENU_ID" class="form-control form-control-sm" asp-items="ViewBag.US_CHILD_MENU_ID"></select>
-                    <span asp-validation-for="US_CHILD_MENU_ID" class="text-danger"></span>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="US_CHILD_MENU_ID" class="control-label"></label>
+                        <select asp-for="US_CHILD_MENU_ID" class="form-control form-control-sm" asp-items="ViewBag.US_CHILD_MENU_ID"><option selected>-Select-</option></select>
+                        <span asp-validation-for="US_CHILD_MENU_ID" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="IS_ACTIVE" class="control-label"></label>
-                    <div class="form-check">
-                        <input class="form-check-input" asp-for="IS_ACTIVE" checked />
-                        <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="IS_ACTIVE" class="control-label"></label>
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="IS_ACTIVE" checked />
+                            <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>*@
+
+
+<ul>
+    @if (Model.Count() > 0)
+    {
+        var _parent = Model.GroupBy(x => x.Parent_Name).ToList();
+        foreach (var childs in _parent)
+        {
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="nav-icon @childs.First().Parent_Icon"></i>
+                    <p>
+                        @childs.Key
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    @foreach (var baby in childs)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="@baby.Child_Name">
+                                <i class="nav-icon @baby.Child_Icon"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+
+    }
+</ul> 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

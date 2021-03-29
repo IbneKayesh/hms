@@ -74,7 +74,5 @@ namespace hms.DataModel
         public int US_TYPE_ID { get; set; }
         [ForeignKey("US_TYPE_ID")]
         public US_TYPE US_TYPE { get; set; }
-
-
     }
 }

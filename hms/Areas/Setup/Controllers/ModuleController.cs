@@ -31,8 +31,10 @@ namespace hms.Areas.Setup.Controllers
                 _obj.IS_ACTIVE = true;
                 _unitOfWork.US_MODULE.Add(_obj);
                 _unitOfWork.Save();
+                TempData["msg"] = "Swal.fire('success','Role saved','success')";
                 return RedirectToAction(nameof(ManageModule));
             }
+            TempData["msg"] = "Swal.fire('error','Role saved failed','error')";
             return View(_obj);
         }
 

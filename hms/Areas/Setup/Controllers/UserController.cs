@@ -1,6 +1,7 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace hms.Areas.Setup.Controllers
         [HttpGet]
         public IActionResult ManageUser()
         {
+            ViewBag.US_GENDER_ID = _unitOfWork.US_GENDER.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.GENDER_NAME });
+            ViewBag.US_RELIGION_ID = _unitOfWork.US_RELIGION.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.RELIGION_NAME });
+            ViewBag.US_BLOOD_GROUP_ID = _unitOfWork.US_BLOOD_GROUP.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.BLOOD_GROUP_NAME });
+            ViewBag.US_MARITAIL_STATUS_ID = _unitOfWork.US_MARITAIL_STATUS.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.MARITAIL_STATUS_NAME });
+            ViewBag.US_TYPE_ID = _unitOfWork.US_TYPE.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.TYPE_NAME });
             US_USER _obj = new US_USER();
             _obj.DATE_OF_BIRTH = DateTime.Now;
             return View(_obj);
@@ -30,10 +36,13 @@ namespace hms.Areas.Setup.Controllers
         {
             if (ModelState.IsValid)
             {
+                _obj.IS_ACTIVE = true;
                 _unitOfWork.US_USER.Add(_obj);
                 _unitOfWork.Save();
+                TempData["msg"] = "Swal.fire('success','Role saved','success')";
                 return RedirectToAction(nameof(ManageUser));
             }
+            TempData["msg"] = "Swal.fire('error','Role saved failed','error')";
             return View(_obj);
         }
         [AcceptVerbs("GET", "POST")]

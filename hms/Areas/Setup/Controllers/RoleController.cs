@@ -38,6 +38,12 @@ namespace hms.Areas.Setup.Controllers
             return View(_obj);
         }
 
+        public IActionResult GetAll()
+        {
+            var obj = _unitOfWork.US_ROLE.GetAll();
+            return Json(new { data = obj });
+        }
+
         //[AcceptVerbs("GET", "POST")]
         //public IActionResult VerifyRoleId(int ID)
         //{
