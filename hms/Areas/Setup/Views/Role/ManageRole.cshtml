@@ -8,6 +8,7 @@
     <form asp-action="ManageRole" asp-controller="Role" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
+            <input hidden asp-for="ID" />
             <div class="col-md-3">
                 <div class="form-group">
                     <label asp-for="ROLE_NAME" class="control-label"></label>
@@ -19,7 +20,7 @@
                 <div class="form-group">
                     <label asp-for="IS_ACTIVE" class="control-label"></label>
                     <div class="form-check">
-                        <input class="form-check-input" asp-for="IS_ACTIVE" checked />
+                        <input class="form-check-input" asp-for="IS_ACTIVE" />
                         <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
                     </div>
                 </div>
@@ -35,7 +36,22 @@
         </div>
     </form>
 </div>
+<div class="table-responsive">
+    <table id="myTable1" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Areas/Setup/role.js"></script>
 }

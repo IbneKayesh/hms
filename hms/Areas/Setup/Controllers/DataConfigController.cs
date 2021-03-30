@@ -22,18 +22,22 @@ namespace hms.Areas.Setup.Controllers
         [HttpGet]
         public IActionResult Initialize()
         {
-            US_BLOOD_GROUP_Ins();
-            US_GENDER_Ins();
-            US_MARITAIL_STATUS_Ins();
-            US_RELIGION_Ins();
-            US_ROLE_Ins();
-            US_TYPE_Ins();
-            US_MODULE_Ins();
-            US_PARENT_MENU_Ins();
-            US_CHILD_MENU_Ins();
-            US_USER_Ins();
-            US_ROLE_MENU_Ins();
-            return View();
+            try
+            {
+                US_BLOOD_GROUP_Ins();
+                US_GENDER_Ins();
+                US_MARITAIL_STATUS_Ins();
+                US_RELIGION_Ins();
+                US_ROLE_Ins();
+                US_TYPE_Ins();
+                US_MODULE_Ins();
+                US_PARENT_MENU_Ins();
+                US_CHILD_MENU_Ins();
+                US_USER_Ins();
+                US_ROLE_MENU_Ins();
+                return Content("Data Config Iniliazation Succeeded");
+            }
+            catch (Exception ex){ return Content(ex.Message); }
         }
         [HttpPost]
         public IActionResult Initialize(string command)

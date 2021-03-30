@@ -10,5 +10,6 @@ namespace hms.DataAccess.Repository.IRepository
     public interface IUS_ROLERepository : IRepository<US_ROLE>
     {
         void Update(US_ROLE objData);
+        bool Delete(int id);
     }
 }

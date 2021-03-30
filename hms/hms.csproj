@@ -41,6 +41,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\Areas\Setup\role.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\hms.DataAccess\hms.DataAccess.csproj" />
     <ProjectReference Include="..\hms.DataModel\hms.DataModel.csproj" />
     <ProjectReference Include="..\hms.Utility\hms.Utility.csproj" />

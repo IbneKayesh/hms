@@ -15,7 +15,6 @@ namespace hms.DataAccess.Repository
         {
             _db = db;
         }
-
         public void Update(US_ROLE obj)
         {
             var dBobj = _db.US_ROLE.FirstOrDefault(x => x.ID == obj.ID);
@@ -28,6 +27,20 @@ namespace hms.DataAccess.Repository
                 dBobj.UPDATE_DATE = new DEFAULT().UPDATE_DATE;
                 dBobj.UPDATE_DEVICE = new DEFAULT().UPDATE_DEVICE;
             }
+        }
+        public bool Delete(int id)
+        {
+            var dBobj = _db.US_ROLE.Find(id);
+            if (dBobj != null)
+            {
+                dBobj.IS_ACTIVE = false;
+
+                dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;
+                dBobj.UPDATE_DATE = new DEFAULT().UPDATE_DATE;
+                dBobj.UPDATE_DEVICE = new DEFAULT().UPDATE_DEVICE;
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -10,8 +10,8 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210328035740_initialize")]
-    partial class initialize
+    [Migration("20210329163903_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,18 +73,22 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ACTION_NAME")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("AREA_NAME")
+                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CHILD_BN_NAME")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("CHILD_ICON")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -94,6 +98,7 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("CONTROLLER_NAME")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -238,6 +243,7 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CONTROLLER_NAME")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -256,14 +262,17 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("METHOD_NAME")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("MODULE_BN_NAME")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("MODULE_ICON")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -316,10 +325,12 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PARENT_BN_NAME")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PARENT_ICON")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 

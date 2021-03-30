@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace hms.DataAccess.Migrations
 {
-    public partial class initialize : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,11 +73,11 @@ namespace hms.DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
                     MODULE_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    MODULE_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    MODULE_ICON = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    MODULE_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MODULE_ICON = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     VIEW_ORDER = table.Column<int>(type: "int", nullable: false),
-                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    METHOD_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    METHOD_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
                     CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
@@ -98,8 +98,8 @@ namespace hms.DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
                     PARENT_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    PARENT_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    PARENT_ICON = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    PARENT_BN_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PARENT_ICON = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
                     CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
@@ -180,11 +180,11 @@ namespace hms.DataAccess.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
                     CHILD_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CHILD_BN_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    CHILD_ICON = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    AREA_NAME = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    ACTION_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    CHILD_BN_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    CHILD_ICON = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    AREA_NAME = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    CONTROLLER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ACTION_NAME = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     US_MODULE_ID = table.Column<int>(type: "int", nullable: false),
                     US_PARENT_MENU_ID = table.Column<int>(type: "int", nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
