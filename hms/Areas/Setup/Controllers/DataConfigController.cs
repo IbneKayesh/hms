@@ -177,6 +177,13 @@ namespace hms.Areas.Setup.Controllers
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=1 },
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=2 },
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=3 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=4 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=5 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=6 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=7 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=8 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=9 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=10 },
             };
             _unitOfWork.US_ROLE_MENU.AddRange(_d);
             _unitOfWork.Save();

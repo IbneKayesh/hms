@@ -26,7 +26,7 @@ namespace hms.Areas.Setup.Controllers
                 _obj = _unitOfWork.US_ROLE.GetFirstOrDefult(x => x.ID == id);
                 if (_obj == null)
                 {
-                    TempData["msg"] = SweetMsg.Warning("No data found");
+                    TempData["msg"] = SweetMsg.WarningOK("No data found");
                 }
             }
             return View(_obj);
@@ -50,7 +50,7 @@ namespace hms.Areas.Setup.Controllers
                 TempData["msg"] = SweetMsg.Success("Role Saved");
                 return RedirectToAction(nameof(ManageRole));
             }
-            TempData["msg"] = SweetMsg.Error("Role saved failed");
+            TempData["msg"] = SweetMsg.ErrorOK("Role saved failed");
             _obj.ID = 0;
             return View(_obj);
         }

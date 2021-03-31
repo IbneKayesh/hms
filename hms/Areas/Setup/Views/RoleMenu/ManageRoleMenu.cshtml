@@ -2,47 +2,33 @@
 
 @{
     ViewData["Title"] = "Role Menu";
-
-    <style>
-        ul, #myUL {
-            list-style-type: none;
-        }
-
-        #myUL {
-            margin: 0;
-            padding: 0;
-        }
-
-        .caret {
-            cursor: pointer;
-            -webkit-user-select: none; /* Safari 3.1+ */
-            -moz-user-select: none; /* Firefox 2+ */
-            -ms-user-select: none; /* IE 10+ */
-            user-select: none;
-        }
-
-            .caret::before {
-                content: "\25B6";
-                color: black;
-                display: inline-block;
-                margin-right: 6px;
-            }
-
-        .caret-down::before {
-            -ms-transform: rotate(90deg); /* IE 9 */
-            -webkit-transform: rotate(90deg); /* Safari */
-            transform: rotate(90deg);
-        }
-
-        .nested {
-            display: none;
-        }
-
-        .active {
-            display: block;
-        }
-    </style>
 }
+<div class="card card-secondary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-edit"></i>
+            Role with Menu
+        </h3>
+    </div>
+    <form method="post" action="/Setup/Role/ManageRole" novalidate="novalidate">
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="row">
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+            <input type="button" onclick="location.reload();" class="btn btn-secondary float-left" value="Cancel">
+        </div>
+    </form>
+</div>
+
+
+
 
 @*<div class="col-md-12">
         <form asp-action="ManageRoleMenu" asp-controller="Manage" method="post">
@@ -83,37 +69,37 @@
         </form>
     </div>*@
 
-@if (Model.Count() > 0)
-{
-    var _parent = Model.GroupBy(x => x.Parent_Name).ToList();
-    <ul id="myUL">
-        @foreach (var childs in _parent)
+<table class="table">
+    <thead>
+        <tr>
+            <th>Parent</th>
+            <th>Child</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() > 0)
         {
-            <li>
-                <span class="caret"> @childs.Key</span>
-                <ul class="nested">
-                    @foreach (var baby in childs)
-                    {
-                        <li><a class="nav-link" asp-action="@baby.Child_Name"><i class="nav-icon @baby.Child_Icon"></i></a></li>
-                    }
-                </ul>
-            </li>
+            var _parent = Model.GroupBy(x => x.Parent_Name).ToList();
+            @foreach (var childs in _parent)
+            {
+                <tr>
+                    <th><i class="@childs.First().Parent_Icon"></i> @childs.Key</th>
+                    <td colspan="2"></td>
+                </tr>
+                @foreach (var baby in childs)
+                {
+                    <tr>
+                        <td></td>
+                        <td><i class="@baby.Child_Icon"></i> @baby.Child_Name</td>
+                        <td><input class="form-check-input" asp-for="@baby.Active" value="@baby.Child_Id" /></td>
+                    </tr>
+                }
+            }
         }
-    </ul>
-}
-
+    </tbody>
+</table>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        var toggler = document.getElementsByClassName("caret");
-        var i;
-
-        for (i = 0; i < toggler.length; i++) {
-            toggler[i].addEventListener("click", function () {
-                this.parentElement.querySelector(".nested").classList.toggle("active");
-                this.classList.toggle("caret-down");
-            });
-        }
-    </script>
 }
