@@ -50,7 +50,7 @@ namespace hms.Areas.Setup.Controllers
                 TempData["msg"] = SweetMsg.Success("Role Saved");
                 return RedirectToAction(nameof(ManageRole));
             }
-            TempData["msg"] = SweetMsg.Success("Role saved failed");
+            TempData["msg"] = SweetMsg.Error("Role saved failed");
             _obj.ID = 0;
             return View(_obj);
         }
@@ -74,8 +74,16 @@ namespace hms.Areas.Setup.Controllers
         }
 
         [AcceptVerbs("GET", "POST")]
-        public IActionResult VerifyRoleName(string ROLE_NAME)
+        public IActionResult VerifyRoleName(string ROLE_NAME, int ID)
         {
+            if (ID != 0)
+            {
+                var obj = _unitOfWork.US_ROLE.Get(ID);
+                if (obj.IS_ACTIVE == false && obj.ROLE_NAME == ROLE_NAME)
+                {
+                    return Json(true);
+                }
+            }
             bool result = _unitOfWork.US_ROLE.GetAll(x => x.ROLE_NAME == ROLE_NAME).Any();
             return Json(!result);
         }
