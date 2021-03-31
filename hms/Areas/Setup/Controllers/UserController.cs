@@ -43,11 +43,16 @@ namespace hms.Areas.Setup.Controllers
             {
                 if (_obj.ID == 0)
                 {
+                    _obj.PASSWORD = TextEncryption.TextEnc(_obj.PASSWORD);
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.US_USER.Add(_obj);
                 }
                 else
                 {
+                    if (string.IsNullOrWhiteSpace(_obj.PASSWORD))
+                    {
+                        _obj.PASSWORD = TextEncryption.TextEnc(_obj.PASSWORD);
+                    }
                     _unitOfWork.US_USER.Update(_obj);
                 }
                 _unitOfWork.Save();

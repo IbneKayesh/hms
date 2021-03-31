@@ -35,17 +35,16 @@ namespace hms
             //});
 
             //services.AddDistributedMemoryCache();
-            //services.AddSession(options =>
-            //{
-            //    options.Cookie.Name = ".hmsApps.Session";
-            //    options.IdleTimeout = TimeSpan.FromSeconds(10);
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.IsEssential = true;
-            //});
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".hmsApps.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation().AddSessionStateTempDataProvider();
             services.AddRazorPages().AddSessionStateTempDataProvider();
-            services.AddSession();
 
             services.AddMvc(options => { options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute()); });
         }

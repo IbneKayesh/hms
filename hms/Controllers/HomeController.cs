@@ -1,6 +1,7 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
 using hms.Models;
+using hms.Utility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ namespace hms.Controllers
             return View();
         }
 
+       //[hmsAuthorization(role_name ="abc")]
         public IActionResult LeaderBoard()
         {
             IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);            
