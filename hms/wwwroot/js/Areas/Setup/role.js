@@ -54,10 +54,10 @@ function Delete(url) {
                 url: url,
                 success: function (data) {
                     if (data.success) {
-                        Swal.fire("success", data.messages, "success");
+                        Toast.fire({icon: 'success', title: data.messages})
                         myTable.ajax.reload();
                     } else {
-                        Swal.fire("error", data.messages, "Error");
+                        Toast.fire({ icon: 'error', title: data.messages})
                     }
                 }
             });

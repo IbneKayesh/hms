@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="~/app_theme/dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini text-sm">
     <noscript>
         <style type="text/css">
             .login-box, .wrapper {
@@ -342,8 +342,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "responsive": true,
             });
         });
-
-
+        var Toast = Swal.mixin({
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500
+        });
     </script>
 </body>
 </html>

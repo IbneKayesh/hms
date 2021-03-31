@@ -2,6 +2,46 @@
 
 @{
     ViewData["Title"] = "Role Menu";
+
+    <style>
+        ul, #myUL {
+            list-style-type: none;
+        }
+
+        #myUL {
+            margin: 0;
+            padding: 0;
+        }
+
+        .caret {
+            cursor: pointer;
+            -webkit-user-select: none; /* Safari 3.1+ */
+            -moz-user-select: none; /* Firefox 2+ */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none;
+        }
+
+            .caret::before {
+                content: "\25B6";
+                color: black;
+                display: inline-block;
+                margin-right: 6px;
+            }
+
+        .caret-down::before {
+            -ms-transform: rotate(90deg); /* IE 9 */
+            -webkit-transform: rotate(90deg); /* Safari */
+            transform: rotate(90deg);
+        }
+
+        .nested {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
 }
 
 @*<div class="col-md-12">
@@ -43,37 +83,37 @@
         </form>
     </div>*@
 
-
-<ul>
-    @if (Model.Count() > 0)
-    {
-        var _parent = Model.GroupBy(x => x.Parent_Name).ToList();
-        foreach (var childs in _parent)
+@if (Model.Count() > 0)
+{
+    var _parent = Model.GroupBy(x => x.Parent_Name).ToList();
+    <ul id="myUL">
+        @foreach (var childs in _parent)
         {
-            <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <i class="nav-icon @childs.First().Parent_Icon"></i>
-                    <p>
-                        @childs.Key
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
+            <li>
+                <span class="caret"> @childs.Key</span>
+                <ul class="nested">
                     @foreach (var baby in childs)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="@baby.Child_Name">
-                                <i class="nav-icon @baby.Child_Icon"></i>
-                            </a>
-                        </li>
+                        <li><a class="nav-link" asp-action="@baby.Child_Name"><i class="nav-icon @baby.Child_Icon"></i></a></li>
                     }
                 </ul>
             </li>
         }
+    </ul>
+}
 
-    }
-</ul> 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function () {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
+        }
+    </script>
 }
