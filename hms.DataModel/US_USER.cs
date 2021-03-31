@@ -10,9 +10,9 @@ namespace hms.DataModel
         public int ID { get; set; }
 
         [Display(Name = "Login Id")]
-        [StringLength(15, MinimumLength = 6, ErrorMessage = "{0} length is {2} between {1}")]
+        [StringLength(15, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
-        [Remote(action: "VerifyLoginId", controller: "User")]
+        [Remote(action: "VerifyLoginId", controller: "User", AdditionalFields = "ID", ErrorMessage = "{0} is not available")]
         public string LOGIN_ID { get; set; }
 
         [Display(Name = "Password")]

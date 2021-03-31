@@ -10,5 +10,6 @@ namespace hms.DataAccess.Repository.IRepository
     public interface IUS_MODULERepository : IRepository<US_MODULE>
     {
         void Update(US_MODULE objData);
+        bool Delete(int id);
     }
 }

@@ -12,7 +12,7 @@ namespace hms.DataModel
         [Display(Name = "Name")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
-        [Remote(action: "VerifyModuleName", controller: "Module")]
+        [Remote(action: "VerifyModuleName", controller: "Module", AdditionalFields = "ID", ErrorMessage = "{0} is not available")]
         public string MODULE_NAME { get; set; }
 
         [Display(Name = "Name Bangla")]

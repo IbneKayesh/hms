@@ -26,7 +26,7 @@ namespace hms.Areas.Setup.Controllers
                 _obj = _unitOfWork.US_ROLE.GetFirstOrDefult(x => x.ID == id);
                 if (_obj == null)
                 {
-                    TempData["msg"] = SweetMsg.WarningOK("No data found");
+                    TempData["msg"] = SweetMsg.SaveWarningOK();
                 }
             }
             return View(_obj);
@@ -47,10 +47,10 @@ namespace hms.Areas.Setup.Controllers
                     _unitOfWork.US_ROLE.Update(_obj);
                 }
                 _unitOfWork.Save();
-                TempData["msg"] = SweetMsg.Success("Role Saved");
+                TempData["msg"] = SweetMsg.SaveSuccess();
                 return RedirectToAction(nameof(ManageRole));
             }
-            TempData["msg"] = SweetMsg.ErrorOK("Role saved failed");
+            TempData["msg"] = SweetMsg.SaveErrorOK();
             _obj.ID = 0;
             return View(_obj);
         }
@@ -68,9 +68,9 @@ namespace hms.Areas.Setup.Controllers
             if (result)
             {
                 _unitOfWork.Save();
-                return Json(new { success = true, messages = "Delete successful" });
+                return Json(new { success = true, messages = SweetMsg._DeleteSuccess });
             }
-            return Json(new { success = false, messages = "Delete failed" });
+            return Json(new { success = false, messages = SweetMsg._DeleteError });
         }
 
         [AcceptVerbs("GET", "POST")]

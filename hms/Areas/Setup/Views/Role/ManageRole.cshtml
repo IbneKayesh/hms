@@ -4,12 +4,14 @@
     ViewData["Title"] = "Role";
 }
 <div class="card card-secondary card-outline">
+
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
-            Manage Role
+            @ViewData["Title"]
         </h3>
     </div>
+
     <form asp-action="ManageRole" asp-controller="Role" method="post">
         <div class="card-body">
             <div class="col-md-12">
@@ -41,10 +43,12 @@
             <input type="button" onclick="location.reload();" class="btn btn-secondary float-left"  value="Cancel"/>
         </div>
     </form>
+
 </div>
+
 <div class="card card-secondary">
     <div class="card-header">
-        <h3 class="card-title">@ViewData["Title"]</h3>
+        <h3 class="card-title">@ViewData["Title"] List</h3>
     </div>
     <div class="card-body table-responsive">
         <table id="myTable1" class="table table-hover">
@@ -56,11 +60,10 @@
                     <th>Option</th>
                 </tr>
             </thead>
-            <tbody>
-            </tbody>
         </table>
     </div>
 </div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/Areas/Setup/role.js"></script>
