@@ -10,5 +10,6 @@ namespace hms.DataAccess.Repository.IRepository
     public interface IUS_CHILD_MENURepository : IRepository<US_CHILD_MENU>
     {
         void Update(US_CHILD_MENU objData);
+        bool Delete(int id);
     }
 }

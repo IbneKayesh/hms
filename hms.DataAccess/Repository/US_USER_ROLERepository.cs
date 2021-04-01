@@ -30,5 +30,19 @@ namespace hms.DataAccess.Repository
                 dBobj.UPDATE_DEVICE = new DEFAULT().UPDATE_DEVICE;
             }
         }
+        public bool Delete(int id, int id1)
+        {
+            var dBobj = _db.US_USER_ROLE.Find(id, id1);
+            if (dBobj != null)
+            {
+                dBobj.IS_ACTIVE = false;
+
+                dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;
+                dBobj.UPDATE_DATE = new DEFAULT().UPDATE_DATE;
+                dBobj.UPDATE_DEVICE = new DEFAULT().UPDATE_DEVICE;
+                return true;
+            }
+            return false;
+        }
     }
 }

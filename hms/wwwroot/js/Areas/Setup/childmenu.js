@@ -1,15 +1,10 @@
 ﻿var myTable;
 
 $(document).ready(function () {
-
-    $("#LOGIN_ID").focusout(function () {
-        var l = $('#LOGIN_ID').val();
-        var m = $('#USER_NAME').val();
-        loadTable(l, m);
-    });
+    loadTable();
 });
-function loadTable(l, m) {
-    let url = "/Setup/User/GetAll?LOGIN_ID=" + l + m;
+function loadTable() {
+    let url = "/Setup/ChildMenu/GetAll";
     myTable = $('#myTable1').DataTable({
         "ajax": url,
         "type": "GET",
@@ -20,12 +15,15 @@ function loadTable(l, m) {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
         "columns": [
-            { "mData": "logiN_ID" },
-            { "mData": "useR_NAME" },
-            { "mData": "mobilE_NO" },
-            { "mData": "emaiL_ID" },
-            { "mData": "uS_BLOOD_GROUP.blooD_GROUP_NAME" },
-            { "mData": "uS_TYPE.typE_NAME" },
+            { "mData": "id" },
+            { "mData": "chilD_NAME" },
+            { "mData": "chilD_BN_NAME" },
+            { "mData": "chilD_ICON" },
+            { "mData": "areA_NAME" },
+            { "mData": "controlleR_NAME" },
+            { "mData": "actioN_NAME" },
+            { "mData": "uS_MODULE.modulE_NAME" },
+            { "mData": "uS_PARENT_MENU.parenT_NAME" },
             {
                 "mData": "iS_ACTIVE",
                 render: function (mData) {
@@ -39,7 +37,7 @@ function loadTable(l, m) {
             {
                 "mData": "id",
                 render: function (mData) {
-                    return '<a href="/Setup/User/ManageUser/?id=' + mData + '"><i class="fas fa-edit"></i></a> <a onClick=Delete("/Setup/User/Remove/?id=' + mData + '")><i class="fas fa-trash"></i></a>'
+                    return '<a href="/Setup/ChildMenu/ManageChildMenu/?id=' + mData +'"><i class="fas fa-edit"></i></a> <a onClick=Delete("/Setup/ChildMenu/Remove/?id='+mData+'")><i class="fas fa-trash"></i></a>'
                 }
             },
 
@@ -63,10 +61,10 @@ function Delete(url) {
                 url: url,
                 success: function (data) {
                     if (data.success) {
-                        Toast.fire({ icon: 'success', title: data.messages })
+                        Toast.fire({icon: 'success', title: data.messages})
                         myTable.ajax.reload();
                     } else {
-                        Toast.fire({ icon: 'error', title: data.messages })
+                        Toast.fire({ icon: 'error', title: data.messages})
                     }
                 }
             });

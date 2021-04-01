@@ -44,13 +44,9 @@ namespace hms.Controllers
                                                .Where(y=>y.US_MODULE_ID==id);
             TempData["_menu"] = _data1.ToList();
 
-           
-
             IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
             return View("LeaderBoard", _data);
         }
-
-
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

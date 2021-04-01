@@ -1,6 +1,7 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
 using hms.DataModel.ViewModels;
+using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -49,10 +50,10 @@ namespace hms.Areas.Setup.Controllers
                 _obj.IS_ACTIVE = true;
                 _unitOfWork.US_ROLE_MENU.Add(_obj);
                 _unitOfWork.Save();
-                TempData["msg"] = "Swal.fire('success','Role saved','success')";
+                TempData["msg"] = SweetMsg.SaveSuccess();
                 return RedirectToAction(nameof(ManageRoleMenu));
             }
-            TempData["msg"] = "Swal.fire('error','Role saved failed','error')";
+            TempData["msg"] = SweetMsg.SaveErrorOK();
             return View(_obj);
         }
     }
