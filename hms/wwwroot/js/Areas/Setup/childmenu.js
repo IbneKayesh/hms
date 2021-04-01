@@ -18,7 +18,12 @@ function loadTable() {
             { "mData": "id" },
             { "mData": "chilD_NAME" },
             { "mData": "chilD_BN_NAME" },
-            { "mData": "chilD_ICON" },
+            {
+                "mData": "chilD_ICON",
+                render: function (mData) {
+                    return '<i class="' + mData + '"></i>'
+                }
+            },
             { "mData": "areA_NAME" },
             { "mData": "controlleR_NAME" },
             { "mData": "actioN_NAME" },

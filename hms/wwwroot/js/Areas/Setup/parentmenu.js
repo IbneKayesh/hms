@@ -18,7 +18,13 @@ function loadTable() {
             { "mData": "id" },
             { "mData": "parenT_NAME" },
             { "mData": "parenT_BN_NAME" },
-            { "mData": "parenT_ICON" },            {
+            {
+                "mData": "parenT_ICON",
+                render: function (mData) {
+                    return '<i class="' + mData + '"></i>'
+                }
+            },
+            {
                 "mData": "iS_ACTIVE",
                 render: function (mData) {
                     if (mData == "1") {
