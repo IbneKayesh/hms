@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace hms.Controllers
 {
@@ -32,19 +30,39 @@ namespace hms.Controllers
             return View();
         }
 
-       //[hmsAuthorization(role_name ="abc")]
+        //[hmsAuthorization(role_name ="abc")]
         public IActionResult LeaderBoard()
         {
-            IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);            
+            IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
             return View(_data);
         }
 
         public IActionResult LeaderBoardOptions(int id)
         {
             IEnumerable<US_CHILD_MENU> _data1 = _unitOfWork.US_CHILD_MENU
-                                               .GetAll(x => x.IS_ACTIVE == true,includeProperties:"US_PARENT_MENU")
-                                               .Where(y=>y.US_MODULE_ID==id);
-            TempData["_menu"] = _data1.ToList();
+                                               .GetAll(x => x.IS_ACTIVE == true, includeProperties: "US_PARENT_MENU")
+                                               .Where(y => y.US_MODULE_ID == id);
+            //TempData["_menu"] = _data1.ToList();
+
+            //===========================For Session==============
+            HttpContext.Session.SetInt32("sessionKeyInt", 1);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", _data1.ToList());
+            //===========================For Session==============
+
+            //===========================For Session Remove Single or All==============
+            //public IActionResult Logout()
+            //{
+            //    HttpContext.Session.Remove("sessionKeyInt");
+            //    return View();
+            //}
+
+            //public IActionResult Logout()
+            //{
+            //    HttpContext.Session.Clear();
+            //    HttpContext.SignOutAsync();
+            //    return View();
+            //}
+            //===========================For Session Remove Single or All==============
 
             IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
             return View("LeaderBoard", _data);

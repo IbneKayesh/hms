@@ -15,7 +15,9 @@ function loadTable() {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
         "columns": [
+            { "mData": "uS_USER_ID" },
             { "mData": "uS_USER.useR_NAME" },
+            { "mData": "uS_ROLE_ID" },
             { "mData": "uS_ROLE.rolE_NAME" },
             {
                 "mData": "iS_ACTIVE",
