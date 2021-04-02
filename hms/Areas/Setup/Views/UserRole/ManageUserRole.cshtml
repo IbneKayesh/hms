@@ -1,11 +1,10 @@
-﻿@model hms.DataModel.US_USER_ROLE
+﻿@model hms.DataModel.ViewModels.US_USER_ROLE_VM
 
 @{
     ViewData["Title"] = "User Role";
 }
 
 <div class="card card-secondary card-outline">
-
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
@@ -14,32 +13,22 @@
     </div>
 
 
-    <form asp-action="ManageUserRole" asp-controller="UserRole" method="post">
+    <form asp-action="ManageUserRole" asp-controller="UserRole" method="get">
         <div class="card-body">
             <div class="col-md-12">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="US_USER_ID" class="control-label"></label>
-                            <select asp-for="US_USER_ID" class="form-control form-control-sm" asp-items="ViewBag.US_USER_ID"><option selected>-Select-</option></select>
-                            <span asp-validation-for="US_USER_ID" class="text-danger"></span>
+                            <label asp-for="UserId" class="control-label"></label>
+                            <input asp-for="UserId" class="form-control form-control-sm" />
+                            <span asp-validation-for="UserId" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="US_ROLE_ID" class="control-label"></label>
-                            <select asp-for="US_ROLE_ID" class="form-control form-control-sm" asp-items="ViewBag.US_ROLE_ID"><option selected>-Select-</option></select>
-                            <span asp-validation-for="US_ROLE_ID" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label asp-for="IS_ACTIVE" class="control-label"></label>
-                            <div class="form-check">
-                                <input class="form-check-input" asp-for="IS_ACTIVE" />
-                                <label class="form-check-label"> @Html.DisplayNameFor(model => model.IS_ACTIVE)</label>
-                            </div>
+                            <label asp-for="UserName" class="control-label"></label>
+                            <input asp-for="UserName" class="form-control form-control-sm" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -47,32 +36,43 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary float-right">Submit</button>
+            <button type="submit" class="btn btn-primary float-right">View</button>
             <input type="button" onclick="location.reload();" class="btn btn-secondary float-left" value="Cancel" />
         </div>
 
     </form>
 </div>
 
-<div class="card card-secondary">
-    <div class="card-header">
-        <h3 class="card-title">@ViewData["Title"] List</h3>
-    </div>
-    <div class="card-body table-responsive">
-        <table id="myTable1" class="table table-hover">
-            <thead>
+
+
+<table class="table" id="mytable">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.user_role_list != null)
+        {
+            var _role = Model.user_role_list.ToList();
+            @foreach (var role in _role)
+            {
                 <tr>
-                    <th>Id</th>
-                    <th>User</th>
-                    <th>Id</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Option</th>
+                    <td>@role.RoleName</td>
+                    <td><input class="form-check-input" asp-for="@role.Active" value="@role.RoleId" /></td>
                 </tr>
-            </thead>
-        </table>
-    </div>
-</div>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <button id="btnSaveState" type="button" class="btn btn-primary float-right" onclick="btnSaveStateClick();">Submit</button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

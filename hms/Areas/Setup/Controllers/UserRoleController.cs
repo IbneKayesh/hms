@@ -1,8 +1,10 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
+using hms.DataModel.ViewModels;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +21,95 @@ namespace hms.Areas.Setup.Controllers
             _unitOfWork = unitOfWork;
         }
         [HttpGet]
-        public IActionResult ManageUserRole(int? id, int? id1)
+        public IActionResult ManageUserRole(US_USER_ROLE_VM _obj)
         {
-            DropDownFor_ManageUserRole();
-            US_USER_ROLE _obj = new US_USER_ROLE();
-            if (id != null && id1 != null)
+            if (string.IsNullOrWhiteSpace(_obj.UserId))
             {
-                _obj = _unitOfWork.US_USER_ROLE.GetFirstOrDefult(x => x.US_USER_ID == id && x.US_ROLE_ID == id1);
-                if (_obj == null)
+                _obj = new US_USER_ROLE_VM();
+            }
+            else
+            {
+                var _obj1 = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID == _obj.UserId);
+                if (_obj1 != null)
                 {
-                    TempData["msg"] = SweetMsg.SaveWarningOK();
+                    var obj2 = (from r in _unitOfWork.US_ROLE.GetAll()
+
+                                join u_r in _unitOfWork.US_USER_ROLE.GetAll().Where(x => x.US_USER_ID == _obj1.ID) on r.ID equals u_r.US_ROLE_ID into u_r_s
+                                from u_r_rslt in u_r_s.DefaultIfEmpty()
+
+                                select new user_role_list_vm
+                                {
+                                    RoleId = r.ID,
+                                    RoleName = r.ROLE_NAME,
+                                    Active = u_r_rslt == null ? false : u_r_rslt.IS_ACTIVE
+                                }
+                         ).ToList();
+                    _obj.USER_ID = _obj1.ID;
+                    _obj.UserName = _obj1.USER_NAME;
+                    _obj.user_role_list = obj2;
                 }
             }
             return View(_obj);
         }
+
+        [HttpGet]
+        //need to change this method HttpPost
+        public IActionResult UserRoleSetup(string post_data)
+        {
+            try
+            {
+                bool _save = false;
+                var _post_data_vm = JsonConvert.DeserializeObject<List<post_data2_vm>>(post_data);
+                var _obj1 = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID == _post_data_vm.FirstOrDefault().myuser);
+                foreach (var item in _post_data_vm)
+                {
+                    var _obj = _unitOfWork.US_USER_ROLE.GetFirstOrDefult(x => x.US_ROLE_ID == item.myrole && x.US_USER_ID == _obj1.ID);
+                    if (_obj != null && _obj.IS_ACTIVE != item.mystate)
+                    {
+                        _obj.IS_ACTIVE = item.mystate;
+                        _unitOfWork.US_USER_ROLE.Update(_obj);
+                        _save = true;
+                    }
+                    else if (_obj == null && item.mystate == true)
+                    {
+                        US_USER_ROLE uS = new US_USER_ROLE();
+                        uS.US_ROLE_ID = item.myrole;
+                        uS.US_USER_ID = _obj1.ID;
+                        _unitOfWork.US_USER_ROLE.Add(uS);
+                        _save = true;
+                    }
+                    else
+                    {
+                        _save = false;
+                    }
+                    if (_save) { _unitOfWork.Save(); }
+                }
+                return Json(new { success = true, messages = SweetMsg._SaveSuccess });
+            }
+            catch
+            {
+                return Json(new { success = false, messages = SweetMsg._SaveError });
+            }
+
+        }
+
+
+
+
+
+
+        //        DropDownFor_ManageUserRole();
+        //        US_USER_ROLE _obj = new US_USER_ROLE();
+        //            if (id != null && id1 != null)
+        //            {
+        //                _obj = _unitOfWork.US_USER_ROLE.GetFirstOrDefult(x => x.US_USER_ID == id && x.US_ROLE_ID == id1);
+        //                if (_obj == null)
+        //                {
+        //                    TempData["msg"] = SweetMsg.SaveWarningOK();
+        //                }
+        //}
+
+
         [HttpPost]
         public IActionResult ManageUserRole(US_USER_ROLE _obj)
         {

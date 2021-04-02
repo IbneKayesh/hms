@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Blood Group";
+}
+<div class="card card-secondary">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"] List</h3>
+    </div>
+    <div class="card-body table-responsive">
+        <table id="myTable1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Blood Group Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Areas/Setup/bloodgroup.js"></script>
+}

@@ -62,16 +62,14 @@ namespace hms.Areas.Setup.Controllers
             return View(_obj);
         }
 
-        //ViewBag.US_ROLE_ID = _unitOfWork.US_ROLE.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.ROLE_NAME });
-        //ViewBag.US_CHILD_MENU_ID = _unitOfWork.US_CHILD_MENU.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.CHILD_NAME });
-
         [HttpGet]
         //need to change this method HttpPost
         public IActionResult RoleMenuSetup(string post_data)
         {
             try
             {
-                var _post_data_vm = JsonConvert.DeserializeObject<List<post_data_vm>>(post_data);
+                bool _save = false;
+                var _post_data_vm = JsonConvert.DeserializeObject<List<post_data1_vm>>(post_data);
                 foreach (var item in _post_data_vm)
                 {
                     var _obj = _unitOfWork.US_ROLE_MENU.GetFirstOrDefult(x => x.US_ROLE_ID == item.myrole && x.US_CHILD_MENU_ID == item.mymenu);
@@ -79,6 +77,7 @@ namespace hms.Areas.Setup.Controllers
                     {
                         _obj.IS_ACTIVE = item.mystate;
                         _unitOfWork.US_ROLE_MENU.Update(_obj);
+                        _save = true;
                     }
                     else if (_obj == null && item.mystate == true)
                     {
@@ -86,12 +85,13 @@ namespace hms.Areas.Setup.Controllers
                         uS.US_ROLE_ID = item.myrole;
                         uS.US_CHILD_MENU_ID = item.mymenu;
                         _unitOfWork.US_ROLE_MENU.Add(uS);
+                        _save = true;
                     }
                     else
                     {
-                        //do nothing
+                        _save = false;
                     }
-                    _unitOfWork.Save();
+                    if (_save) { _unitOfWork.Save(); }
                 }
                 return Json(new { success = true, messages = SweetMsg._SaveSuccess });
             }

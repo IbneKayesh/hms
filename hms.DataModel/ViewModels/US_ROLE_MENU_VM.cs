@@ -20,11 +20,4 @@ namespace hms.DataModel.ViewModels
         public string Child_Icon { get; set; }
         public bool Active { get; set; }
     }
-
-    public class post_data_vm
-    {
-        public int mymenu { get; set; }
-        public bool mystate { get; set; }
-        public int myrole { get; set; }
-    }
 }

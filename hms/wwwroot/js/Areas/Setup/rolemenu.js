@@ -2,7 +2,7 @@
 
 });
 
-function btnSaveRoleMenuClick() {
+function btnSaveStateClick() {
     var data = [];
     var roleId = $('#Role').val();
     $("#mytable > tbody > tr").each(function () {

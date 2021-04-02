@@ -203,9 +203,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                            with font-awesome or any other icon font library -->
-
                         @if (@Context.Session.GetInt32("sessionKeyInt") == 1)          // if (TempData["_menu"] != null)
                         {
                             //List<hms.DataModel.US_CHILD_MENU> _menu = (List<hms.DataModel.US_CHILD_MENU>)TempData["_menu"];
@@ -216,7 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             {
                                 <li class="nav-item">
 
-                                    <a href="#" class="nav-link active">
+                                    <a href="#" class="nav-link">
                                         <i class="nav-icon @childs.First().US_PARENT_MENU.PARENT_ICON"></i>
                                         <p>
                                             @childs.Key
@@ -324,39 +321,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @await RenderSectionAsync("Scripts", required: false)
     <script>
     //Sweet Alert
-    @Html.Raw(TempData["msg"]);
-
-        paceOptions = {
-            ajax: false, // disabled
-            document: false, // disabled
-            eventLag: false, // disabled
-            elements: {
-                selectors: ['.my-page']
-            }
-        };
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-            $('#example2').DataTable({
-                "paging": false,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-
-        var Toast = Swal.mixin({
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500
-        });
-
+    @Html.Raw(TempData["msg"])
     </script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>
