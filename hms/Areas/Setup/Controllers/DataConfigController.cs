@@ -39,11 +39,6 @@ namespace hms.Areas.Setup.Controllers
             }
             catch (Exception ex){ return Content(ex.Message); }
         }
-        [HttpPost]
-        public IActionResult Initialize(string command)
-        {
-            return View();
-        }
 
         #region No Change
         private void US_BLOOD_GROUP_Ins()
