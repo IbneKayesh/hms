@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_TOKEN
+    public class HP_TOKEN:DEFAULT
     {
         public Int64 ID { get; set; }
         public int SERIAL_NO { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_DURATION
+    public class HP_DURATION:DEFAULT
     {
         public string DURATION_NAME { get; set; }
     }

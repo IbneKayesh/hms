@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_CHECKUP
+    public class HP_CHECKUP:DEFAULT
     {
         public int ID { get; set; }
         public string PRESCRIPTION_NUMBER { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_SHOW_TYPE
+    public class HP_SHOW_TYPE : DEFAULT
     {
         public int ID { get; set; }
         public string SHOW_NAME { get; set; }

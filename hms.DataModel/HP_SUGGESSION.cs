@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_SUGGESSION
+    public class HP_SUGGESSION:DEFAULT
     {
         public string SUGGESTION_NAME { get; set; }
     }

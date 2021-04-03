@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_FREQUENCY
+    public class HP_FREQUENCY:DEFAULT
     {
         public string FREQUENCY_NAME { get; set; }
     }

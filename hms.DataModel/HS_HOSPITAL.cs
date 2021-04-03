@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_HOSPITAL
+    public class HS_HOSPITAL:DEFAULT
     {
         public int ID { get; set; }
         public string HOSPITAL_NAME { get; set; }
