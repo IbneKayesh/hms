@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -44,6 +45,9 @@ namespace hms.DataModel
         [Display(Name = "User Image")]
         [StringLength(150, MinimumLength = 3, ErrorMessage = "{0} length is {2} between {1}")]
         public string PROFILE_IMAGE { get; set; }
+
+        [NotMapped]
+        public IFormFile PROFILE_IMAGE_FILE { get; set; }
 
 
         [Display(Name = "Gender")]
