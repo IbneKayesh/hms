@@ -21,6 +21,10 @@ namespace hms.DataAccess.Repository
             var dBobj = _db.US_USER.FirstOrDefault(x => x.ID == obj.ID);
             if (dBobj != null)
             {
+                if (!string.IsNullOrWhiteSpace(obj.PROFILE_IMAGE))
+                {
+                    dBobj.PROFILE_IMAGE = obj.PROFILE_IMAGE;
+                }
                 dBobj.PASSWORD = obj.PASSWORD;
                 dBobj.EMAIL_ID = obj.EMAIL_ID;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;

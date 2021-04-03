@@ -1,10 +1,12 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
 using hms.Utility;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,9 +18,11 @@ namespace hms.Areas.Setup.Controllers
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public UserController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public UserController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
         [HttpGet]
         public IActionResult ManageUser(int? id)
@@ -39,8 +43,32 @@ namespace hms.Areas.Setup.Controllers
         [HttpPost]
         public IActionResult ManageUser(US_USER _obj)
         {
+            bool success_upload = false;
+            string file_name = string.Empty;
+            try
+            {
+                if (_obj.PROFILE_IMAGE_FILE != null)
+                {
+                    string fname = Path.GetFileName(_obj.PROFILE_IMAGE_FILE.FileName);
+                    file_name = Path.GetFileNameWithoutExtension(fname) + "_"
+                        + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(fname);
+
+                    var uploads = Path.Combine(_hostEnvironment.WebRootPath, "uploads\\userprofiles");
+                    var filePath = Path.Combine(uploads, file_name);
+                    _obj.PROFILE_IMAGE_FILE.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                success_upload = true;
+            }
+            catch { success_upload = false; }
+
+
             if (ModelState.IsValid)
             {
+                if (success_upload)
+                {
+                    _obj.PROFILE_IMAGE = file_name;
+                }
+
                 if (_obj.ID == 0)
                 {
                     _obj.PASSWORD = TextEncryption.TextEnc(_obj.PASSWORD);

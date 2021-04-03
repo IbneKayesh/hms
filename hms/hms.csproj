@@ -48,6 +48,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\app_theme\" />
+    <Folder Include="wwwroot\uploads\userprofiles\" />
   </ItemGroup>
 
   <ItemGroup>

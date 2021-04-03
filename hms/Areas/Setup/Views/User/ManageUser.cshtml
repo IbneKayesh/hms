@@ -14,7 +14,7 @@
     </div>
 
 
-    <form asp-action="ManageUser" asp-controller="User" method="post">
+    <form asp-action="ManageUser" asp-controller="User" method="post" enctype="multipart/form-data" >
         <div class="card-body">
             <div class="col-md-12">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -66,9 +66,9 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label asp-for="PROFILE_IMAGE" class="control-label"></label>
-                            <input type="file" asp-for="PROFILE_IMAGE" class="form-control form-control-sm" />
-                            <span asp-validation-for="PROFILE_IMAGE" class="text-danger"></span>
+                            <label asp-for="PROFILE_IMAGE_FILE" class="control-label"></label>
+                            <input type="file" asp-for="PROFILE_IMAGE_FILE" class="form-control form-control-sm" accept="image/x-png,image/jpeg"/>
+                            <span asp-validation-for="PROFILE_IMAGE_FILE" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-3">
