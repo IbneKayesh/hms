@@ -65,12 +65,10 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="exampleInputFile" asp-for="PROFILE_IMAGE"></label>
                         <div class="form-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input form-control-sm" asp-for="PROFILE_IMAGE">
-                                <label class="custom-file-label" asp-for="PROFILE_IMAGE">Choose file</label>
-                            </div>
+                            <label asp-for="PROFILE_IMAGE" class="control-label"></label>
+                            <input type="file" asp-for="PROFILE_IMAGE" class="form-control form-control-sm" />
+                            <span asp-validation-for="PROFILE_IMAGE" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-3">

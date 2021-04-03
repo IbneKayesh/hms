@@ -30,6 +30,11 @@ namespace hms.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         //[hmsAuthorization(role_name ="abc")]
         public IActionResult LeaderBoard()
         {
