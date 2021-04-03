@@ -19,6 +19,7 @@ namespace hms.DataModel
         [StringLength(50, MinimumLength = 6, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
         [Remote(action: "VerifyPassword", controller: "User")]
+        [DataType(DataType.Password)]
         public string PASSWORD { get; set; }
 
         [Display(Name = "User Name")]

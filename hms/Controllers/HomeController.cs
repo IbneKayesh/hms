@@ -2,10 +2,12 @@
 using hms.DataModel;
 using hms.Models;
 using hms.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -30,10 +32,67 @@ namespace hms.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        //[AllowAnonymous]
+        public IActionResult Login(string returnUrl)
         {
+            //FormsAuthentication.SignOut();
+            //ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
+
+        //[AllowAnonymous]
+        [HttpPost]
+        public IActionResult Login(US_USER _obj, string nexturl)
+        {
+            try
+            {
+                //FormsAuthentication.SetAuthCookie(user.LOGIN_ID.ToUpper().Trim(), false);
+                string userId = _obj.LOGIN_ID.ToLower().Trim();
+                string userPass = _obj.PASSWORD;
+
+                US_USER _data = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID.ToLower() == userId && x.PASSWORD == userPass);
+                if (_data == null)
+                {
+                    TempData["message"] =  "Enter Valid Information !!!";
+                    return View(_obj);
+                }
+                else
+                {
+                    //HttpContext.Session.SetInt32("sessionKeyInt", 1);
+                    HttpContext.Session.SetString("sessionLOGIN_ID", _data.LOGIN_ID);
+                    //HttpContext.Session.SetString("sessionPASSWORD", _data.PASSWORD);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["message"] = ex.Message.ToString();
+                return View(_obj);
+            }
+
+            return RedirectToLocal(nexturl);
+        }
+
+        private IActionResult RedirectToLocal(string nexturl)
+        {
+            if (Url.IsLocalUrl(nexturl))
+            {
+                return Redirect(nexturl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            //HttpContext.Session.Remove("sessionKeyInt");
+            //HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
+
 
         //[hmsAuthorization(role_name ="abc")]
         public IActionResult LeaderBoard()
@@ -50,24 +109,8 @@ namespace hms.Controllers
             //TempData["_menu"] = _data1.ToList();
 
             //===========================For Session==============
-            HttpContext.Session.SetInt32("sessionKeyInt", 1);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", _data1.ToList());
             //===========================For Session==============
-
-            //===========================For Session Remove Single or All==============
-            //public IActionResult Logout()
-            //{
-            //    HttpContext.Session.Remove("sessionKeyInt");
-            //    return View();
-            //}
-
-            //public IActionResult Logout()
-            //{
-            //    HttpContext.Session.Clear();
-            //    HttpContext.SignOutAsync();
-            //    return View();
-            //}
-            //===========================For Session Remove Single or All==============
 
             IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
             return View("LeaderBoard", _data);

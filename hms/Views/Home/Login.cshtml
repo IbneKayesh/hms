@@ -1,4 +1,7 @@
-﻿@{ Layout = null;}
+﻿@model hms.DataModel.US_USER
+
+@{ ViewData["Title"] = "Log in";
+    Layout = null; }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,6 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            @*<a href="../../index2.html"><b>HM</b>S</a>*@
             <a><b>HM</b>S</a>
         </div>
         <!-- /.login-logo -->
@@ -24,18 +26,17 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                @*<form action="../../index3.html" method="post">*@
-                <form action="../../index3.html" method="post">
+                <form method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input asp-for="LOGIN_ID" class="form-control form-control-sm"placeholder="Login Id" autofocus />
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input asp-for="PASSWORD" class="form-control form-control-sm" placeholder="Password" />
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -58,6 +59,12 @@
                         <!-- /.col -->
                     </div>
                 </form>
+
+                <div>
+                    @if (TempData["message"] != null)
+                    {
+        <p style="color:red"> @TempData["message"].ToString()</p>}
+                </div>
 
                 @*<div class="social-auth-links text-center mb-3">
                         <p>- OR -</p>

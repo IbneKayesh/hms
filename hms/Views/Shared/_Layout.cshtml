@@ -203,37 +203,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        @if (@Context.Session.GetInt32("sessionKeyInt") == 1)          // if (TempData["_menu"] != null)
+                        @if (@Context.Session.GetString("sessionLOGIN_ID") != null)          // if (TempData["_menu"] != null)
                         {
                             //List<hms.DataModel.US_CHILD_MENU> _menu = (List<hms.DataModel.US_CHILD_MENU>)TempData["_menu"];
                             List<hms.DataModel.US_CHILD_MENU> _menu = hms.Utility.SessionHelper.GetObjectFromJson<List<hms.DataModel.US_CHILD_MENU>>(Context.Session, "_menus");
-
-                            var _parent = _menu.GroupBy(x => x.US_PARENT_MENU.PARENT_NAME).ToList();
-                            foreach (var childs in _parent)
+                            if (_menu != null)
                             {
-                                <li class="nav-item">
+                                var _parent = _menu.GroupBy(x => x.US_PARENT_MENU.PARENT_NAME).ToList();
+                                foreach (var childs in _parent)
+                                {
+                                    <li class="nav-item">
 
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon @childs.First().US_PARENT_MENU.PARENT_ICON"></i>
-                                        <p>
-                                            @childs.Key
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon @childs.First().US_PARENT_MENU.PARENT_ICON"></i>
+                                            <p>
+                                                @childs.Key
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
 
-                                    <ul class="nav nav-treeview">
-                                        @foreach (var baby in childs)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" asp-area="@baby.AREA_NAME" asp-controller="@baby.CONTROLLER_NAME" asp-action="@baby.ACTION_NAME">
-                                                    <i class="nav-icon @baby.CHILD_ICON"></i>
-                                                    <p>@baby.CHILD_NAME</p>
-                                                </a>
-                                            </li>
-                                        }
-                                    </ul>
+                                        <ul class="nav nav-treeview">
+                                            @foreach (var baby in childs)
+                                            {
+                                                <li class="nav-item">
+                                                    <a class="nav-link" asp-area="@baby.AREA_NAME" asp-controller="@baby.CONTROLLER_NAME" asp-action="@baby.ACTION_NAME">
+                                                        <i class="nav-icon @baby.CHILD_ICON"></i>
+                                                        <p>@baby.CHILD_NAME</p>
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
 
-                                </li>
+                                    </li>
+                                }
                             }
 
                         }
@@ -243,6 +245,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LeaderBoard">Leader Board</a>
                         </li>
+                        @if (@Context.Session.GetString("sessionLOGIN_ID") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
