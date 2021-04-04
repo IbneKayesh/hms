@@ -1,6 +1,7 @@
 ﻿@model hms.DataModel.US_USER
 
-@{ ViewData["Title"] = "Log In";
+@{ 
+    ViewData["Title"] = "HMS | Log In";
     Layout = null; }
 
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HMS | Log in</title>
+    <title>@ViewData["Title"] </title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="~/app_theme/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->

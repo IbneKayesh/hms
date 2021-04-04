@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using hms.DataModel.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -24,9 +25,9 @@ namespace hms.Utility
             this.session = httpContextAccessor.HttpContext.Session;
             _httpContextAccessor = httpContextAccessor;
         }
-     
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            var _data = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(session, "_all_menus");
             string path = _httpContextAccessor.HttpContext.Request.Path;
             string query = _httpContextAccessor.HttpContext.Request.Scheme;
             string redirectUrl = string.Format("?next_ride={0}", query);// filterContext.HttpContext.Request.Url.PathAndQuery);

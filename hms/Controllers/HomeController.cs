@@ -27,7 +27,7 @@ namespace hms.Controllers
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
-
+        [hmsAuthorization(Order =1)]
         public IActionResult Index()
         {
             return View();
