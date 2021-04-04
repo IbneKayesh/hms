@@ -10,7 +10,12 @@ namespace hms.DataModel
 {
     public class HS_DOCTOR:DEFAULT
     {
+        [Display(Name = "Id")]
         public int ID { get; set; }
+
+        [Display(Name = "Name")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        [Required(ErrorMessage = "{0} is required")]
         public string DOCTOR_NAME { get; set; }
     }
 }
