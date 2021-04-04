@@ -93,6 +93,10 @@ namespace hms.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
 
         //[hmsAuthorization(role_name ="abc")]
         public IActionResult LeaderBoard()
