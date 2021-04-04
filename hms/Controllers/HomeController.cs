@@ -27,7 +27,9 @@ namespace hms.Controllers
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
-        [hmsAuthorization(Order =1)]
+
+
+        //[hmsAuthorization(Order =1)]
         public IActionResult Index()
         {
             return View();
@@ -108,7 +110,8 @@ namespace hms.Controllers
                 {
                     return RedirectToAction(nameof(Login));
                 }
-                List<US_USER_MODULE_ROLE_MENU_VM> _obj = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
+
+                List<US_USER_MODULE_ROLE_MENU_VM> _obj = SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
                 if (_obj == null)
                 {
                     _obj = (from cm in _unitOfWork.US_CHILD_MENU.GetAll(x => x.IS_ACTIVE == true)
@@ -160,7 +163,7 @@ namespace hms.Controllers
 
         public IActionResult LeaderBoardOptions(int id)
         {
-            List<US_USER_MODULE_ROLE_MENU_VM> _obj = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
+            List<US_USER_MODULE_ROLE_MENU_VM> _obj = SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
             List<US_LEADERBOARD_MODULE_VM> obj = (_obj.GroupBy(x => x.Module_Id)
                                                   .Select(g => new
                                                   US_LEADERBOARD_MODULE_VM
