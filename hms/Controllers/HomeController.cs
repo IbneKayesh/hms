@@ -99,76 +99,96 @@ namespace hms.Controllers
             return View();
         }
 
-        //[hmsAuthorization(role_name ="abc")]
         public IActionResult LeaderBoard()
         {
-            //IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
-            //return View(_data);
+            try
+            {
+                int UserId = HttpContext.Session.GetInt32("sessionID") ?? 0;
+                if (UserId == 0)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
+                List<US_USER_MODULE_ROLE_MENU_VM> _obj = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
+                if (_obj == null)
+                {
+                    _obj = (from cm in _unitOfWork.US_CHILD_MENU.GetAll(x => x.IS_ACTIVE == true)
+                            join pm in _unitOfWork.US_PARENT_MENU.GetAll(x => x.IS_ACTIVE == true) on cm.US_PARENT_MENU_ID equals pm.ID
+                            join md in _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true) on cm.US_MODULE_ID equals md.ID
+                            join rm in _unitOfWork.US_ROLE_MENU.GetAll(x => x.IS_ACTIVE == true) on cm.ID equals rm.US_CHILD_MENU_ID
+                            join ur in _unitOfWork.US_USER_ROLE.GetAll(x => x.IS_ACTIVE == true && x.US_USER_ID == UserId) on rm.US_ROLE_ID equals ur.US_ROLE_ID
+                            select new US_USER_MODULE_ROLE_MENU_VM
+                            {
+                                Module_Id = md.ID,
+                                Module_Icon = md.MODULE_ICON,
+                                Module_Name = md.MODULE_NAME,
+                                View_Order = md.VIEW_ORDER,
+                                Module_Controller = md.CONTROLLER_NAME,
+                                Module_Method = md.METHOD_NAME,
 
-            var obj = (from rm in _unitOfWork.US_ROLE_MENU.GetAll()
-                       join ur in _unitOfWork.US_USER_ROLE.GetAll().Where(x => x.US_USER_ID == HttpContext.Session.GetInt32("sessionID") && x.IS_ACTIVE == true) on rm.US_ROLE_ID equals ur.US_ROLE_ID
-                       join cm in _unitOfWork.US_CHILD_MENU.GetAll().Where(x => x.IS_ACTIVE == true) on rm.US_CHILD_MENU_ID equals cm.ID
-                       join pm in _unitOfWork.US_PARENT_MENU.GetAll().Where(x => x.IS_ACTIVE == true) on cm.US_PARENT_MENU_ID equals pm.ID
-                       join m in _unitOfWork.US_MODULE.GetAll().Where(x => x.IS_ACTIVE == true) on cm.US_MODULE_ID equals m.ID
-                       select new US_USER_MODULE_ROLE_MENU_VM
-                       {
-                           Module_Id = m.ID,
-                           Module_Icon = m.MODULE_ICON,
-                           Module_Name = m.MODULE_NAME,
-                           View_Order = m.VIEW_ORDER,
-                           Method_Name = m.METHOD_NAME,
-                           Parent_name = pm.PARENT_NAME,
-                           Parent_Icon = cm.CHILD_ICON,
-                           Child_Id = cm.ID,
-                           Child_Icon = cm.CHILD_ICON,
-                           Child_Name = cm.CHILD_NAME,
-                           Area_Name = cm.AREA_NAME,
-                           Controller_Name = cm.CONTROLLER_NAME,
-                           Action_Name = cm.ACTION_NAME
-                       }
-                       ).ToList();
+                                Parent_Name = pm.PARENT_NAME,
+                                Parent_Icon = pm.PARENT_ICON,
 
-
-
-            //var obj = (from rm in _unitOfWork.US_ROLE_MENU.GetAll()
-            //           join ur in _unitOfWork.US_USER_ROLE.GetAll().Where(x => x.US_USER_ID == HttpContext.Session.GetInt32("sessionID") && x.IS_ACTIVE == true) on rm.US_ROLE_ID equals ur.US_ROLE_ID
-            //           join cm in _unitOfWork.US_CHILD_MENU.GetAll().Where(x => x.IS_ACTIVE == true) on rm.US_CHILD_MENU_ID equals cm.ID
-            //           join pm in _unitOfWork.US_PARENT_MENU.GetAll().Where(x => x.IS_ACTIVE == true) on cm.US_PARENT_MENU_ID equals pm.ID
-            //           join m in _unitOfWork.US_MODULE.GetAll().Where(x => x.IS_ACTIVE == true) on cm.US_MODULE_ID equals m.ID
-            //           select new US_USER_MODULE_ROLE_MENU_VM
-            //           {
-            //               Module_Id = m.ID,
-            //               Module_Icon = m.MODULE_ICON,
-            //               Module_Name = m.MODULE_NAME,
-            //               View_Order = m.VIEW_ORDER,
-            //               Method_Name = m.METHOD_NAME,
-            //               Controller_Name = cm.CONTROLLER_NAME,
-            //               Action_Name = cm.ACTION_NAME
-            //           }
-            //          ).ToList();
-
-            //SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", obj.ToList());
-
-            return View(obj);
+                                Child_Id = cm.ID,
+                                Child_Icon = cm.CHILD_ICON,
+                                Child_Name = cm.CHILD_NAME,
+                                Area_Name = cm.AREA_NAME,
+                                Controller_Name = cm.CONTROLLER_NAME,
+                                Action_Name = cm.ACTION_NAME
+                            }).Distinct().ToList();
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "_all_menus", _obj);
+                }
+                List<US_LEADERBOARD_MODULE_VM> obj = (_obj.GroupBy(x => x.Module_Id)
+                                                       .Select(g => new
+                                                       US_LEADERBOARD_MODULE_VM
+                                                       {
+                                                           Module_Id = g.Key,
+                                                           Module_Icon = g.First().Module_Icon,
+                                                           Module_Name = g.First().Module_Name,
+                                                           View_Order = g.First().View_Order,
+                                                           Module_Controller = g.First().Module_Controller,
+                                                           Module_Method = g.First().Module_Method
+                                                       }
+                                                       )).ToList();
+                if (_obj == null)
+                {
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "_all_modules", _obj.ToList());
+                }
+                return View(obj);
+            }
+            catch { return RedirectToAction(nameof(Login)); }
         }
 
-        public IActionResult LeaderBoardOptions(US_USER_MODULE_ROLE_MENU_VM obj) //(int id)
+        public IActionResult LeaderBoardOptions(int id)
         {
-            //IEnumerable<US_CHILD_MENU> _data1 = _unitOfWork.US_CHILD_MENU
-            //                                   .GetAll(x => x.IS_ACTIVE == true, includeProperties: "US_PARENT_MENU")
-            //                                   .Where(y => y.US_MODULE_ID == id);
-            //TempData["_menu"] = _data1.ToList();
+            List<US_USER_MODULE_ROLE_MENU_VM> _obj = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
+            List<US_LEADERBOARD_MODULE_VM> obj = (_obj.GroupBy(x => x.Module_Id)
+                                                  .Select(g => new
+                                                  US_LEADERBOARD_MODULE_VM
+                                                  {
+                                                      Module_Id = g.Key,
+                                                      Module_Icon = g.First().Module_Icon,
+                                                      Module_Name = g.First().Module_Name,
+                                                      View_Order = g.First().View_Order,
+                                                      Module_Controller = g.First().Module_Controller,
+                                                      Module_Method = g.First().Module_Method
+                                                  }
+                                                  )).ToList();
+            List<US_CHILD_MENU_VM> data = (_obj.Where(x => x.Module_Id == id)
+                .Select(s =>
+                new US_CHILD_MENU_VM
+                {
+                    PARENT_NAME = s.Parent_Name,
+                    PARENT_ICON = s.Parent_Icon,
+                    AREA_NAME = s.Area_Name,
+                    CONTROLLER_NAME = s.Controller_Name,
+                    ACTION_NAME = s.Action_Name,
+                    CHILD_ICON = s.Child_Icon,
+                    CHILD_NAME = s.Child_Name
+                }
+                )).ToList();
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", data.DistinctBy(x => x.CHILD_NAME));
 
-            IEnumerable<US_CHILD_MENU> _data1 = _unitOfWork.US_CHILD_MENU
-                                               .GetAll(x => x.IS_ACTIVE == true, includeProperties: "US_PARENT_MENU")
-                                               .Where(y => y.US_MODULE_ID == obj.Module_Id);
-
-            //===========================For Session==============
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", _data1.ToList());
-            //===========================For Session==============
-
-            IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
-            return View("LeaderBoard", _data);
+            return View("LeaderBoard", obj);
         }
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel.ViewModels
 {
-    public class US_USER_MODULE_ROLE_MENU_VM
+    public class US_LEADERBOARD_MODULE_VM
     {
         public int Module_Id { get; set; }
         public string Module_Icon { get; set; }
@@ -14,15 +14,5 @@ namespace hms.DataModel.ViewModels
         public int View_Order { get; set; }
         public string Module_Controller { get; set; }
         public string Module_Method { get; set; }
-
-        public string Parent_Name { get; set; }
-        public string Parent_Icon { get; set; }
-
-        public int Child_Id { get; set; }
-        public string Child_Icon { get; set; }
-        public string Child_Name { get; set; }
-        public string Area_Name { get; set; }
-        public string Controller_Name { get; set; }
-        public string Action_Name { get; set; }
     }
 }

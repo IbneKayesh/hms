@@ -1,4 +1,4 @@
-﻿@model IEnumerable<hms.DataModel.ViewModels.US_USER_MODULE_ROLE_MENU_VM>;
+﻿@model IEnumerable<hms.DataModel.ViewModels.US_LEADERBOARD_MODULE_VM>;
 @{
     ViewData["Title"] = "Leader Board";
 }
@@ -13,7 +13,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">@item.Module_Name</span>
-                        <span class="info-box-number"><a asp-controller="@item.Controller_Name" asp-action="@item.Method_Name" asp-route-id="@item.Module_Id">Options</a></span>
+                        <span class="info-box-number"><a asp-controller="@item.Module_Controller" asp-action="@item.Module_Method" asp-route-id="@item.Module_Id">Options</a></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -22,5 +22,4 @@
             <!-- /.col -->
         }
     }
-
 </div>

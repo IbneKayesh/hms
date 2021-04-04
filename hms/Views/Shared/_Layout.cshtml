@@ -205,17 +205,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         @if (@Context.Session.GetString("sessionLOGIN_ID") != null)          // if (TempData["_menu"] != null)
                         {
-                            //List<hms.DataModel.US_CHILD_MENU> _menu = (List<hms.DataModel.US_CHILD_MENU>)TempData["_menu"];
-                            List<hms.DataModel.US_CHILD_MENU> _menu = hms.Utility.SessionHelper.GetObjectFromJson<List<hms.DataModel.US_CHILD_MENU>>(Context.Session, "_menus");
+                            List<hms.DataModel.ViewModels.US_CHILD_MENU_VM> _menu = hms.Utility.SessionHelper.GetObjectFromJson<List<hms.DataModel.ViewModels.US_CHILD_MENU_VM>>(Context.Session, "_menus");
                             if (_menu != null)
                             {
-                                var _parent = _menu.GroupBy(x => x.US_PARENT_MENU.PARENT_NAME).ToList();
+                                var _parent = _menu.GroupBy(x => x.PARENT_NAME).ToList();
                                 foreach (var childs in _parent)
                                 {
                                     <li class="nav-item">
 
                                         <a href="#" class="nav-link">
-                                            <i class="nav-icon @childs.First().US_PARENT_MENU.PARENT_ICON"></i>
+                                            <i class="nav-icon @childs.First().PARENT_ICON"></i>
                                             <p>
                                                 @childs.Key
                                                 <i class="right fas fa-angle-left"></i>
