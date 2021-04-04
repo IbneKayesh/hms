@@ -18,16 +18,18 @@ namespace hms.Areas.Setup.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
         [HttpGet]
         public IActionResult ManageRoleMenu(int? Role)
         {
             ViewBag.Role = _unitOfWork.US_ROLE.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.ROLE_NAME });
+
             US_ROLE_MENU_VM _obj = new US_ROLE_MENU_VM();
+
             if (Role != null)
             {
                 var obj = (from cm in _unitOfWork.US_CHILD_MENU.GetAll()
                            join pm in _unitOfWork.US_PARENT_MENU.GetAll() on cm.US_PARENT_MENU_ID equals pm.ID
-
                            join cm_rm in _unitOfWork.US_ROLE_MENU.GetAll().Where(x => x.US_ROLE_ID == Role) on cm.ID equals cm_rm.US_CHILD_MENU_ID into cm_rm_s
                            from cm_rm_rslt in cm_rm_s.DefaultIfEmpty()
 
@@ -57,6 +59,7 @@ namespace hms.Areas.Setup.Controllers
                 //                Active = a.IS_ACTIVE,
                 //            }
                 //       ).ToList();
+
                 _obj.ROLE_MENU_LIST = obj;
             }
             return View(_obj);

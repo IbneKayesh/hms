@@ -22,11 +22,11 @@ namespace hms.DataAccess
         }
         public DbSet<US_BLOOD_GROUP> US_BLOOD_GROUP { get; set; }
         public DbSet<US_CHILD_MENU> US_CHILD_MENU { get; set; }
-        public DbSet<US_GENDER> US_GENDER { get; set; }        
+        public DbSet<US_GENDER> US_GENDER { get; set; }
         public DbSet<US_MARITAIL_STATUS> US_MARITAIL_STATUS { get; set; }
         public DbSet<US_MODULE> US_MODULE { get; set; }
         public DbSet<US_PARENT_MENU> US_PARENT_MENU { get; set; }
-        public DbSet<US_RELIGION> US_RELIGION { get; set; }        
+        public DbSet<US_RELIGION> US_RELIGION { get; set; }
         public DbSet<US_ROLE> US_ROLE { get; set; }
         public DbSet<US_ROLE_MENU> US_ROLE_MENU { get; set; }
         public DbSet<US_TYPE> US_TYPE { get; set; }
