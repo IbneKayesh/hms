@@ -19,7 +19,7 @@ namespace hms.DataModel
         public int HOSPITAL_ID { get; set; }
         public int DOCTOR_ID { get; set; }
         public int PATIENT_ID { get; set; }
-        public int SHOW_TYPE { get; set; }
+        public int SHOW_TYPE_ID { get; set; }
 
         public Int64 TOKEN_ID { get; set; }
         public int REFER_FOR_ADMIT { get; set; } = 0;
