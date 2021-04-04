@@ -48,6 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Outdoor\Data\" />
+    <Folder Include="Areas\Outdoor\Models\" />
+    <Folder Include="Areas\Outdoor\Views\" />
     <Folder Include="wwwroot\app_theme\" />
     <Folder Include="wwwroot\uploads\userprofiles\" />
   </ItemGroup>

@@ -76,16 +76,21 @@ namespace hms
                 // endpoints.MapAreaControllerRoute(name: "areas", "areas", pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
+                            name: "OutdoorArea",
+                            areaName: "Outdoor",
+                            pattern: "Outdoor/{controller=Home}/{action=Index}");
+
+                endpoints.MapAreaControllerRoute(
                           name: "SetupArea",
                           areaName: "Setup",
                           pattern: "Setup/{controller=Home}/{action=Index}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    //pattern: "{controller=Home}/{action=Index}/{id?}");
-                    pattern: "{controller=Home}/{action=Login}/{id?}");
+                        name: "default",
+                        //pattern: "{controller=Home}/{action=Index}/{id?}");
+                        pattern: "{controller=Home}/{action=Login}/{id?}");
 
-            endpoints.MapRazorPages();
+                endpoints.MapRazorPages();
             });
             //app.UseEndpoints(endpoints =>
             //{
