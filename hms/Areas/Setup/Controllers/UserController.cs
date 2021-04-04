@@ -15,6 +15,7 @@ namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
     //[Route("Setup/[controller]/[action]")]
+    [hmsAuthorization(controller_id = 2)]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

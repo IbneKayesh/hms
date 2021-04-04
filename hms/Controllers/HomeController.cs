@@ -27,14 +27,13 @@ namespace hms.Controllers
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
-        [hmsAuthorization(Order =1)]
         public IActionResult Index()
         {
             return View();
         }
 
         //[AllowAnonymous]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string nexturl)
         {
             //FormsAuthentication.SignOut();
             //ViewBag.ReturnUrl = returnUrl;
@@ -62,7 +61,7 @@ namespace hms.Controllers
                 {
                     HttpContext.Session.SetInt32("sessionID", _data.ID);
                     HttpContext.Session.SetString("sessionLOGIN_ID", _data.LOGIN_ID);
-                    //HttpContext.Session.SetString("sessionPASSWORD", _data.PASSWORD);
+                    LeaderBoard();
                 }
             }
             catch (Exception ex)

@@ -1,6 +1,6 @@
 ﻿@model hms.DataModel.US_USER
 
-@{ 
+@{
     ViewData["Title"] = "HMS | Log In";
     Layout = null; }
 
@@ -27,9 +27,11 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form method="post">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    @Html.Hidden("nexturl", Context.Request.Query["next_ride"])
                     <div class="input-group mb-3">
-                        <input asp-for="LOGIN_ID" class="form-control form-control-sm"placeholder="Login Id" autofocus />
+                        <input asp-for="LOGIN_ID" class="form-control form-control-sm" placeholder="Login Id" autofocus />
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -47,11 +49,11 @@
                     <div class="row">
                         <div class="col-8">
                             @*<div class="icheck-primary">
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember">
-                                        Remember Me
-                                    </label>
-                                </div>*@
+                        <input type="checkbox" id="remember">
+                        <label for="remember">
+                            Remember Me
+                        </label>
+                    </div>*@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
@@ -59,31 +61,30 @@
                         </div>
                         <!-- /.col -->
                     </div>
-                </form>
-
+                }
                 <div>
                     @if (TempData["message"] != null)
                     {
-        <p style="color:red"> @TempData["message"].ToString()</p>}
+                        <p style="color:red"> @TempData["message"].ToString()</p>}
                 </div>
 
                 @*<div class="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                        </a>
-                    </div>*@
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            </a>
+            <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+            </a>
+        </div>*@
 
                 <!-- /.social-auth-links -->
                 @*<p class="mb-1">
-                        <a href="forgot-password.html">I forgot my password</a>
-                    </p>
-                    <p class="mb-0">
-                        <a href="register.html" class="text-center">Register a new membership</a>
-                    </p>*@
+            <a href="forgot-password.html">I forgot my password</a>
+        </p>
+        <p class="mb-0">
+            <a href="register.html" class="text-center">Register a new membership</a>
+        </p>*@
 
             </div>
             <!-- /.login-card-body -->

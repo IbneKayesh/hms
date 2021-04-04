@@ -13,38 +13,28 @@ namespace hms.Utility
 {
     public class hmsAuthorization : ActionFilterAttribute
     {
-        public string role_name { get; set; }
-        private readonly ISession session;
-        private IHttpContextAccessor _httpContextAccessor;
+        public int controller_id { get; set; }
         public hmsAuthorization()
         {
 
         }
-        public hmsAuthorization(IHttpContextAccessor httpContextAccessor)
-        {
-            this.session = httpContextAccessor.HttpContext.Session;
-            _httpContextAccessor = httpContextAccessor;
-        }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var _data = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(session, "_all_menus");
-            string path = _httpContextAccessor.HttpContext.Request.Path;
-            string query = _httpContextAccessor.HttpContext.Request.Scheme;
-            string redirectUrl = string.Format("?next_ride={0}", query);// filterContext.HttpContext.Request.Url.PathAndQuery);
-            var SessionData = this.session.GetString("roles");
+            var _data = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(filterContext.HttpContext.Session, "_all_menus");
+            string path = filterContext.HttpContext.Request.Path;
+            string nexturl = string.Format("?next_ride={0}", path);
 
-            if (SessionData == null)
+            if (_data == null)
             {
-                CleanSession();
-                filterContext.Result = new RedirectResult("~/Accounts/Signin" + redirectUrl, true);
+                CleanSession(filterContext);
+                filterContext.Result = new RedirectResult("~/Home/Login" + nexturl, true);
                 return;
             }
-            List<string> roles = role_name.Split(',').ToList<string>();
-            var _session_id = Convert.ToString(SessionData);
             bool is_accessable = false;
-            foreach (string item in roles)
+            foreach (var item in _data)
             {
-                if (item == _session_id)
+
+                if (item.Child_Id == controller_id)
                 {
                     is_accessable = true;
                     break;
@@ -57,17 +47,15 @@ namespace hms.Utility
             }
             else
             {
-                CleanSession();
-                filterContext.HttpContext.Response.Redirect("~/Accounts/Signin", true);
+                CleanSession(filterContext);
+                filterContext.Result = new RedirectResult("~/Home/Login" + nexturl, true);
                 return;
             }
         }
 
-        public void CleanSession()
+        public void CleanSession(ActionExecutingContext filterContext)
         {
-            //HttpContext.Current.Session.Clear();
-            //HttpContext.Current.Session.Abandon();
-            this.session.Clear();
+            filterContext.HttpContext.Session.Clear();
         }
     }
 }
