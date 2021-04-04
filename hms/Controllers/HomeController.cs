@@ -54,7 +54,7 @@ namespace hms.Controllers
                 US_USER _data = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID.ToLower() == userId && x.PASSWORD == userPass);
                 if (_data == null)
                 {
-                    TempData["message"] =  "Enter Valid Information !!!";
+                    TempData["message"] = "Enter Valid Information !!!";
                     return View(_obj);
                 }
                 else
@@ -99,6 +99,12 @@ namespace hms.Controllers
         {
             IEnumerable<US_MODULE> _data = _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true);
             return View(_data);
+
+            //IEnumerable<US_CHILD_MENU> _data = _unitOfWork.US_CHILD_MENU
+            //                                   .GetAll(x => x.IS_ACTIVE == true, includeProperties: "US_MODULE")
+            //                                   .Where(y => y.IS_ACTIVE == true)
+            //                                   .GroupBy(x=>x.US_MODULE_ID);
+            //return View(_data);
         }
 
         public IActionResult LeaderBoardOptions(int id)
