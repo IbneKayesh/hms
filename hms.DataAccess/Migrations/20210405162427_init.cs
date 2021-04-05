@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace hms.DataAccess.Migrations
 {
-    public partial class init2 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,11 +17,11 @@ namespace hms.DataAccess.Migrations
                     PATIENT_AGE = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     PATIENT_SEX = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     PATIENT_CONTACT = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    BODY_TEMPERATURE = table.Column<decimal>(type: "decimal(16,3)", precision: 16, scale: 3, nullable: false),
+                    BODY_TEMPERATURE = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
                     BP_UP = table.Column<int>(type: "int", nullable: false),
                     BP_DOWN = table.Column<int>(type: "int", nullable: false),
-                    WEIGHT = table.Column<decimal>(type: "decimal(16,3)", precision: 16, scale: 3, nullable: false),
-                    HEIGHT = table.Column<decimal>(type: "decimal(16,3)", precision: 16, scale: 3, nullable: false),
+                    WEIGHT = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
+                    HEIGHT = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
                     CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace hms.DataModel
 
         [Display(Name = "Temperature")]
         [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
-        [Range(0, 999.99)]
+        [Column(TypeName = "decimal(3,2)")]
         public decimal BODY_TEMPERATURE { get; set; }
 
         [Display(Name = "BP Up")]
@@ -44,12 +45,12 @@ namespace hms.DataModel
 
         [Display(Name = "Weight")]
         [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
-        [Range(0, 999.99)]
+        [Column(TypeName = "decimal(3,2)")]
         public decimal WEIGHT { get; set; }
 
         [Display(Name = "Height")]
         [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
-        [Range(0, 999.99)]
+        [Column(TypeName = "decimal(3,2)")]
         public decimal HEIGHT { get; set; }
 
     }
