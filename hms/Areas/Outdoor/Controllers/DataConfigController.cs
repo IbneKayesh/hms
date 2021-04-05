@@ -27,6 +27,7 @@ namespace hms.Areas.Outdoor.Controllers
                 HP_FREQUENCY_Ins();
                 HP_SHOW_TYPE_Ins();
                 HS_DOCTOR_Ins();
+                HS_HOSPITAL_Ins();
                 HS_PATIENT_Ins();
                 HS_ITEM_Ins();
                 return Content("Data Config Iniliazation Succeeded");
