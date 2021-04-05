@@ -9,7 +9,7 @@ namespace hms.DataModel
 {
     public class HP_CHECKUP : DEFAULT
     {
-        public int ID { get; set; }
+        public Int64 ID { get; set; }
 
         [Display(Name = "Number")]
         [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]

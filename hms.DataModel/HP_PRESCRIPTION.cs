@@ -32,9 +32,8 @@ namespace hms.DataModel
         public int DOCTOR_ID { get; set; }
 
         [Display(Name = "Patient Id")]
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
-        public int PATIENT_ID { get; set; }
+        public Int64 PATIENT_ID { get; set; }
 
         [Display(Name = "Show Type")]
         [StringLength(5, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]

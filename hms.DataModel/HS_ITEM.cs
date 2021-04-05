@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_ITEM:DEFAULT
+    public class HS_ITEM : DEFAULT
     {
-        [Display(Name = "Id")]
         public Int64 ID { get; set; }
 
         [Display(Name = "Name")]

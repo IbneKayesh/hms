@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,6 @@ namespace hms.DataModel
 {
     public class HP_TOKEN:DEFAULT
     {
-        [Display(Name = "Id")]
         public Int64 ID { get; set; }
 
         [Display(Name = "Serial No")]
@@ -25,6 +25,8 @@ namespace hms.DataModel
         [Display(Name = "Doctor")]
         [Required(ErrorMessage = "{0} is required")]
         public int DOCTOR_ID { get; set; }
+        [ForeignKey("HS_DOCTOR_ID")]
+        public HS_DOCTOR HS_DOCTOR { get; set; }
 
     }
 }

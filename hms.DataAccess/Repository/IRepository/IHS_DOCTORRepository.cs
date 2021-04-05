@@ -10,5 +10,6 @@ namespace hms.DataAccess.Repository.IRepository
     public interface IHS_DOCTORRepository : IRepository<HS_DOCTOR>
     {
         void Update(HS_DOCTOR objData);
+        bool Delete(int id);
     }
 }

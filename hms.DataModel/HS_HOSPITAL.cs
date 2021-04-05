@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_HOSPITAL:DEFAULT
+    public class HS_HOSPITAL : DEFAULT
     {
-        [Display(Name = "Id")]
         public int ID { get; set; }
 
         [Display(Name = "Name")]

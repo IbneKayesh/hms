@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_PATIENT:DEFAULT
+    public class HS_PATIENT : DEFAULT
     {
-        [Display(Name = "Id")]
-        public int ID { get; set; }
+        public Int64 ID { get; set; }
 
         [Display(Name = "Name")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
