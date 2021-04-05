@@ -9,17 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Outdoor\Data\**" />
+    <Compile Remove="Areas\Outdoor\Models\**" />
     <Compile Remove="Areas\Setup\Data\**" />
     <Compile Remove="Areas\Setup\Models\**" />
+    <Compile Remove="wwwroot\uploads\**" />
+    <Content Remove="Areas\Outdoor\Data\**" />
+    <Content Remove="Areas\Outdoor\Models\**" />
     <Content Remove="Areas\Setup\Data\**" />
     <Content Remove="Areas\Setup\Models\**" />
+    <Content Remove="wwwroot\uploads\**" />
+    <EmbeddedResource Remove="Areas\Outdoor\Data\**" />
+    <EmbeddedResource Remove="Areas\Outdoor\Models\**" />
     <EmbeddedResource Remove="Areas\Setup\Data\**" />
     <EmbeddedResource Remove="Areas\Setup\Models\**" />
+    <EmbeddedResource Remove="wwwroot\uploads\**" />
+    <None Remove="Areas\Outdoor\Data\**" />
+    <None Remove="Areas\Outdoor\Models\**" />
     <None Remove="Areas\Setup\Data\**" />
     <None Remove="Areas\Setup\Models\**" />
+    <None Remove="wwwroot\uploads\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\Areas\Outdoor\doctor.js" />
     <Content Remove="wwwroot\js\Areas\Setup\bloodgroup.js" />
     <Content Remove="wwwroot\js\Areas\Setup\childmenu.js" />
     <Content Remove="wwwroot\js\Areas\Setup\module.js" />
@@ -49,10 +62,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\app_theme\" />
-    <Folder Include="wwwroot\uploads\userprofiles\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\Areas\Outdoor\doctor.js" />
     <None Include="wwwroot\js\Areas\Setup\bloodgroup.js" />
     <None Include="wwwroot\js\Areas\Setup\userrole.js" />
     <None Include="wwwroot\js\Areas\Setup\userrole_x.js" />

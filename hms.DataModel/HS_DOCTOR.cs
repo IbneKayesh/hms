@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_DOCTOR:DEFAULT
+    public class HS_DOCTOR : DEFAULT
     {
-        [Display(Name = "Id")]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Display(Name = "Name")]

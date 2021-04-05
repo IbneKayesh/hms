@@ -22,4 +22,8 @@
     <ProjectReference Include="..\hms.Utility\hms.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
