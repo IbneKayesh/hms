@@ -10,6 +10,7 @@ namespace hms.DataModel
 {
     public class HS_PATIENT : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Int64 ID { get; set; }
 
         [Display(Name = "Name")]

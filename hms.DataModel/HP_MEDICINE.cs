@@ -12,9 +12,8 @@ namespace hms.DataModel
         public Int64 ID { get; set; }
 
         [Display(Name = "Number")]
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
-        public string PRESCRIPTION_NUMBER { get; set; }
+        public Int64 PRESCRIPTION_NUMBER { get; set; }
 
         [Display(Name = "Item Id")]
         [Required(ErrorMessage = "{0} is required")]

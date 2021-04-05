@@ -10,6 +10,7 @@ namespace hms.DataModel
 {
     public class HS_DOCTOR : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Display(Name = "Name")]

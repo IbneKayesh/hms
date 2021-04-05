@@ -12,9 +12,8 @@ namespace hms.DataModel
         public Int64 ID { get; set; }
 
         [Display(Name = "Number")]
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
-        public string PRESCRIPTION_NUMBER { get; set; }
+        public Int64 PRESCRIPTION_NUMBER { get; set; }
 
         [Display(Name = "Age")]
         [StringLength(3, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
@@ -33,6 +32,8 @@ namespace hms.DataModel
         public string PATIENT_CONTACT { get; set; }
 
         [Display(Name = "Temperature")]
+        [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
+        [Range(0, 999.99)]
         public decimal BODY_TEMPERATURE { get; set; }
 
         [Display(Name = "BP Up")]
@@ -42,9 +43,13 @@ namespace hms.DataModel
         public int BP_DOWN { get; set; }
 
         [Display(Name = "Weight")]
+        [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
+        [Range(0, 999.99)]
         public decimal WEIGHT { get; set; }
 
         [Display(Name = "Height")]
+        [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
+        [Range(0, 999.99)]
         public decimal HEIGHT { get; set; }
 
     }

@@ -11,12 +11,10 @@ namespace hms.DataModel
     public class HP_PRESCRIPTION : DEFAULT
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Number")]
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
-        [Required(ErrorMessage = "{0} is required")]
-        public string PRESCRIPTION_NUMBER { get; set; }
+        public Int64 PRESCRIPTION_NUMBER { get; set; }
 
         [Display(Name = "Date")]
+        [DataType(DataType.DateTime)]
         public DateTime PRESCRIPTION_DATE { get; set; }
 
 
