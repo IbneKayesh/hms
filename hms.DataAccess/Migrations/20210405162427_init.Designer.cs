@@ -10,8 +10,8 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210405161838_init2")]
-    partial class init2
+    [Migration("20210405162427_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,8 @@ namespace hms.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("BODY_TEMPERATURE")
-                        .HasPrecision(16, 3)
-                        .HasColumnType("decimal(16,3)");
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<int>("BP_DOWN")
                         .HasColumnType("int");
@@ -50,8 +50,8 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("HEIGHT")
-                        .HasPrecision(16, 3)
-                        .HasColumnType("decimal(16,3)");
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
@@ -91,8 +91,8 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("WEIGHT")
-                        .HasPrecision(16, 3)
-                        .HasColumnType("decimal(16,3)");
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
 
                     b.HasKey("ID");
 

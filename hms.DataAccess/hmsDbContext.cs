@@ -11,9 +11,9 @@ namespace hms.DataAccess
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<HP_CHECKUP>().Property(x => x.BODY_TEMPERATURE).HasPrecision(16, 3);
-            modelBuilder.Entity<HP_CHECKUP>().Property(x => x.WEIGHT).HasPrecision(16, 3);
-            modelBuilder.Entity<HP_CHECKUP>().Property(x => x.HEIGHT).HasPrecision(16, 3);
+            modelBuilder.Entity<HP_CHECKUP>().Property(x => x.BODY_TEMPERATURE).HasPrecision(3, 2);
+            modelBuilder.Entity<HP_CHECKUP>().Property(x => x.WEIGHT).HasPrecision(3, 2);
+            modelBuilder.Entity<HP_CHECKUP>().Property(x => x.HEIGHT).HasPrecision(3, 2);
 
             modelBuilder.Entity<US_USER_ROLE>()
                 .HasKey(c => new { c.US_USER_ID, c.US_ROLE_ID })
