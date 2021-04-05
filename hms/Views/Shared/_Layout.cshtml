@@ -242,6 +242,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a class="nav-link" asp-area="Setup" asp-controller="DataConfig" asp-action="Initialize">Initialize Setup</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" asp-area="Outdoor" asp-controller="DataConfig" asp-action="Initialize">Initialize Outdoor</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LeaderBoard">Leader Board</a>
                         </li>
                         @if (@Context.Session.GetString("sessionLOGIN_ID") != null)

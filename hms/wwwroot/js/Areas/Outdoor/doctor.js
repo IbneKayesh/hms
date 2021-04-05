@@ -16,7 +16,7 @@ function loadTable() {
         ],
         "columns": [
             { "mData": "id" },
-            { "mData": "rolE_NAME" },
+            { "mData": "doctoR_NAME" },
             {
                 "mData": "iS_ACTIVE",
                 render: function (mData) {
