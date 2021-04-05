@@ -34,7 +34,7 @@ namespace hms.DataAccess.Repository.IRepository
         IHS_ITEMRepository HS_ITEM { get; }
         IHS_PATIENTRepository HS_PATIENT { get; }
         IHS_TESTSRepository HS_TESTS { get; }
-
         void Save();
+
     }
 }

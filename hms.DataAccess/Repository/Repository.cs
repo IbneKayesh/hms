@@ -70,7 +70,7 @@ namespace hms.DataAccess.Repository
                 }
             }
             return query.FirstOrDefault();
-        }      
+        }
 
         public void Remove(int id)
         {
@@ -86,5 +86,10 @@ namespace hms.DataAccess.Repository
         {
             dbSet.RemoveRange(entity);
         }
+        public void ExecuteSqlCommand(string _sql, params object[] _parameters)
+        {
+            _db.Database.ExecuteSqlRaw(sql: _sql, parameters: _parameters);
+        }
+
     }
 }

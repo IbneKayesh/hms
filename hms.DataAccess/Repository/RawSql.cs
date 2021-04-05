@@ -1,0 +1,29 @@
+﻿using hms.DataAccess.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+
+namespace hms.DataAccess.Repository
+{
+    public class RawSql : IRawSql, IDisposable
+    {
+        private readonly hmsDbContext _db;
+        private bool _isDisposed;
+        public RawSql(hmsDbContext db)
+        {
+            _isDisposed = false;
+            _db = db;
+        }
+
+        public void ExecuteSqlCommand(string query, params object[] parameters)
+        {
+            _db.Database.ExecuteSqlRaw(query, parameters);
+        }
+        public void Dispose()
+        {
+            if (_db != null)
+                _db.Dispose();
+            _isDisposed = true;
+        }
+    }
+}

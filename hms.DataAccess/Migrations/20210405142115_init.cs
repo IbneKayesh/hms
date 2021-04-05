@@ -8,6 +8,319 @@ namespace hms.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "HP_CHECKUP",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PATIENT_AGE = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
+                    PATIENT_SEX = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    PATIENT_CONTACT = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    BODY_TEMPERATURE = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BP_UP = table.Column<int>(type: "int", nullable: false),
+                    BP_DOWN = table.Column<int>(type: "int", nullable: false),
+                    WEIGHT = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HEIGHT = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_CHECKUP", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_DURATION",
+                columns: table => new
+                {
+                    DURATION_NAME = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_DURATION", x => x.DURATION_NAME);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_FREQUENCY",
+                columns: table => new
+                {
+                    FREQUENCY_NAME = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_FREQUENCY", x => x.FREQUENCY_NAME);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_INVESTIGATION",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ITEM_ID = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SUGGESTION = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_INVESTIGATION", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_MEDICINE",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ITEM_ID = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DOSAGE_DURATION = table.Column<int>(type: "int", nullable: false),
+                    DOSAGE_FREQUENCY = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SUGGESTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_MEDICINE", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_PRESCRIPTION",
+                columns: table => new
+                {
+                    PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PRESCRIPTION_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HOSPITAL_ID = table.Column<int>(type: "int", maxLength: 6, nullable: false),
+                    DOCTOR_ID = table.Column<int>(type: "int", maxLength: 6, nullable: false),
+                    PATIENT_ID = table.Column<int>(type: "int", maxLength: 20, nullable: false),
+                    SHOW_TYPE_ID = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    TOKEN_ID = table.Column<long>(type: "bigint", nullable: false),
+                    REFER_FOR_ADMIT = table.Column<int>(type: "int", nullable: false),
+                    PREVIOUS_PRESCRIPTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_PRESCRIPTION", x => x.PRESCRIPTION_NUMBER);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_SHOW_TYPE",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SHOW_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_SHOW_TYPE", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_SUGGESSION",
+                columns: table => new
+                {
+                    SUGGESTION_NAME = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_SUGGESSION", x => x.SUGGESTION_NAME);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_TOKEN",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SERIAL_NO = table.Column<int>(type: "int", nullable: false),
+                    TOKEN_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DOCTOR_ID = table.Column<int>(type: "int", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_TOKEN", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HS_DOCTOR",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DOCTOR_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HS_DOCTOR", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HS_HOSPITAL",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HOSPITAL_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HS_HOSPITAL", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HS_ITEM",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ITEM_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HS_ITEM", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HS_PATIENT",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PATIENT_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DATE_OF_BIRTH = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HS_PATIENT", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HS_TESTS",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TESTS_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HS_TESTS", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "US_BLOOD_GROUP",
                 columns: table => new
                 {
@@ -387,6 +700,48 @@ namespace hms.DataAccess.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "HP_CHECKUP");
+
+            migrationBuilder.DropTable(
+                name: "HP_DURATION");
+
+            migrationBuilder.DropTable(
+                name: "HP_FREQUENCY");
+
+            migrationBuilder.DropTable(
+                name: "HP_INVESTIGATION");
+
+            migrationBuilder.DropTable(
+                name: "HP_MEDICINE");
+
+            migrationBuilder.DropTable(
+                name: "HP_PRESCRIPTION");
+
+            migrationBuilder.DropTable(
+                name: "HP_SHOW_TYPE");
+
+            migrationBuilder.DropTable(
+                name: "HP_SUGGESSION");
+
+            migrationBuilder.DropTable(
+                name: "HP_TOKEN");
+
+            migrationBuilder.DropTable(
+                name: "HS_DOCTOR");
+
+            migrationBuilder.DropTable(
+                name: "HS_HOSPITAL");
+
+            migrationBuilder.DropTable(
+                name: "HS_ITEM");
+
+            migrationBuilder.DropTable(
+                name: "HS_PATIENT");
+
+            migrationBuilder.DropTable(
+                name: "HS_TESTS");
+
             migrationBuilder.DropTable(
                 name: "US_ROLE_MENU");
 

@@ -1,32 +1,31 @@
-﻿US_BLOOD_GROUP
-US_GENDER
-US_MARITAIL_STATUS
-US_RELIGION
-US_ROLE
+﻿
+=======================Please maintain descending order================
+US_USER_ROLE
+US_USER
 US_TYPE
-US_MODULE
+US_ROLE_MENU
+US_ROLE
+US_RELIGION
 US_PARENT_MENU
+US_MODULE
+US_MARITAIL_STATUS
+US_GENDER
+US_EMAIL_SERVER
+US_EMAIL_BOX
 US_CHILD_MENU
+US_BLOOD_GROUP
 
-
-
-
-
-
-IUS_MODULERepository
-
-
-public DbSet<HP_CHECKUP> HP_CHECKUP { get; set; }
-        public DbSet<HP_DURATION> HP_DURATION { get; set; }
-        public DbSet<HP_FREQUENCY> HP_FREQUENCY { get; set; }
-        public DbSet<HP_INVESTIGATION> HP_INVESTIGATION { get; set; }
-        public DbSet<HP_MEDICINE> HP_MEDICINE { get; set; }
-        public DbSet<HP_PRESCRIPTION> HP_PRESCRIPTION { get; set; }
-        public DbSet<HP_SHOW_TYPE> HP_SHOW_TYPE { get; set; }
-        public DbSet<HP_SUGGESSION> HP_SUGGESSION { get; set; }
-        public DbSet<HP_TOKEN> HP_TOKEN { get; set; }
-        public DbSet<HS_DOCTOR> HS_DOCTOR { get; set; }
-        public DbSet<HS_HOSPITAL> HS_HOSPITAL { get; set; }
-        public DbSet<HS_ITEM> HS_ITEM { get; set; }
-        public DbSet<HS_PATIENT> HS_PATIENT { get; set; }
-        public DbSet<HS_TESTS> HS_TESTS { get; set; }
+HS_TESTS
+HS_PATIENT
+HS_ITEM
+HS_HOSPITAL
+HS_DOCTOR
+HP_TOKEN
+HP_SUGGESSION
+HP_SHOW_TYPE
+HP_PRESCRIPTION
+HP_MEDICINE
+HP_INVESTIGATION
+HP_FREQUENCY
+HP_DURATION
+HP_CHECKUP

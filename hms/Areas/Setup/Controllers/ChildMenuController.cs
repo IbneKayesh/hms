@@ -3,14 +3,12 @@ using hms.DataModel;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
+    [hmsAuthorization(controller_id = 6)]
     public class ChildMenuController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

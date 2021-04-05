@@ -11,6 +11,7 @@ using System.Linq;
 namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
+    [hmsAuthorization(controller_id = 9)]
     public class RoleMenuController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

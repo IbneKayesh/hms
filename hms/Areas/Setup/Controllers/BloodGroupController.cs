@@ -1,13 +1,11 @@
 ﻿using hms.DataAccess.Repository.IRepository;
+using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
+    [hmsAuthorization(controller_id = 3)]
     public class BloodGroupController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

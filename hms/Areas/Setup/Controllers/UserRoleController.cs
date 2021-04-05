@@ -1,18 +1,17 @@
-﻿ using hms.DataAccess.Repository.IRepository;
+﻿using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
 using hms.DataModel.ViewModels;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace hms.Areas.Setup.Controllers
 {
     [Area("Setup")]
+    [hmsAuthorization(controller_id = 4)]
     public class UserRoleController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

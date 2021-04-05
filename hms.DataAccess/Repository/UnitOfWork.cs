@@ -78,6 +78,5 @@ namespace hms.DataAccess.Repository
         {
             _db.SaveChanges();
         }
-
     }
 }
