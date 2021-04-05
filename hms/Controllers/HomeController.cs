@@ -161,7 +161,10 @@ namespace hms.Controllers
         public IActionResult LeaderBoardOptions(int id)
         {
             List<US_USER_MODULE_ROLE_MENU_VM> _obj = SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(HttpContext.Session, "_all_menus");
-            List<US_LEADERBOARD_MODULE_VM> obj = (_obj.GroupBy(x => x.Module_Id)
+            List<US_LEADERBOARD_MODULE_VM> obj = new List<US_LEADERBOARD_MODULE_VM>();
+            if (_obj != null)
+            {
+                obj = (_obj.GroupBy(x => x.Module_Id)
                                                   .Select(g => new
                                                   US_LEADERBOARD_MODULE_VM
                                                   {
@@ -173,21 +176,21 @@ namespace hms.Controllers
                                                       Module_Method = g.First().Module_Method
                                                   }
                                                   )).ToList();
-            List<US_CHILD_MENU_VM> data = (_obj.Where(x => x.Module_Id == id)
-                .Select(s =>
-                new US_CHILD_MENU_VM
-                {
-                    PARENT_NAME = s.Parent_Name,
-                    PARENT_ICON = s.Parent_Icon,
-                    AREA_NAME = s.Area_Name,
-                    CONTROLLER_NAME = s.Controller_Name,
-                    ACTION_NAME = s.Action_Name,
-                    CHILD_ICON = s.Child_Icon,
-                    CHILD_NAME = s.Child_Name
-                }
-                )).ToList();
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", data.DistinctBy(x => x.CHILD_NAME));
-
+                List<US_CHILD_MENU_VM> data = (_obj.Where(x => x.Module_Id == id)
+                    .Select(s =>
+                    new US_CHILD_MENU_VM
+                    {
+                        PARENT_NAME = s.Parent_Name,
+                        PARENT_ICON = s.Parent_Icon,
+                        AREA_NAME = s.Area_Name,
+                        CONTROLLER_NAME = s.Controller_Name,
+                        ACTION_NAME = s.Action_Name,
+                        CHILD_ICON = s.Child_Icon,
+                        CHILD_NAME = s.Child_Name
+                    }
+                    )).ToList();
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", data.DistinctBy(x => x.CHILD_NAME));
+            }
             return View("LeaderBoard", obj);
         }
 
