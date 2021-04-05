@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hms.DataAccess;
 
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    partial class hmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210405161838_init2")]
+    partial class init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +50,8 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("HEIGHT")
+                        .HasPrecision(16, 3)
+                        .HasColumnType("decimal(16,3)");
 
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
@@ -87,6 +91,8 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("WEIGHT")
+                        .HasPrecision(16, 3)
+                        .HasColumnType("decimal(16,3)");
 
                     b.HasKey("ID");
 
