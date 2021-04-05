@@ -20,11 +20,9 @@ namespace hms.Utility
         }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var _data = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(session, "_all_menus");
-            string path = _httpContextAccessor.HttpContext.Request.Path;
-            string query = _httpContextAccessor.HttpContext.Request.Scheme;
-            string redirectUrl = string.Format("?next_ride={0}", query);// filterContext.HttpContext.Request.Url.PathAndQuery);
-            var SessionData = this.session.GetString("roles");
+            var _data = hms.Utility.SessionHelper.GetObjectFromJson<List<US_USER_MODULE_ROLE_MENU_VM>>(filterContext.HttpContext.Session, "_all_menus");
+            string path = filterContext.HttpContext.Request.Path;
+            string nexturl = string.Format("?next_ride={0}", path);
 
             if (_data == null)
             {

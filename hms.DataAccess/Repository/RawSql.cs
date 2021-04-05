@@ -8,10 +8,8 @@ namespace hms.DataAccess.Repository
     public class RawSql : IRawSql, IDisposable
     {
         private readonly hmsDbContext _db;
-        private bool _isDisposed;
         public RawSql(hmsDbContext db)
         {
-            _isDisposed = false;
             _db = db;
         }
 
@@ -23,7 +21,6 @@ namespace hms.DataAccess.Repository
         {
             if (_db != null)
                 _db.Dispose();
-            _isDisposed = true;
         }
     }
 }
