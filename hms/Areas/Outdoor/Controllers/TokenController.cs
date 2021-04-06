@@ -40,7 +40,11 @@ namespace hms.Areas.Outdoor.Controllers
             {
                 if (_obj.ID == 0)
                 {
-                    _obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE.ToString("dd/MM/yyyy") == _obj.TOKEN_DATE.ToString("dd/MM/yyyy")).Max(x => x.SERIAL_NO) + 1;
+                    var a = _obj.TOKEN_DATE.ToString("dd/MM/yyyy");
+
+                    var b = _obj.TOKEN_DATE.ToShortDateString();
+
+                    _obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE.ToShortDateString() == _obj.TOKEN_DATE.ToShortDateString()).Max(x => x.SERIAL_NO) + 1;
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.HP_TOKEN.Add(_obj);
                 }
