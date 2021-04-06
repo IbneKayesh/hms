@@ -30,9 +30,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/app_theme/dist/css/adminlte.min.css">
 
     <!--page projecttion-->
-    <script src="~/js/pageprotection.js"></script>
+    <link href="~/css/pagecontextmenu.css" rel="stylesheet" />    
 </head>
 <body class="hold-transition sidebar-mini text-sm">
+    @{await Html.RenderPartialAsync("_ContextMenu");}
+
     <noscript>
         <style type="text/css">
             .login-box, .wrapper {
@@ -342,6 +344,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             };
         });
     </script>
+    <script src="~/js/pagecontextmenu.js"></script>
     <script src="~/js/site.js"></script>
 </body>
 </html>
