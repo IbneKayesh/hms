@@ -10,7 +10,7 @@ namespace hms.DataModel
 {
     public class HP_PRESCRIPTION : DEFAULT
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 ID { get; set; }
 
         [Display(Name = "Number")]

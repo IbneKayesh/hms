@@ -213,7 +213,7 @@ namespace hms.Areas.Setup.Controllers
         {
             List<US_USER> _d = new List<US_USER>
             {
-                new US_USER{ ID=1, LOGIN_ID ="admin",PASSWORD=TextEncryption.EncryptionWithSh("abc@123"),USER_NAME="Administrator",MOBILE_NO="01000000000",EMAIL_ID="admin@hms.com",DATE_OF_BIRTH=DateTime.Now.Date,PROFILE_IMAGE="-",US_GENDER_ID=1,US_RELIGION_ID=1,US_BLOOD_GROUP_ID=1,US_MARITAIL_STATUS_ID=1,US_TYPE_ID=1}
+                new US_USER{ ID=1, LOGIN_ID ="admin",PASSWORD=TextEncryption.EncryptionWithSh("a"),USER_NAME="Administrator",MOBILE_NO="01000000000",EMAIL_ID="admin@hms.com",DATE_OF_BIRTH=DateTime.Now.Date,PROFILE_IMAGE="-",US_GENDER_ID=1,US_RELIGION_ID=1,US_BLOOD_GROUP_ID=1,US_MARITAIL_STATUS_ID=1,US_TYPE_ID=1}
             };
             _unitOfWork.US_USER.AddRange(_d);
             _unitOfWork.Save();

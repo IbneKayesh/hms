@@ -1,30 +1,4 @@
-﻿<div class="row">
-    <div class="col-md-4">
-        <form asp-action="ManageToken">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TOKEN_DATE" class="control-label"></label>
-                <input asp-for="TOKEN_DATE" class="form-control" />
-                <span asp-validation-for="TOKEN_DATE" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HS_DOCTOR_ID" class="control-label"></label>
-                <input asp-for="HS_DOCTOR_ID" class="form-control" />
-                <span asp-validation-for="HS_DOCTOR_ID" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IS_ACTIVE" /> @Html.DisplayNameFor(model => model.IS_ACTIVE)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-@model hms.DataModel.HP_TOKEN
+﻿@model hms.DataModel.HP_TOKEN
 
 @{
     ViewData["Title"] = "Token";
@@ -89,8 +63,8 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Patient Name</th>
-                    <th>Birth Date</th>
+                    <th>Serial No</th>
+                    <th>Date</th>
                     <th>Status</th>
                     <th>Option</th>
                 </tr>
@@ -101,6 +75,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/Areas/Outdoor/patient.js"></script>
+    <script src="~/js/Areas/Outdoor/token.js"></script>
 }
 

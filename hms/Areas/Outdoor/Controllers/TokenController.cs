@@ -2,6 +2,7 @@
 using hms.DataModel;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,9 @@ namespace hms.Areas.Outdoor.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult ManageToken(int? id)
+        public IActionResult ManageToken(Int64? id)
         {
+            DropDownFor_ManageToken();
             HP_TOKEN _obj = new HP_TOKEN();
             _obj.TOKEN_DATE = DateTime.Now;
             if (id != null)
@@ -38,7 +40,7 @@ namespace hms.Areas.Outdoor.Controllers
             {
                 if (_obj.ID == 0)
                 {
-                    _obj.ID = _unitOfWork.HP_TOKEN.GetAll().Max(x => x.ID) + 1;
+                    _obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE.ToString("dd/MM/yyyy") == _obj.TOKEN_DATE.ToString("dd/MM/yyyy")).Max(x => x.SERIAL_NO) + 1;
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.HP_TOKEN.Add(_obj);
                 }
@@ -51,10 +53,14 @@ namespace hms.Areas.Outdoor.Controllers
                 return RedirectToAction(nameof(ManageToken));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
+            DropDownFor_ManageToken();
             _obj.ID = 0;
             return View(_obj);
         }
-
+        private void DropDownFor_ManageToken()
+        {
+            ViewBag.HS_DOCTOR_ID = _unitOfWork.HS_DOCTOR.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.DOCTOR_NAME });
+        }
         public IActionResult GetAll()
         {
             var obj = _unitOfWork.HP_TOKEN.GetAll();

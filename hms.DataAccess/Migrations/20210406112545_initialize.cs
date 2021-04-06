@@ -11,7 +11,8 @@ namespace hms.DataAccess.Migrations
                 name: "HP_CHECKUP",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     PATIENT_AGE = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     PATIENT_SEX = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
@@ -387,8 +388,9 @@ namespace hms.DataAccess.Migrations
                 name: "HP_TOKEN",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
-                    SERIAL_NO = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SERIAL_NO = table.Column<int>(type: "int", nullable: false),
                     TOKEN_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HS_DOCTOR_ID = table.Column<int>(type: "int", nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
@@ -415,7 +417,8 @@ namespace hms.DataAccess.Migrations
                 name: "HP_INVESTIGATION",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PRESCRIPTION_NUMBER = table.Column<long>(type: "bigint", nullable: false),
                     HS_ITEM_ID = table.Column<long>(type: "bigint", nullable: false),
                     ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -444,7 +447,8 @@ namespace hms.DataAccess.Migrations
                 name: "HP_MEDICINE",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     HS_ITEM_ID = table.Column<long>(type: "bigint", nullable: false),
                     ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -575,7 +579,8 @@ namespace hms.DataAccess.Migrations
                 name: "HP_PRESCRIPTION",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     PRESCRIPTION_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HS_HOSPITAL_ID = table.Column<int>(type: "int", maxLength: 6, nullable: false),

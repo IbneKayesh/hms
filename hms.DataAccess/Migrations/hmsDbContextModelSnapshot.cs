@@ -22,7 +22,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_CHECKUP", b =>
                 {
                     b.Property<long>("ID")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("BODY_TEMPERATURE")
                         .HasPrecision(3, 2)
@@ -189,7 +191,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_INVESTIGATION", b =>
                 {
                     b.Property<long>("ID")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -246,7 +250,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_MEDICINE", b =>
                 {
                     b.Property<long>("ID")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -309,7 +315,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_PRESCRIPTION", b =>
                 {
                     b.Property<long>("ID")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -484,7 +492,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_TOKEN", b =>
                 {
                     b.Property<long>("ID")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -509,7 +519,6 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("rowversion");
 
                     b.Property<int>("SERIAL_NO")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TOKEN_DATE")
