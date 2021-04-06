@@ -28,6 +28,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/app_theme/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/app_theme/dist/css/adminlte.min.css">
+
+    <!--page projecttion-->
+    <script src="~/js/pageprotection.js"></script>
 </head>
 <body class="hold-transition sidebar-mini text-sm">
     <noscript>
@@ -239,18 +242,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-danger text-bold" asp-area="Setup" asp-controller="DataConfig" asp-action="Initialize">Initialize Setup</a>
+                            <a class="nav-link text-danger text-bold" asp-area="Setup" asp-controller="DataConfig" asp-action="Initialize"><i class="nav-icon fa fa-cogs"></i> <p> Initialize Setup</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-danger text-bold" asp-area="Outdoor" asp-controller="DataConfig" asp-action="Initialize">Initialize Outdoor</a>
+                            <a class="nav-link text-danger text-bold" asp-area="Outdoor" asp-controller="DataConfig" asp-action="Initialize"><i class="nav-icon fa fa-cog"></i> <p> Initialize Outdoor</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LeaderBoard">Leader Board</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LeaderBoard"><i class="nav-icon fa fa-clinic-medical"></i> <p> Leader Board</p></a>
                         </li>
                         @if (@Context.Session.GetString("sessionLOGIN_ID") != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Logout"><i class="nav-icon fa fa-dove"></i> <p> Logout</p></a>
                             </li>
                         }
                     </ul>
@@ -331,7 +334,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @await RenderSectionAsync("Scripts", required: false)
     <script>
     //Sweet Alert
-    @Html.Raw(TempData["msg"])
+          @Html.Raw(TempData["msg"])
+        $(document).ready(function () {
+            var sbc = '@Html.Raw(TempData["sbc"])';
+            if (sbc !=="") {
+                $('body').addClass(sbc)
+            };
+        });
     </script>
     <script src="~/js/site.js"></script>
 </body>

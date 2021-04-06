@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using hms.Utility;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,12 @@ namespace hms.Areas.Outdoor.Controllers
     {
         public IActionResult Prescribe()
         {
+            SideBarCollapse();
             return View();
+        }
+        private void SideBarCollapse()
+        {
+            TempData["sbc"] = SweetMsg._SideBarCollapse;
         }
     }
 }
