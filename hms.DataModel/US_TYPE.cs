@@ -5,7 +5,7 @@ namespace hms.DataModel
 {
     public class US_TYPE : DEFAULT
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)] 
         public int ID { get; set; }
 
         [Display(Name = "Type Name")]
