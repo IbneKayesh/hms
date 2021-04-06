@@ -8,6 +8,7 @@ namespace hms.Utility
 {
     public class SweetMsg
     {
+        public static string _SideBarCollapse = "sidebar-collapse";
         public static string _SaveSuccess = "Save successful";
         public static string _SaveError = "Save failed";
         public static string _DeleteSuccess = "Delete successful";

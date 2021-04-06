@@ -11,15 +11,11 @@ namespace hms.DataModel
     public class HP_PRESCRIPTION : DEFAULT
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-<<<<<<< HEAD
-        public Int64 PRESCRIPTION_NUMBER { get; set; }
-=======
         public Int64 ID { get; set; }
 
         [Display(Name = "Number")]
         [StringLength(25, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         public string PRESCRIPTION_NUMBER { get; set; }
->>>>>>> 9cc7a0ab55c0df0aeac139a7d157454c36133a7c
 
         [Display(Name = "Date")]
         [DataType(DataType.DateTime)]
