@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace hms.DataAccess.Migrations
 {
-    public partial class init : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,7 +106,8 @@ namespace hms.DataAccess.Migrations
                 name: "HP_PRESCRIPTION",
                 columns: table => new
                 {
-                    PRESCRIPTION_NUMBER = table.Column<long>(type: "bigint", nullable: false),
+                    PRESCRIPTION_NUMBER = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PRESCRIPTION_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HOSPITAL_ID = table.Column<int>(type: "int", maxLength: 6, nullable: false),
                     DOCTOR_ID = table.Column<int>(type: "int", maxLength: 6, nullable: false),

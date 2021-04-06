@@ -314,7 +314,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_PRESCRIPTION", b =>
                 {
                     b.Property<long>("PRESCRIPTION_NUMBER")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)

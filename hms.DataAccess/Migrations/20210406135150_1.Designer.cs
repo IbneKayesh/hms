@@ -10,8 +10,8 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210405162427_init")]
-    partial class init
+    [Migration("20210406135150_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -316,7 +316,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_PRESCRIPTION", b =>
                 {
                     b.Property<long>("PRESCRIPTION_NUMBER")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
