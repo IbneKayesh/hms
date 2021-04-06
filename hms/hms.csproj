@@ -33,6 +33,8 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\Areas\Outdoor\doctor.js" />
+    <Content Remove="wwwroot\js\Areas\Outdoor\patient.js" />
+    <Content Remove="wwwroot\js\Areas\Outdoor\token.js" />
     <Content Remove="wwwroot\js\Areas\Setup\bloodgroup.js" />
     <Content Remove="wwwroot\js\Areas\Setup\childmenu.js" />
     <Content Remove="wwwroot\js\Areas\Setup\module.js" />
@@ -61,10 +63,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Outdoor\Views\Prescription\" />
     <Folder Include="wwwroot\app_theme\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\Areas\Outdoor\token.js" />
+    <None Include="wwwroot\js\Areas\Outdoor\patient.js" />
     <None Include="wwwroot\js\Areas\Outdoor\doctor.js" />
     <None Include="wwwroot\js\Areas\Setup\bloodgroup.js" />
     <None Include="wwwroot\js\Areas\Setup\userrole.js" />

@@ -2,6 +2,7 @@
 using hms.DataAccess.Repository;
 using hms.DataAccess.Repository.IRepository;
 using hms.DataModel;
+using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System;
@@ -173,6 +174,10 @@ namespace hms.Areas.Setup.Controllers
 
                  //=================Outdoor==================== 101 to 150
                  new US_CHILD_MENU{ ID=101, CHILD_NAME="Prescription", CHILD_BN_NAME="Prescription", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Prescription", ACTION_NAME="Prescribe", US_MODULE_ID=3, US_PARENT_MENU_ID=3 },
+                 new US_CHILD_MENU{ ID=102, CHILD_NAME="Doctor", CHILD_BN_NAME="Doctor", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Doctor", ACTION_NAME="ManageDoctor", US_MODULE_ID=3, US_PARENT_MENU_ID=3 },
+                 new US_CHILD_MENU{ ID=103, CHILD_NAME="Token", CHILD_BN_NAME="Token", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Token", ACTION_NAME="ManageToken", US_MODULE_ID=3, US_PARENT_MENU_ID=3 },
+                 new US_CHILD_MENU{ ID=104, CHILD_NAME="Patient", CHILD_BN_NAME="Patient", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Patient", ACTION_NAME="ManagePatient", US_MODULE_ID=3, US_PARENT_MENU_ID=3 },
+                 new US_CHILD_MENU{ ID=105, CHILD_NAME="Item", CHILD_BN_NAME="Item", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Item", ACTION_NAME="ManageItem", US_MODULE_ID=3, US_PARENT_MENU_ID=3 },
 
             };
             _unitOfWork.US_CHILD_MENU.AddRange(_d);
@@ -191,10 +196,14 @@ namespace hms.Areas.Setup.Controllers
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=7 },
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=8 },
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=9 },
-                
+
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=51 },
-                
+
                 new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=101 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=102 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=103 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=104 },
+                new US_ROLE_MENU{ US_ROLE_ID=1,US_CHILD_MENU_ID=105 },
             };
             _unitOfWork.US_ROLE_MENU.AddRange(_d);
             _unitOfWork.Save();
@@ -204,7 +213,7 @@ namespace hms.Areas.Setup.Controllers
         {
             List<US_USER> _d = new List<US_USER>
             {
-                new US_USER{ LOGIN_ID ="admin",PASSWORD="123",USER_NAME="Administrator",MOBILE_NO="01000000000",EMAIL_ID="admin@hms.com",DATE_OF_BIRTH=DateTime.Now.Date,PROFILE_IMAGE="-",US_GENDER_ID=1,US_RELIGION_ID=1,US_BLOOD_GROUP_ID=1,US_MARITAIL_STATUS_ID=1,US_TYPE_ID=1}
+                new US_USER{ ID=1, LOGIN_ID ="admin",PASSWORD=TextEncryption.EncryptionWithSh("a"),USER_NAME="Administrator",MOBILE_NO="01000000000",EMAIL_ID="admin@hms.com",DATE_OF_BIRTH=DateTime.Now.Date,PROFILE_IMAGE="-",US_GENDER_ID=1,US_RELIGION_ID=1,US_BLOOD_GROUP_ID=1,US_MARITAIL_STATUS_ID=1,US_TYPE_ID=1}
             };
             _unitOfWork.US_USER.AddRange(_d);
             _unitOfWork.Save();
@@ -229,7 +238,7 @@ namespace hms.Areas.Setup.Controllers
                 object[] pram = new object[] { };
                 List<string> sql_ls = new List<string>();
                 sql_ls.Add(@"DROP DATABASE hmsDb");
-                
+
                 //sql_ls.Add(@"DELETE FROM US_USER_ROLE");
                 //sql_ls.Add(@"DELETE FROM US_ROLE_MENU");
 

@@ -10,6 +10,7 @@ namespace hms.DataModel
 {
     public class HP_INVESTIGATION : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 ID { get; set; }
 
         [Display(Name = "Number")]
@@ -18,7 +19,7 @@ namespace hms.DataModel
 
         [Display(Name = "Item Id")]
         [Required(ErrorMessage = "{0} is required")]
-        public Int64 ITEM_ID { get; set; }
+        public Int64 HS_ITEM_ID { get; set; }
         [ForeignKey("HS_ITEM_ID")]
         public HS_ITEM HS_ITEM { get; set; }
 

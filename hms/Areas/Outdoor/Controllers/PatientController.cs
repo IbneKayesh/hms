@@ -10,19 +10,20 @@ using System.Threading.Tasks;
 namespace hms.Areas.Outdoor.Controllers
 {
     [Area("Outdoor")]
-    public class DoctorController : Controller
+    public class PatientController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DoctorController(IUnitOfWork unitOfWork)
+        public PatientController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult ManageDoctor(int? id)
+        public IActionResult ManagePatient(int? id)
         {
-            HS_DOCTOR _obj = new HS_DOCTOR();
+            HS_PATIENT _obj = new HS_PATIENT();
+            _obj.DATE_OF_BIRTH = DateTime.Now;
             if (id != null)
             {
-                _obj = _unitOfWork.HS_DOCTOR.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.HS_PATIENT.GetFirstOrDefult(x => x.ID == id);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();
@@ -31,22 +32,22 @@ namespace hms.Areas.Outdoor.Controllers
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManageDoctor(HS_DOCTOR _obj)
+        public IActionResult ManagePatient(HS_PATIENT _obj)
         {
             if (ModelState.IsValid)
             {
                 if (_obj.ID == 0)
                 {
                     _obj.IS_ACTIVE = true;
-                    _unitOfWork.HS_DOCTOR.Add(_obj);
+                    _unitOfWork.HS_PATIENT.Add(_obj);
                 }
                 else
                 {
-                    _unitOfWork.HS_DOCTOR.Update(_obj);
+                    _unitOfWork.HS_PATIENT.Update(_obj);
                 }
                 _unitOfWork.Save();
                 TempData["msg"] = SweetMsg.SaveSuccess();
-                return RedirectToAction(nameof(ManageDoctor));
+                return RedirectToAction(nameof(ManagePatient));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
             _obj.ID = 0;
@@ -55,14 +56,14 @@ namespace hms.Areas.Outdoor.Controllers
 
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.HS_DOCTOR.GetAll();
+            var obj = _unitOfWork.HS_PATIENT.GetAll();
             return Json(new { data = obj });
         }
 
         //[AcceptVerbs("PUT")]
-        public IActionResult Remove(int id)
+        public IActionResult Remove(Int64 id)
         {
-            bool result = _unitOfWork.HS_DOCTOR.Delete(id);
+            bool result = _unitOfWork.HS_PATIENT.Delete(id);
             if (result)
             {
                 _unitOfWork.Save();

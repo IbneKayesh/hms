@@ -49,9 +49,9 @@ namespace hms.Controllers
             {
                 //FormsAuthentication.SetAuthCookie(user.LOGIN_ID.ToUpper().Trim(), false);
                 string userId = _obj.LOGIN_ID.ToLower().Trim();
-                string userPass = _obj.PASSWORD;
+                string userPass = TextEncryption.EncryptionWithSh(_obj.PASSWORD);
 
-                US_USER _data = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID.ToLower() == userId && x.PASSWORD == userPass);
+                US_USER _data = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID.ToLower() == userId && x.PASSWORD ==userPass);
                 if (_data == null)
                 {
                     TempData["message"] = "Enter Valid Information !!!";

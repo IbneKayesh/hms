@@ -10,11 +10,12 @@ namespace hms.DataModel
 {
     public class HP_CHECKUP : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 ID { get; set; }
 
         [Display(Name = "Number")]
-        [Required(ErrorMessage = "{0} is required")]
-        public Int64 PRESCRIPTION_NUMBER { get; set; }
+        [StringLength(25, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
+        public string PRESCRIPTION_NUMBER { get; set; }
 
         [Display(Name = "Age")]
         [StringLength(3, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]

@@ -2,6 +2,7 @@
 using hms.DataModel;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,21 @@ using System.Threading.Tasks;
 namespace hms.Areas.Outdoor.Controllers
 {
     [Area("Outdoor")]
-    public class DoctorController : Controller
+    public class TokenController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DoctorController(IUnitOfWork unitOfWork)
+        public TokenController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult ManageDoctor(int? id)
+        public IActionResult ManageToken(Int64? id)
         {
-            HS_DOCTOR _obj = new HS_DOCTOR();
+            DropDownFor_ManageToken();
+            HP_TOKEN _obj = new HP_TOKEN();
+            _obj.TOKEN_DATE = DateTime.Now;
             if (id != null)
             {
-                _obj = _unitOfWork.HS_DOCTOR.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.HP_TOKEN.GetFirstOrDefult(x => x.ID == id);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();
@@ -31,38 +34,43 @@ namespace hms.Areas.Outdoor.Controllers
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManageDoctor(HS_DOCTOR _obj)
+        public IActionResult ManageToken(HP_TOKEN _obj)
         {
             if (ModelState.IsValid)
             {
                 if (_obj.ID == 0)
                 {
+                    _obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE.ToString("dd/MM/yyyy") == _obj.TOKEN_DATE.ToString("dd/MM/yyyy")).Max(x => x.SERIAL_NO) + 1;
                     _obj.IS_ACTIVE = true;
-                    _unitOfWork.HS_DOCTOR.Add(_obj);
+                    _unitOfWork.HP_TOKEN.Add(_obj);
                 }
                 else
                 {
-                    _unitOfWork.HS_DOCTOR.Update(_obj);
+                    _unitOfWork.HP_TOKEN.Update(_obj);
                 }
                 _unitOfWork.Save();
                 TempData["msg"] = SweetMsg.SaveSuccess();
-                return RedirectToAction(nameof(ManageDoctor));
+                return RedirectToAction(nameof(ManageToken));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
+            DropDownFor_ManageToken();
             _obj.ID = 0;
             return View(_obj);
         }
-
+        private void DropDownFor_ManageToken()
+        {
+            ViewBag.HS_DOCTOR_ID = _unitOfWork.HS_DOCTOR.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.DOCTOR_NAME });
+        }
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.HS_DOCTOR.GetAll();
+            var obj = _unitOfWork.HP_TOKEN.GetAll();
             return Json(new { data = obj });
         }
 
         //[AcceptVerbs("PUT")]
-        public IActionResult Remove(int id)
+        public IActionResult Remove(Int64 id)
         {
-            bool result = _unitOfWork.HS_DOCTOR.Delete(id);
+            bool result = _unitOfWork.HP_TOKEN.Delete(id);
             if (result)
             {
                 _unitOfWork.Save();

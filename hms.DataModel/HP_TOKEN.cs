@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_TOKEN:DEFAULT
+    public class HP_TOKEN : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 ID { get; set; }
 
-        [Display(Name = "Serial No")]
-        [StringLength(5, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
         public int SERIAL_NO { get; set; }
 
@@ -24,7 +23,7 @@ namespace hms.DataModel
 
         [Display(Name = "Doctor")]
         [Required(ErrorMessage = "{0} is required")]
-        public int DOCTOR_ID { get; set; }
+        public int HS_DOCTOR_ID { get; set; }
         [ForeignKey("HS_DOCTOR_ID")]
         public HS_DOCTOR HS_DOCTOR { get; set; }
 

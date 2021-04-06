@@ -19,7 +19,7 @@ namespace hms.DataModel
         public string PATIENT_NAME { get; set; }
 
         [Display(Name = "Date")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "{0} is required")]
         public DateTime DATE_OF_BIRTH { get; set; }
     }
