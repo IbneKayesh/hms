@@ -61,6 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Outdoor\Views\Prescription\" />
     <Folder Include="wwwroot\app_theme\" />
   </ItemGroup>
 

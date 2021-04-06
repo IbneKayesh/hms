@@ -10,7 +10,7 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210405163615_initialize")]
+    [Migration("20210406044437_initialize")]
     partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1278,9 +1278,7 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.US_USER", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)

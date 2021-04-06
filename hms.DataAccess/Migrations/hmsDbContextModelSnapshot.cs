@@ -1276,9 +1276,7 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.US_USER", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)

@@ -541,8 +541,7 @@ namespace hms.DataAccess.Migrations
                 name: "US_USER",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<int>(type: "int", nullable: false),
                     LOGIN_ID = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     PASSWORD = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     USER_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),

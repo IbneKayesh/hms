@@ -31,7 +31,7 @@ namespace hms.Areas.Outdoor.Controllers
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManageRole(HS_DOCTOR _obj)
+        public IActionResult ManageDoctor(HS_DOCTOR _obj)
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +47,7 @@ namespace hms.Areas.Outdoor.Controllers
                 }
                 _unitOfWork.Save();
                 TempData["msg"] = SweetMsg.SaveSuccess();
-                return RedirectToAction(nameof(ManageRole));
+                return RedirectToAction(nameof(ManageDoctor));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
             _obj.ID = 0;

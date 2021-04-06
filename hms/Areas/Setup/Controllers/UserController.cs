@@ -41,6 +41,7 @@ namespace hms.Areas.Setup.Controllers
             }
             return View(_obj);
         }
+
         [HttpPost]
         public IActionResult ManageUser(US_USER _obj)
         {
@@ -72,7 +73,8 @@ namespace hms.Areas.Setup.Controllers
 
                 if (_obj.ID == 0)
                 {
-                    _obj.PASSWORD = TextEncryption.TextEnc(_obj.PASSWORD);
+                    _obj.ID = _unitOfWork.US_USER.GetAll().Max(x => x.ID) + 1;
+                    _obj.PASSWORD = TextEncryption.EncryptionWithSh(_obj.PASSWORD);
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.US_USER.Add(_obj);
                 }
@@ -80,7 +82,7 @@ namespace hms.Areas.Setup.Controllers
                 {
                     if (string.IsNullOrWhiteSpace(_obj.PASSWORD))
                     {
-                        _obj.PASSWORD = TextEncryption.TextEnc(_obj.PASSWORD);
+                        _obj.PASSWORD = TextEncryption.EncryptionWithSh(_obj.PASSWORD);
                     }
                     _unitOfWork.US_USER.Update(_obj);
                 }
