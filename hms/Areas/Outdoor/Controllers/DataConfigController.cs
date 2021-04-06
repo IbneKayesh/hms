@@ -90,8 +90,8 @@ namespace hms.Areas.Outdoor.Controllers
             List<HP_SHOW_TYPE> _d = new List<HP_SHOW_TYPE>
             {
                 new HP_SHOW_TYPE{ID=1,SHOW_NAME="Visit"},
-                new HP_SHOW_TYPE{ID=1,SHOW_NAME="ReVisit"},
-                new HP_SHOW_TYPE{ID=1,SHOW_NAME="Report"},
+                new HP_SHOW_TYPE{ID=2,SHOW_NAME="ReVisit"},
+                new HP_SHOW_TYPE{ID=3,SHOW_NAME="Report"},
             };
             _unitOfWork.HP_SHOW_TYPE.AddRange(_d);
             _unitOfWork.Save();
