@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HP_TOKEN:DEFAULT
+    public class HP_TOKEN : DEFAULT
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Int64 ID { get; set; }
 
         [Display(Name = "Serial No")]
@@ -24,7 +25,7 @@ namespace hms.DataModel
 
         [Display(Name = "Doctor")]
         [Required(ErrorMessage = "{0} is required")]
-        public int DOCTOR_ID { get; set; }
+        public int HS_DOCTOR_ID { get; set; }
         [ForeignKey("HS_DOCTOR_ID")]
         public HS_DOCTOR HS_DOCTOR { get; set; }
 

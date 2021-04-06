@@ -22,9 +22,7 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_CHECKUP", b =>
                 {
                     b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
 
                     b.Property<decimal>("BODY_TEMPERATURE")
                         .HasPrecision(3, 2)
@@ -69,8 +67,9 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<long>("PRESCRIPTION_NUMBER")
-                        .HasColumnType("bigint");
+                    b.Property<string>("PRESCRIPTION_NUMBER")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -190,9 +189,7 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_INVESTIGATION", b =>
                 {
                     b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -205,14 +202,11 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long?>("HS_ITEM_ID")
+                    b.Property<long>("HS_ITEM_ID")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
-
-                    b.Property<long>("ITEM_ID")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("ITEM_NAME")
                         .IsRequired()
@@ -252,9 +246,7 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_MEDICINE", b =>
                 {
                     b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -273,19 +265,20 @@ namespace hms.DataAccess.Migrations
                     b.Property<string>("DOSAGE_FREQUENCY")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("HS_ITEM_ID")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
-
-                    b.Property<long>("ITEM_ID")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("ITEM_NAME")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long>("PRESCRIPTION_NUMBER")
-                        .HasColumnType("bigint");
+                    b.Property<string>("PRESCRIPTION_NUMBER")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -308,12 +301,14 @@ namespace hms.DataAccess.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("HS_ITEM_ID");
+
                     b.ToTable("HP_MEDICINE");
                 });
 
             modelBuilder.Entity("hms.DataModel.HP_PRESCRIPTION", b =>
                 {
-                    b.Property<long>("PRESCRIPTION_NUMBER")
+                    b.Property<long>("ID")
                         .HasColumnType("bigint");
 
                     b.Property<string>("CREATE_BY")
@@ -331,21 +326,36 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("int");
 
-                    b.Property<int>("HOSPITAL_ID")
+                    b.Property<int>("HP_SHOW_TYPE_ID")
+                        .HasMaxLength(5)
+                        .HasColumnType("int");
+
+                    b.Property<long>("HP_TOKEN_ID")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("HS_DOCTOR_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HS_HOSPITAL_ID")
                         .HasMaxLength(6)
                         .HasColumnType("int");
+
+                    b.Property<long>("HS_PATIENT_ID")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
-                    b.Property<long>("PATIENT_ID")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("PRESCRIPTION_DATE")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PRESCRIPTION_NUMBER")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
                     b.Property<string>("PREVIOUS_PRESCRIPTION")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("REFER_FOR_ADMIT")
                         .HasColumnType("int");
@@ -354,13 +364,6 @@ namespace hms.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
-
-                    b.Property<int>("SHOW_TYPE_ID")
-                        .HasMaxLength(5)
-                        .HasColumnType("int");
-
-                    b.Property<long>("TOKEN_ID")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("UPDATE_BY")
                         .HasMaxLength(15)
@@ -373,7 +376,17 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("PRESCRIPTION_NUMBER");
+                    b.HasKey("ID");
+
+                    b.HasIndex("HP_SHOW_TYPE_ID");
+
+                    b.HasIndex("HP_TOKEN_ID");
+
+                    b.HasIndex("HS_DOCTOR_ID");
+
+                    b.HasIndex("HS_HOSPITAL_ID");
+
+                    b.HasIndex("HS_PATIENT_ID");
 
                     b.ToTable("HP_PRESCRIPTION");
                 });
@@ -471,9 +484,7 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HP_TOKEN", b =>
                 {
                     b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -486,10 +497,7 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("DOCTOR_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HS_DOCTOR_ID")
+                    b.Property<int>("HS_DOCTOR_ID")
                         .HasColumnType("int");
 
                     b.Property<bool>("IS_ACTIVE")
@@ -1419,16 +1427,72 @@ namespace hms.DataAccess.Migrations
                 {
                     b.HasOne("hms.DataModel.HS_ITEM", "HS_ITEM")
                         .WithMany()
-                        .HasForeignKey("HS_ITEM_ID");
+                        .HasForeignKey("HS_ITEM_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("HS_ITEM");
+                });
+
+            modelBuilder.Entity("hms.DataModel.HP_MEDICINE", b =>
+                {
+                    b.HasOne("hms.DataModel.HS_ITEM", "HS_ITEM")
+                        .WithMany()
+                        .HasForeignKey("HS_ITEM_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HS_ITEM");
+                });
+
+            modelBuilder.Entity("hms.DataModel.HP_PRESCRIPTION", b =>
+                {
+                    b.HasOne("hms.DataModel.HP_SHOW_TYPE", "HP_SHOW_TYPE")
+                        .WithMany()
+                        .HasForeignKey("HP_SHOW_TYPE_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.HP_TOKEN", "HP_TOKEN")
+                        .WithMany()
+                        .HasForeignKey("HP_TOKEN_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.HS_DOCTOR", "HS_DOCTOR")
+                        .WithMany()
+                        .HasForeignKey("HS_DOCTOR_ID");
+
+                    b.HasOne("hms.DataModel.HS_HOSPITAL", "HS_HOSPITAL")
+                        .WithMany()
+                        .HasForeignKey("HS_HOSPITAL_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hms.DataModel.HS_PATIENT", "HS_PATIENT")
+                        .WithMany()
+                        .HasForeignKey("HS_PATIENT_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HP_SHOW_TYPE");
+
+                    b.Navigation("HP_TOKEN");
+
+                    b.Navigation("HS_DOCTOR");
+
+                    b.Navigation("HS_HOSPITAL");
+
+                    b.Navigation("HS_PATIENT");
                 });
 
             modelBuilder.Entity("hms.DataModel.HP_TOKEN", b =>
                 {
                     b.HasOne("hms.DataModel.HS_DOCTOR", "HS_DOCTOR")
                         .WithMany()
-                        .HasForeignKey("HS_DOCTOR_ID");
+                        .HasForeignKey("HS_DOCTOR_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("HS_DOCTOR");
                 });

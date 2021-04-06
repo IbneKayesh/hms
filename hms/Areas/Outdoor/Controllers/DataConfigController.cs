@@ -89,9 +89,9 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HP_SHOW_TYPE> _d = new List<HP_SHOW_TYPE>
             {
-                new HP_SHOW_TYPE{ID=1,SHOW_NAME="Visit"},
-                new HP_SHOW_TYPE{ID=2,SHOW_NAME="ReVisit"},
-                new HP_SHOW_TYPE{ID=3,SHOW_NAME="Report"},
+                new HP_SHOW_TYPE{ID=1, SHOW_NAME="Visit"},
+                new HP_SHOW_TYPE{ID=2, SHOW_NAME="ReVisit"},
+                new HP_SHOW_TYPE{ID=3, SHOW_NAME="Report"},
             };
             _unitOfWork.HP_SHOW_TYPE.AddRange(_d);
             _unitOfWork.Save();
@@ -100,7 +100,7 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_HOSPITAL> _d = new List<HS_HOSPITAL>
             {
-                new HS_HOSPITAL{ID=1,HOSPITAL_NAME="My Care Pvt. Ltd."},
+                new HS_HOSPITAL{ID=1, HOSPITAL_NAME="My Care Pvt. Ltd."},
             };
             _unitOfWork.HS_HOSPITAL.AddRange(_d);
             _unitOfWork.Save();
@@ -109,7 +109,7 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_DOCTOR> _d = new List<HS_DOCTOR>
             {
-                new HS_DOCTOR{ID=1,DOCTOR_NAME="Mr. Careful"},
+                new HS_DOCTOR{ID=1, DOCTOR_NAME="Mr. Careful"},
             };
             _unitOfWork.HS_DOCTOR.AddRange(_d);
             _unitOfWork.Save();
@@ -118,7 +118,7 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_PATIENT> _d = new List<HS_PATIENT>
             {
-                new HS_PATIENT{ID=1,PATIENT_NAME="Mr. Seek", DATE_OF_BIRTH=Convert.ToDateTime("01-FEB-2000")},
+                new HS_PATIENT{ID=1, PATIENT_NAME="Mr. Seek", DATE_OF_BIRTH=Convert.ToDateTime("01-FEB-2000")},
             };
             _unitOfWork.HS_PATIENT.AddRange(_d);
             _unitOfWork.Save();
@@ -127,11 +127,11 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_ITEM> _d = new List<HS_ITEM>
             {
-                new HS_ITEM{ID=1,ITEM_NAME="Napa Extra"},
-                new HS_ITEM{ID=2,ITEM_NAME="Seclo"},
-                new HS_ITEM{ID=3,ITEM_NAME="Metryl"},
-                new HS_ITEM{ID=4,ITEM_NAME="Histacin"},
-                new HS_ITEM{ID=5,ITEM_NAME="Tuska Plus"},
+                new HS_ITEM{ID=1, ITEM_NAME="Napa Extra"},
+                new HS_ITEM{ID=2, ITEM_NAME="Seclo"},
+                new HS_ITEM{ID=3, ITEM_NAME="Metryl"},
+                new HS_ITEM{ID=4, ITEM_NAME="Histacin"},
+                new HS_ITEM{ID=5, ITEM_NAME="Tuska Plus"},
             };
             _unitOfWork.HS_ITEM.AddRange(_d);
             _unitOfWork.Save();
@@ -140,10 +140,10 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_TESTS> _d = new List<HS_TESTS>
             {
-                new HS_TESTS{ID=1,TESTS_NAME="CBC"},
-                new HS_TESTS{ID=2,TESTS_NAME="Lipid Profile"},
-                new HS_TESTS{ID=3,TESTS_NAME="Covid-19"},
-                new HS_TESTS{ID=4,TESTS_NAME="X-Ray"},
+                new HS_TESTS{ID=1, TESTS_NAME="CBC"},
+                new HS_TESTS{ID=2, TESTS_NAME="Lipid Profile"},
+                new HS_TESTS{ID=3, TESTS_NAME="Covid-19"},
+                new HS_TESTS{ID=4, TESTS_NAME="X-Ray"},
             };
             _unitOfWork.HS_TESTS.AddRange(_d);
             _unitOfWork.Save();
