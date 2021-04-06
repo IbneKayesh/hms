@@ -12,7 +12,7 @@ namespace hms.DataModel
         [Display(Name = "Menu Name")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "{0} length is {2} between {1}")]
         [Required(ErrorMessage = "{0} is required")]
-        [Remote(action: "VerifyParentMenuName", controller: "ParentMenu", AdditionalFields = "ID", ErrorMessage = "{0} is not available")]
+        [Remote(action: "VerifyParentMenuName", controller: "ParentMenu", AdditionalFields = "ID", ErrorMessage = "{0} is available")]
         public string PARENT_NAME { get; set; }
 
         [Display(Name = "Name Bangla")]
