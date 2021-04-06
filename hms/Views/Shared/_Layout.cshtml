@@ -28,6 +28,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/app_theme/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/app_theme/dist/css/adminlte.min.css">
+
+    <!--page projecttion-->
+    <script src="~/js/pageprotection.js"></script>
 </head>
 <body class="hold-transition sidebar-mini text-sm">
     <noscript>
@@ -238,9 +241,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             }
 
                         }
-                    <li class="nav-item">
-                        <a class="nav-link text-danger text-bold" asp-area="Setup" asp-controller="DataConfig" asp-action="Initialize"><i class="nav-icon fa fa-cogs"></i> <p> Initialize Setup</p></a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger text-bold" asp-area="Setup" asp-controller="DataConfig" asp-action="Initialize"><i class="nav-icon fa fa-cogs"></i> <p> Initialize Setup</p></a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-danger text-bold" asp-area="Outdoor" asp-controller="DataConfig" asp-action="Initialize"><i class="nav-icon fa fa-cog"></i> <p> Initialize Outdoor</p></a>
                         </li>
@@ -339,7 +342,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             };
         });
     </script>
-
     <script src="~/js/site.js"></script>
 </body>
 </html>
