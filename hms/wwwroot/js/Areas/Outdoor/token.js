@@ -16,7 +16,9 @@ function loadTable() {
         ],
         "columns": [
             { "mData": "id" },
-            { "mData": "patienT_NAME" },
+            { "mData": "seriaL_NO" },
+            { "mData": "tokeN_DATE" },
+            { "mData": "hS_DOCTOR.doctoR_NAME" },
             {
                 "mData": "iS_ACTIVE",
                 render: function (mData) {

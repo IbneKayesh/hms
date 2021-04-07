@@ -42,8 +42,23 @@ namespace hms.Areas.Outdoor.Controllers
                 {
                     //var a = _obj.TOKEN_DATE.ToString("dd/MM/yyyy");
                     //var b = _obj.TOKEN_DATE.ToShortDateString();
+                    var b = _obj.TOKEN_DATE.Date;
 
-                    _obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE == _obj.TOKEN_DATE).Max(x => x.SERIAL_NO) + 1;
+                    //var data = context.t_quoted_value.Where(x => x.region_name == "Hong Kong"
+                    //&& DateTime.Compare(x.price_date.Value.Date, dt.Date) == 0)
+                    //.ToList();
+                    //db.Meals.Where(c => String.Format("{0:M/d/yyyy}", c.MealDate) == date && c.SessionID == SessionID && c.MealType == MealType).FirstOrDefault();
+
+                    try
+                    {
+                        _obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE.Date == _obj.TOKEN_DATE.Date).Max(x => x.SERIAL_NO) + 1;
+                    }
+                    catch 
+                    {
+                        _obj.SERIAL_NO = 1;
+                    }
+
+                    //_obj.SERIAL_NO = _unitOfWork.HP_TOKEN.GetAll(x => x.TOKEN_DATE == _obj.TOKEN_DATE).Max(x => x.SERIAL_NO) + 1;
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.HP_TOKEN.Add(_obj);
                 }
@@ -66,7 +81,7 @@ namespace hms.Areas.Outdoor.Controllers
         }
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.HP_TOKEN.GetAll();
+            var obj = _unitOfWork.HP_TOKEN.GetAll(includeProperties: "HS_DOCTOR").OrderByDescending(x => x.TOKEN_DATE);
             return Json(new { data = obj });
         }
 

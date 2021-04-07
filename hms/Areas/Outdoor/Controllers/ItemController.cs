@@ -64,7 +64,7 @@ namespace hms.Areas.Outdoor.Controllers
 
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.HS_ITEM.GetAll();
+            var obj = _unitOfWork.HS_ITEM.GetAll(includeProperties: "US_UNIT");
             return Json(new { data = obj });
         }
 

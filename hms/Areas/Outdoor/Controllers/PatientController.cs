@@ -38,6 +38,7 @@ namespace hms.Areas.Outdoor.Controllers
             {
                 if (_obj.ID == 0)
                 {
+                    _obj.ID = _unitOfWork.HS_PATIENT.GetAll().Max(x => x.ID) + 1;
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.HS_PATIENT.Add(_obj);
                 }

@@ -137,9 +137,9 @@ namespace hms.Areas.Setup.Controllers
         {
             List<US_MODULE> _d = new List<US_MODULE>
             {
-                new US_MODULE{ ID=1, MODULE_NAME="Setup", MODULE_BN_NAME="Setup", MODULE_ICON="fas fa-cogs",VIEW_ORDER=1,CONTROLLER_NAME="Home",METHOD_NAME="LeaderBoardOptions" },
-                new US_MODULE{ ID=2,MODULE_NAME="Order", MODULE_BN_NAME="Order", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="LeaderBoardOptions" },
-                new US_MODULE{ ID=3,MODULE_NAME="Outdoor", MODULE_BN_NAME="Outdoor", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="LeaderBoardOptions" },
+                new US_MODULE{ ID=1, MODULE_NAME="Setup", MODULE_BN_NAME="Setup", MODULE_ICON="fas fa-cogs",VIEW_ORDER=1,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
+                new US_MODULE{ ID=2,MODULE_NAME="Order", MODULE_BN_NAME="Order", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
+                new US_MODULE{ ID=3,MODULE_NAME="Outdoor", MODULE_BN_NAME="Outdoor", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
             };
             _unitOfWork.US_MODULE.AddRange(_d);
             _unitOfWork.Save();
