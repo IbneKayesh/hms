@@ -20,6 +20,9 @@ namespace hms.DataAccess.Repository.IRepository
         IUS_ROLE_MENURepository US_ROLE_MENU { get; }
         IUS_USER_ROLERepository US_USER_ROLE { get; }
         IUS_TYPERepository US_TYPE { get; }
+        IUS_UNITRepository US_UNIT { get; }
+
+
         IHP_CHECKUPRepository HP_CHECKUP { get; }
         IHP_DURATIONRepository HP_DURATION { get; }
         IHP_FREQUENCYRepository HP_FREQUENCY { get; }

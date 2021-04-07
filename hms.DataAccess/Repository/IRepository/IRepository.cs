@@ -9,7 +9,7 @@ namespace hms.DataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        T Get(int id);
+        T Get(Int64 id);
         IEnumerable<T> GetAll(
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
@@ -24,7 +24,7 @@ namespace hms.DataAccess.Repository.IRepository
         void Add(T entity);
         void AddRange(IEnumerable<T> entity);
 
-        void Remove(int id);
+        void Remove(Int64 id);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
     }

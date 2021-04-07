@@ -19,5 +19,22 @@ namespace hms.DataModel
         [Required(ErrorMessage = "{0} is required")]
         [Remote(action: "VerifyItemName", controller: "Item", AdditionalFields = "ID", ErrorMessage = "{0} is available")]
         public string ITEM_NAME { get; set; }
+
+        [Display(Name = "Unit")]
+        [Required(ErrorMessage = "{0} is required")]
+        public int US_UNIT_ID { get; set; }
+
+        [ForeignKey("US_UNIT_ID")]
+        public US_UNIT US_UNIT { get; set; }
+
+        [Display(Name = "Purchase Rate")]
+        [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
+        [Column(TypeName = "decimal(7,2)")]
+        public decimal DP_RATE { get; set; }
+
+        [Display(Name = "MRP Rate")]
+        [RegularExpression(@"^(0|-?\d{0,16}(\.\d{0,2})?)$")]
+        [Column(TypeName = "decimal(7,2)")]
+        public decimal MRP_RATE { get; set; }
     }
 }

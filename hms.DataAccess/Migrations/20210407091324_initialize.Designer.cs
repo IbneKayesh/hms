@@ -10,7 +10,7 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210406172318_initialize")]
+    [Migration("20210407091324_initialize")]
     partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -650,6 +650,9 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<decimal>("DP_RATE")
+                        .HasColumnType("decimal(7,2)");
+
                     b.Property<bool>("IS_ACTIVE")
                         .HasColumnType("bit");
 
@@ -657,6 +660,9 @@ namespace hms.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("MRP_RATE")
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -674,7 +680,12 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("US_UNIT_ID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("US_UNIT_ID");
 
                     b.ToTable("HS_ITEM");
                 });
@@ -1292,6 +1303,51 @@ namespace hms.DataAccess.Migrations
                     b.ToTable("US_TYPE");
                 });
 
+            modelBuilder.Entity("hms.DataModel.US_UNIT", b =>
+                {
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CREATE_BY")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("CREATE_DATE")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CREATE_DEVICE")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IS_ACTIVE")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("UNIT_NAME")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("UPDATE_BY")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("UPDATE_DATE")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UPDATE_DEVICE")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("US_UNIT");
+                });
+
             modelBuilder.Entity("hms.DataModel.US_USER", b =>
                 {
                     b.Property<int>("ID")
@@ -1506,6 +1562,17 @@ namespace hms.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("HS_DOCTOR");
+                });
+
+            modelBuilder.Entity("hms.DataModel.HS_ITEM", b =>
+                {
+                    b.HasOne("hms.DataModel.US_UNIT", "US_UNIT")
+                        .WithMany()
+                        .HasForeignKey("US_UNIT_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("US_UNIT");
                 });
 
             modelBuilder.Entity("hms.DataModel.US_CHILD_MENU", b =>

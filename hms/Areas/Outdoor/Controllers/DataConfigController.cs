@@ -128,11 +128,11 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_ITEM> _d = new List<HS_ITEM>
             {
-                new HS_ITEM{ID=1, ITEM_NAME="Napa Extra"},
-                new HS_ITEM{ID=2, ITEM_NAME="Seclo"},
-                new HS_ITEM{ID=3, ITEM_NAME="Metryl"},
-                new HS_ITEM{ID=4, ITEM_NAME="Histacin"},
-                new HS_ITEM{ID=5, ITEM_NAME="Tuska Plus"},
+                new HS_ITEM{ID=1, ITEM_NAME="Napa Extra", US_UNIT_ID=1, DP_RATE=1, MRP_RATE= 1.1M},
+                new HS_ITEM{ID=2, ITEM_NAME="Seclo", US_UNIT_ID=1, DP_RATE=2, MRP_RATE= 2.1M},
+                new HS_ITEM{ID=3, ITEM_NAME="Metryl", US_UNIT_ID=1, DP_RATE=3, MRP_RATE= 3.1M},
+                new HS_ITEM{ID=4, ITEM_NAME="Histacin", US_UNIT_ID=1, DP_RATE=4, MRP_RATE= 4.1M},
+                new HS_ITEM{ID=5, ITEM_NAME="Tuska Plus", US_UNIT_ID=1, DP_RATE=5, MRP_RATE= 5.1M},
             };
             _unitOfWork.HS_ITEM.AddRange(_d);
             _unitOfWork.Save();

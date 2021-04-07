@@ -157,26 +157,6 @@ namespace hms.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HS_ITEM",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
-                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
-                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HS_ITEM", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "HS_PATIENT",
                 columns: table => new
                 {
@@ -385,6 +365,26 @@ namespace hms.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "US_UNIT",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false),
+                    UNIT_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_US_UNIT", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HP_TOKEN",
                 columns: table => new
                 {
@@ -409,68 +409,6 @@ namespace hms.DataAccess.Migrations
                         name: "FK_HP_TOKEN_HS_DOCTOR_HS_DOCTOR_ID",
                         column: x => x.HS_DOCTOR_ID,
                         principalTable: "HS_DOCTOR",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HP_INVESTIGATION",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PRESCRIPTION_NUMBER = table.Column<long>(type: "bigint", nullable: false),
-                    HS_ITEM_ID = table.Column<long>(type: "bigint", nullable: false),
-                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SUGGESTION = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
-                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HP_INVESTIGATION", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_HP_INVESTIGATION_HS_ITEM_HS_ITEM_ID",
-                        column: x => x.HS_ITEM_ID,
-                        principalTable: "HS_ITEM",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HP_MEDICINE",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
-                    HS_ITEM_ID = table.Column<long>(type: "bigint", nullable: false),
-                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DOSAGE_DURATION = table.Column<int>(type: "int", nullable: false),
-                    DOSAGE_FREQUENCY = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SUGGESTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
-                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HP_MEDICINE", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_HP_MEDICINE_HS_ITEM_HS_ITEM_ID",
-                        column: x => x.HS_ITEM_ID,
-                        principalTable: "HS_ITEM",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -571,6 +509,35 @@ namespace hms.DataAccess.Migrations
                         name: "FK_US_USER_US_TYPE_US_TYPE_ID",
                         column: x => x.US_TYPE_ID,
                         principalTable: "US_TYPE",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HS_ITEM",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    US_UNIT_ID = table.Column<int>(type: "int", nullable: false),
+                    DP_RATE = table.Column<decimal>(type: "decimal(7,2)", nullable: false),
+                    MRP_RATE = table.Column<decimal>(type: "decimal(7,2)", nullable: false),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HS_ITEM", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_HS_ITEM_US_UNIT_US_UNIT_ID",
+                        column: x => x.US_UNIT_ID,
+                        principalTable: "US_UNIT",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -699,6 +666,68 @@ namespace hms.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "HP_INVESTIGATION",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PRESCRIPTION_NUMBER = table.Column<long>(type: "bigint", nullable: false),
+                    HS_ITEM_ID = table.Column<long>(type: "bigint", nullable: false),
+                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SUGGESTION = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_INVESTIGATION", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_HP_INVESTIGATION_HS_ITEM_HS_ITEM_ID",
+                        column: x => x.HS_ITEM_ID,
+                        principalTable: "HS_ITEM",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HP_MEDICINE",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    HS_ITEM_ID = table.Column<long>(type: "bigint", nullable: false),
+                    ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DOSAGE_DURATION = table.Column<int>(type: "int", nullable: false),
+                    DOSAGE_FREQUENCY = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SUGGESTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
+                    CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    CREATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UPDATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    UPDATE_DEVICE = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HP_MEDICINE", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_HP_MEDICINE_HS_ITEM_HS_ITEM_ID",
+                        column: x => x.HS_ITEM_ID,
+                        principalTable: "HS_ITEM",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_HP_INVESTIGATION_HS_ITEM_ID",
                 table: "HP_INVESTIGATION",
@@ -738,6 +767,11 @@ namespace hms.DataAccess.Migrations
                 name: "IX_HP_TOKEN_HS_DOCTOR_ID",
                 table: "HP_TOKEN",
                 column: "HS_DOCTOR_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HS_ITEM_US_UNIT_ID",
+                table: "HS_ITEM",
+                column: "US_UNIT_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_US_CHILD_MENU_US_MODULE_ID",
@@ -840,6 +874,9 @@ namespace hms.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "US_USER");
+
+            migrationBuilder.DropTable(
+                name: "US_UNIT");
 
             migrationBuilder.DropTable(
                 name: "HS_DOCTOR");

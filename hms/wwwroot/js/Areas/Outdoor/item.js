@@ -17,6 +17,8 @@ function loadTable() {
         "columns": [
             { "mData": "id" },
             { "mData": "iteM_NAME" },
+            { "mData": "dP_RATE" },
+            { "mData": "mrP_RATE" },
             {
                 "mData": "iS_ACTIVE",
                 render: function (mData) {

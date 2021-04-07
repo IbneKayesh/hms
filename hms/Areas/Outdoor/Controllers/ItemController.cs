@@ -2,6 +2,7 @@
 using hms.DataModel;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace hms.Areas.Outdoor.Controllers
         }
         public IActionResult ManageItem(int? id)
         {
+            DropDownFor_ManageItem();
             HS_ITEM _obj = new HS_ITEM();
             if (id != null)
             {
@@ -37,6 +39,7 @@ namespace hms.Areas.Outdoor.Controllers
             {
                 if (_obj.ID == 0)
                 {
+                    _obj.ID = _unitOfWork.HS_ITEM.GetAll().Max(x => x.ID) + 1;
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.HS_ITEM.Add(_obj);
                 }
@@ -49,8 +52,14 @@ namespace hms.Areas.Outdoor.Controllers
                 return RedirectToAction(nameof(ManageItem));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
+            DropDownFor_ManageItem();
             _obj.ID = 0;
             return View(_obj);
+        }
+
+        private void DropDownFor_ManageItem()
+        {
+            ViewBag.US_UNIT_ID = _unitOfWork.US_UNIT.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.UNIT_NAME});
         }
 
         public IActionResult GetAll()

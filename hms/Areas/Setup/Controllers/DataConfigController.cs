@@ -43,6 +43,7 @@ namespace hms.Areas.Setup.Controllers
                 US_USER_Ins();
                 US_ROLE_MENU_Ins();
                 US_USER_ROLE_Ins();
+                US_UNIT_Ins();
                 return Content("Data Config Iniliazation Succeeded");
             }
             catch (Exception ex) { return Content(ex.InnerException.Message); }
@@ -227,6 +228,18 @@ namespace hms.Areas.Setup.Controllers
             _unitOfWork.US_USER_ROLE.AddRange(_d);
             _unitOfWork.Save();
         }
+        private void US_UNIT_Ins()
+        {
+            List<US_UNIT> _d = new List<US_UNIT>
+            {
+                new US_UNIT{ ID=1, UNIT_NAME="Pcs" },
+                new US_UNIT{ ID=2, UNIT_NAME="Box" },
+                new US_UNIT{ ID=3, UNIT_NAME="Kg" },
+            };
+            _unitOfWork.US_UNIT.AddRange(_d);
+            _unitOfWork.Save();
+        }
+
 
         [HttpGet]
         public IActionResult DropInitialize()

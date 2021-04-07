@@ -15,10 +15,13 @@ namespace hms.DataAccess
             modelBuilder.Entity<HP_CHECKUP>().Property(x => x.WEIGHT).HasPrecision(3, 2);
             modelBuilder.Entity<HP_CHECKUP>().Property(x => x.HEIGHT).HasPrecision(3, 2);
 
+            modelBuilder.Entity<HS_ITEM>().Property(x => x.DP_RATE).HasPrecision(7, 2);
+            modelBuilder.Entity<HS_ITEM>().Property(x => x.MRP_RATE).HasPrecision(7, 2);
+
+
             modelBuilder.Entity<US_USER_ROLE>()
                 .HasKey(c => new { c.US_USER_ID, c.US_ROLE_ID })
                 .HasName("PK_US_USER_ROLE_ID");
-
 
             modelBuilder.Entity<US_ROLE_MENU>()
                 .HasKey(c => new { c.US_ROLE_ID, c.US_CHILD_MENU_ID })
@@ -36,6 +39,7 @@ namespace hms.DataAccess
         public DbSet<US_TYPE> US_TYPE { get; set; }
         public DbSet<US_USER> US_USER { get; set; }
         public DbSet<US_USER_ROLE> US_USER_ROLE { get; set; }
+        public DbSet<US_UNIT> US_UNIT { get; set; }
 
 
         public DbSet<HP_CHECKUP> HP_CHECKUP { get; set; }

@@ -2,6 +2,7 @@
 =======================Please maintain descending order================
 US_USER_ROLE
 US_USER
+US_UNIT
 US_TYPE
 US_ROLE_MENU
 US_ROLE

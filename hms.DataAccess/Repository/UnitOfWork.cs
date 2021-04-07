@@ -25,6 +25,7 @@ namespace hms.DataAccess.Repository
             US_ROLE = new US_ROLERepository(_db);
             US_USER_ROLE = new US_USER_ROLERepository(_db);
             US_TYPE = new US_TYPERepository(_db);
+            US_UNIT = new US_UNITRepository(_db);
 
             HP_CHECKUP = new HP_CHECKUPRepository(_db);
             HP_DURATION = new HP_DURATIONRepository(_db);
@@ -54,6 +55,9 @@ namespace hms.DataAccess.Repository
         public IUS_ROLERepository US_ROLE { get; private set; }
         public IUS_USER_ROLERepository US_USER_ROLE { get; private set; }        
         public IUS_TYPERepository US_TYPE { get; private set; }
+        public IUS_UNITRepository US_UNIT { get; private set; }
+
+
         public IHP_CHECKUPRepository HP_CHECKUP { get; private set; }
         public IHP_DURATIONRepository HP_DURATION { get; private set; }
         public IHP_FREQUENCYRepository HP_FREQUENCY { get; private set; }
