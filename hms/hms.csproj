@@ -40,6 +40,7 @@
     <Content Remove="wwwroot\js\Areas\Setup\childmenu.js" />
     <Content Remove="wwwroot\js\Areas\Setup\module.js" />
     <Content Remove="wwwroot\js\Areas\Setup\parentmenu.js" />
+    <Content Remove="wwwroot\js\Areas\Setup\unit.js" />
     <Content Remove="wwwroot\js\Areas\Setup\user.js" />
     <Content Remove="wwwroot\js\Areas\Setup\userrole.js" />
     <Content Remove="wwwroot\js\Areas\Setup\userrole_x.js" />
@@ -73,6 +74,7 @@
     <None Include="wwwroot\js\Areas\Outdoor\patient.js" />
     <None Include="wwwroot\js\Areas\Outdoor\doctor.js" />
     <None Include="wwwroot\js\Areas\Setup\bloodgroup.js" />
+    <None Include="wwwroot\js\Areas\Setup\unit.js" />
     <None Include="wwwroot\js\Areas\Setup\userrole.js" />
     <None Include="wwwroot\js\Areas\Setup\userrole_x.js" />
     <None Include="wwwroot\js\Areas\Setup\parentmenu.js" />

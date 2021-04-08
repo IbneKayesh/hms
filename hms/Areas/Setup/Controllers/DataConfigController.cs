@@ -169,6 +169,7 @@ namespace hms.Areas.Setup.Controllers
                 new US_CHILD_MENU{ ID=7, CHILD_NAME="Module", CHILD_BN_NAME="Module", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="Module", ACTION_NAME="ManageModule", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
                 new US_CHILD_MENU{ ID=8, CHILD_NAME="Parent Menu", CHILD_BN_NAME="Parent Menu", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="ParentMenu", ACTION_NAME="ManageParentMenu", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
                 new US_CHILD_MENU{ ID=9, CHILD_NAME="Role Menu", CHILD_BN_NAME="Role Menu", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="RoleMenu", ACTION_NAME="ManageRoleMenu", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
+                new US_CHILD_MENU{ ID=10, CHILD_NAME="Unit", CHILD_BN_NAME="Unit", CHILD_ICON="fa fa-users", AREA_NAME="Setup", CONTROLLER_NAME="Unit", ACTION_NAME="ManageUnit", US_MODULE_ID=1, US_PARENT_MENU_ID=1 },
                 
                  //=================Order==================== 51 to 100
                  new US_CHILD_MENU{ ID=51, CHILD_NAME="Sales", CHILD_BN_NAME="Sales", CHILD_ICON="fa fa-users", AREA_NAME="Order", CONTROLLER_NAME="Sales", ACTION_NAME="Sale", US_MODULE_ID=2, US_PARENT_MENU_ID=2 },

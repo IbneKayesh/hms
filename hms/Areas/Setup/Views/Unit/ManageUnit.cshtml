@@ -1,7 +1,7 @@
-﻿@model hms.DataModel.HS_ITEM
+﻿@model hms.DataModel.US_UNIT
 
 @{
-    ViewData["Title"] = "Item";
+    ViewData["Title"] = "Unit";
 }
 <div class="card card-secondary card-outline">
 
@@ -18,37 +18,14 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <input hidden asp-for="ID" />
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="ITEM_NAME" class="control-label"></label>
-                            <input asp-for="ITEM_NAME" class="form-control form-control-sm" />
-                            <span asp-validation-for="ITEM_NAME" class="text-danger"></span>
+                            <label asp-for="UNIT_NAME" class="control-label"></label>
+                            <input asp-for="UNIT_NAME" class="form-control form-control-sm" />
+                            <span asp-validation-for="UNIT_NAME" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label asp-for="US_UNIT_ID" class="control-label"></label>
-                            <select asp-for="US_UNIT_ID" class="form-control form-control-sm" asp-items="ViewBag.US_UNIT_ID"><option selected>-Select-</option></select>
-                            <span asp-validation-for="US_UNIT_ID" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label asp-for="DP_RATE" class="control-label"></label>
-                            <input asp-for="DP_RATE" class="form-control form-control-sm" />
-                            <span asp-validation-for="DP_RATE" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label asp-for="MRP_RATE" class="control-label"></label>
-                            <input asp-for="MRP_RATE" class="form-control form-control-sm" />
-                            <span asp-validation-for="MRP_RATE" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="IS_ACTIVE" class="control-label"></label>
                             <div class="form-check">
@@ -78,9 +55,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Unit</th>
-                    <th>DP Rate</th>
-                    <th>MRP Rate</th>
                     <th>Status</th>
                     <th>Option</th>
                 </tr>
@@ -91,5 +65,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/Areas/Outdoor/item.js"></script>
+    <script src="~/js/Areas/Setup/unit.js"></script>
 }
+
