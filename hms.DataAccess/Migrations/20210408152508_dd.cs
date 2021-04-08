@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace hms.DataAccess.Migrations
 {
-    public partial class initialize : Migration
+    public partial class dd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -520,8 +520,8 @@ namespace hms.DataAccess.Migrations
                     ID = table.Column<long>(type: "bigint", nullable: false),
                     ITEM_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     US_UNIT_ID = table.Column<int>(type: "int", nullable: false),
-                    DP_RATE = table.Column<decimal>(type: "decimal(7,2)", nullable: false),
-                    MRP_RATE = table.Column<decimal>(type: "decimal(7,2)", nullable: false),
+                    DP_RATE = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
+                    MRP_RATE = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
                     IS_ACTIVE = table.Column<bool>(type: "bit", nullable: false),
                     CREATE_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CREATE_BY = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),

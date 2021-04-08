@@ -10,8 +10,8 @@ using hms.DataAccess;
 namespace hms.DataAccess.Migrations
 {
     [DbContext(typeof(hmsDbContext))]
-    [Migration("20210407091324_initialize")]
-    partial class initialize
+    [Migration("20210408152508_dd")]
+    partial class dd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -651,6 +651,7 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("DP_RATE")
+                        .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<bool>("IS_ACTIVE")
@@ -662,6 +663,7 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("MRP_RATE")
+                        .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<byte[]>("RowVersion")

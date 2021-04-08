@@ -130,7 +130,10 @@ namespace hms.Controllers
         {
             //FormsAuthentication.SignOut();
             //ViewBag.ReturnUrl = returnUrl;
-            return View();
+            US_USER obj = new US_USER();
+            obj.LOGIN_ID = "admin";
+            obj.PASSWORD = "a";
+            return View(obj);
         }
 
 
@@ -141,6 +144,11 @@ namespace hms.Controllers
             try
             {
                 //FormsAuthentication.SetAuthCookie(user.LOGIN_ID.ToUpper().Trim(), false);
+                if (_obj.LOGIN_ID == null || _obj.PASSWORD ==null)
+                {
+                    TempData["message"] = "Enter Valid Information !!!";
+                    return View(_obj);
+                }
                 string userId = _obj.LOGIN_ID.ToLower().Trim();
                 string userPass = TextEncryption.EncryptionWithSh(_obj.PASSWORD);
 

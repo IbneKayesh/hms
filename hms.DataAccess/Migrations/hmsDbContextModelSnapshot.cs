@@ -649,6 +649,7 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("DP_RATE")
+                        .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<bool>("IS_ACTIVE")
@@ -660,6 +661,7 @@ namespace hms.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("MRP_RATE")
+                        .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<byte[]>("RowVersion")
