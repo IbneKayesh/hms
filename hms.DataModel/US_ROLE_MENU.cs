@@ -8,15 +8,15 @@ namespace hms.DataModel
         [Display(Name = "Role")]
         [Key, Column(Order = 0)]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_ROLE_ID { get; set; }
-        [ForeignKey("US_ROLE_ID")]
+        public int ROLE_ID { get; set; }
+        [ForeignKey("ROLE_ID")]
         public US_ROLE US_ROLE { get; set; }
 
         [Display(Name = "Menu")]
         [Key, Column(Order = 1)]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_CHILD_MENU_ID { get; set; }
-        [ForeignKey("US_CHILD_MENU_ID")]
+        public int CHILD_MENU_ID { get; set; }
+        [ForeignKey("CHILD_MENU_ID")]
         public US_CHILD_MENU US_CHILD_MENU { get; set; }
     }
 }

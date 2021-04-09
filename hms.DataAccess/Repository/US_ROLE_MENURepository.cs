@@ -18,11 +18,11 @@ namespace hms.DataAccess.Repository
 
         public void Update(US_ROLE_MENU obj)
         {
-            var dBobj = _db.US_ROLE_MENU.FirstOrDefault(x => x.US_ROLE_ID == obj.US_ROLE_ID && x.US_CHILD_MENU_ID == obj.US_CHILD_MENU_ID);
+            var dBobj = _db.US_ROLE_MENU.FirstOrDefault(x => x.ROLE_ID == obj.ROLE_ID && x.CHILD_MENU_ID == obj.CHILD_MENU_ID);
             if (dBobj != null)
             {
-                dBobj.US_ROLE_ID = obj.US_ROLE_ID;
-                dBobj.US_CHILD_MENU_ID = obj.US_CHILD_MENU_ID;
+                dBobj.ROLE_ID = obj.ROLE_ID;
+                dBobj.CHILD_MENU_ID = obj.CHILD_MENU_ID;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;

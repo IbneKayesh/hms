@@ -18,11 +18,11 @@ namespace hms.DataAccess.Repository
 
         public void Update(US_USER_ROLE obj)
         {
-            var dBobj = _db.US_USER_ROLE.FirstOrDefault(x => x.US_ROLE_ID == obj.US_ROLE_ID && x.US_USER_ID == obj.US_USER_ID);
+            var dBobj = _db.US_USER_ROLE.FirstOrDefault(x => x.ROLE_ID == obj.ROLE_ID && x.USER_ID == obj.USER_ID);
             if (dBobj != null)
             {
-                dBobj.US_ROLE_ID = obj.US_ROLE_ID;
-                dBobj.US_USER_ID = obj.US_USER_ID;
+                dBobj.ROLE_ID = obj.ROLE_ID;
+                dBobj.USER_ID = obj.USER_ID;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;

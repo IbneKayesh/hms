@@ -15,9 +15,9 @@ namespace hms.DataModel
 
         [Display(Name = "Hospital")]
         [Required(ErrorMessage = "{0} is required")]
-        public int HS_HOSPITAL_ID { get; set; }
+        public int HOSPITAL_ID { get; set; }
 
-        [ForeignKey("HS_HOSPITAL_ID")]
+        [ForeignKey("HOSPITAL_ID")]
         public HS_HOSPITAL HS_HOSPITAL { get; set; }
 
         [Display(Name = "Name")]
@@ -51,37 +51,32 @@ namespace hms.DataModel
 
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_GENDER_ID { get; set; }
-
-        [ForeignKey("US_GENDER_ID")]
+        public int GENDER_ID { get; set; }
+        [ForeignKey("GENDER_ID")]
         public US_GENDER US_GENDER { get; set; }
 
         [Display(Name = "Maritail Status")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_MARITAIL_STATUS_ID { get; set; }
-
-        [ForeignKey("US_MARITAIL_STATUS_ID")]
+        public int MARITAIL_STATUS_ID { get; set; }
+        [ForeignKey("MARITAIL_STATUS_ID")]
         public US_MARITAIL_STATUS US_MARITAIL_STATUS { get; set; }
 
         [Display(Name = "Blood")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_BLOOD_GROUP_ID { get; set; }
-
-        [ForeignKey("US_BLOOD_GROUP_ID")]
+        public int BLOOD_GROUP_ID { get; set; }
+        [ForeignKey("BLOOD_GROUP_ID")]
         public US_BLOOD_GROUP US_BLOOD_GROUP { get; set; }
 
         [Display(Name = "Type")]
         [Required(ErrorMessage = "{0} is required")]
-        public int HS_EMPLOYEE_TYPE_ID { get; set; }
-
-        [ForeignKey("HS_EMPLOYEE_TYPE_ID")]
+        public int EMPLOYEE_TYPE_ID { get; set; }
+        [ForeignKey("EMPLOYEE_TYPE_ID")]
         public HS_EMPLOYEE_TYPE HS_EMPLOYEE_TYPE { get; set; }
 
         [Display(Name = "Religion")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_RELIGION_ID { get; set; }
-
-        [ForeignKey("US_RELIGION_ID")]
+        public int RELIGION_ID { get; set; }
+        [ForeignKey("RELIGION_ID")]
         public US_RELIGION US_RELIGION { get; set; }
 
         [Display(Name = "National Id")]

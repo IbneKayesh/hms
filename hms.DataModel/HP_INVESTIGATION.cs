@@ -19,8 +19,8 @@ namespace hms.DataModel
 
         [Display(Name = "Item Id")]
         [Required(ErrorMessage = "{0} is required")]
-        public Int64 HS_ITEM_ID { get; set; }
-        [ForeignKey("HS_ITEM_ID")]
+        public Int64 ITEM_ID { get; set; }
+        [ForeignKey("ITEM_ID")]
         public HS_ITEM HS_ITEM { get; set; }
 
         [Display(Name = "Name")]

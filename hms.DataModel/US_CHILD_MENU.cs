@@ -42,16 +42,14 @@ namespace hms.DataModel
 
         [Display(Name = "Module")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_MODULE_ID { get; set; }
-
-        [ForeignKey("US_MODULE_ID")]
+        public int MODULE_ID { get; set; }
+        [ForeignKey("MODULE_ID")]
         public US_MODULE US_MODULE { get; set; }
 
         [Display(Name = "Parent Menu")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_PARENT_MENU_ID { get; set; }
-
-        [ForeignKey("US_PARENT_MENU_ID")]
+        public int PARENT_MENU_ID { get; set; }
+        [ForeignKey("PARENT_MENU_ID")]
         public  US_PARENT_MENU US_PARENT_MENU { get; set; }
     }
 }

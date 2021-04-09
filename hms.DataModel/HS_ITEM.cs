@@ -22,9 +22,9 @@ namespace hms.DataModel
 
         [Display(Name = "Unit")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_UNIT_ID { get; set; }
+        public int UNIT_ID { get; set; }
 
-        [ForeignKey("US_UNIT_ID")]
+        [ForeignKey("UNIT_ID")]
         public US_UNIT US_UNIT { get; set; }
 
         [Display(Name = "Purchase Rate")]

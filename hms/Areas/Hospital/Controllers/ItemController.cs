@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hms.Areas.Outdoor.Controllers
+namespace hms.Areas.Hospital.Controllers
 {
-    [Area("Outdoor")]
+    [Area("Hospital")]
     public class ItemController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -59,7 +59,7 @@ namespace hms.Areas.Outdoor.Controllers
 
         private void DropDownFor_ManageItem()
         {
-            ViewBag.US_UNIT_ID = _unitOfWork.US_UNIT.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.UNIT_NAME});
+            ViewBag.US_UNIT_ID = _unitOfWork.US_UNIT.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.UNIT_NAME });
         }
 
         public IActionResult GetAll()

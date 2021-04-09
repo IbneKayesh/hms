@@ -33,7 +33,7 @@ namespace hms.Areas.Setup.Controllers
                 {
                     var obj2 = (from r in _unitOfWork.US_ROLE.GetAll()
 
-                                join u_r in _unitOfWork.US_USER_ROLE.GetAll().Where(x => x.US_USER_ID == _obj1.ID) on r.ID equals u_r.US_ROLE_ID into u_r_s
+                                join u_r in _unitOfWork.US_USER_ROLE.GetAll().Where(x => x.USER_ID == _obj1.ID) on r.ID equals u_r.ROLE_ID into u_r_s
                                 from u_r_rslt in u_r_s.DefaultIfEmpty()
 
                                 select new user_role_list_vm
@@ -62,7 +62,7 @@ namespace hms.Areas.Setup.Controllers
                 var _obj1 = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID == _post_data_vm.FirstOrDefault().myuser);
                 foreach (var item in _post_data_vm)
                 {
-                    var _obj = _unitOfWork.US_USER_ROLE.GetFirstOrDefult(x => x.US_ROLE_ID == item.myrole && x.US_USER_ID == _obj1.ID);
+                    var _obj = _unitOfWork.US_USER_ROLE.GetFirstOrDefult(x => x.ROLE_ID == item.myrole && x.USER_ID == _obj1.ID);
                     if (_obj != null && _obj.IS_ACTIVE != item.mystate)
                     {
                         _obj.IS_ACTIVE = item.mystate;
@@ -72,8 +72,8 @@ namespace hms.Areas.Setup.Controllers
                     else if (_obj == null && item.mystate == true)
                     {
                         US_USER_ROLE uS = new US_USER_ROLE();
-                        uS.US_ROLE_ID = item.myrole;
-                        uS.US_USER_ID = _obj1.ID;
+                        uS.ROLE_ID = item.myrole;
+                        uS.USER_ID = _obj1.ID;
                         _unitOfWork.US_USER_ROLE.Add(uS);
                         _save = true;
                     }

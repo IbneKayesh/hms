@@ -74,6 +74,10 @@ namespace hms
             app.UseEndpoints(endpoints =>
             {
                 // endpoints.MapAreaControllerRoute(name: "areas", "areas", pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                            name: "HospitalArea",
+                            areaName: "Hospital",
+                            pattern: "Hospital/{controller=Home}/{action=Index}");
 
                 endpoints.MapAreaControllerRoute(
                             name: "OutdoorArea",

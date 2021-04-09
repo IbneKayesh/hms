@@ -30,8 +30,8 @@ namespace hms.Areas.Setup.Controllers
             if (Role != null)
             {
                 var obj = (from cm in _unitOfWork.US_CHILD_MENU.GetAll()
-                           join pm in _unitOfWork.US_PARENT_MENU.GetAll() on cm.US_PARENT_MENU_ID equals pm.ID
-                           join cm_rm in _unitOfWork.US_ROLE_MENU.GetAll().Where(x => x.US_ROLE_ID == Role) on cm.ID equals cm_rm.US_CHILD_MENU_ID into cm_rm_s
+                           join pm in _unitOfWork.US_PARENT_MENU.GetAll() on cm.PARENT_MENU_ID equals pm.ID
+                           join cm_rm in _unitOfWork.US_ROLE_MENU.GetAll().Where(x => x.ROLE_ID == Role) on cm.ID equals cm_rm.CHILD_MENU_ID into cm_rm_s
                            from cm_rm_rslt in cm_rm_s.DefaultIfEmpty()
 
                            select new US_ROLE_MENU_LIST_VM
@@ -76,7 +76,7 @@ namespace hms.Areas.Setup.Controllers
                 var _post_data_vm = JsonConvert.DeserializeObject<List<post_data1_vm>>(post_data);
                 foreach (var item in _post_data_vm)
                 {
-                    var _obj = _unitOfWork.US_ROLE_MENU.GetFirstOrDefult(x => x.US_ROLE_ID == item.myrole && x.US_CHILD_MENU_ID == item.mymenu);
+                    var _obj = _unitOfWork.US_ROLE_MENU.GetFirstOrDefult(x => x.ROLE_ID == item.myrole && x.CHILD_MENU_ID == item.mymenu);
                     if (_obj != null && _obj.IS_ACTIVE != item.mystate)
                     {
                         _obj.IS_ACTIVE = item.mystate;
@@ -86,8 +86,8 @@ namespace hms.Areas.Setup.Controllers
                     else if (_obj == null && item.mystate == true)
                     {
                         US_ROLE_MENU uS = new US_ROLE_MENU();
-                        uS.US_ROLE_ID = item.myrole;
-                        uS.US_CHILD_MENU_ID = item.mymenu;
+                        uS.ROLE_ID = item.myrole;
+                        uS.CHILD_MENU_ID = item.mymenu;
                         _unitOfWork.US_ROLE_MENU.Add(uS);
                         _save = true;
                     }

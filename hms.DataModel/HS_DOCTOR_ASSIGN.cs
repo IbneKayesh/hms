@@ -15,16 +15,14 @@ namespace hms.DataModel
 
         [Display(Name = "Doctor")]
         [Required(ErrorMessage = "{0} is required")]
-        public int HS_DOCTOR_ID { get; set; }
-
-        [ForeignKey("HS_DOCTOR_ID")]
+        public int DOCTOR_ID { get; set; }
+        [ForeignKey("DOCTOR_ID")]
         public HS_DOCTOR HS_DOCTOR { get; set; }
 
         [Display(Name = "Branch")]
         [Required(ErrorMessage = "{0} is required")]
-        public int HS_BRANCH_ID { get; set; }
-
-        [ForeignKey("HS_BRANCH_ID")]
+        public int BRANCH_ID { get; set; }
+        [ForeignKey("BRANCH_ID")]
         public HS_BRANCH HS_BRANCH { get; set; }
 
         [Display(Name = "Office Time")]

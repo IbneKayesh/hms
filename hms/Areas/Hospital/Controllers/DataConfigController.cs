@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hms.Areas.Outdoor.Controllers
+namespace hms.Areas.Hospital.Controllers
 {
-    [Area("Outdoor")]
+    [Area("Hospital")]
     public class DataConfigController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -53,7 +53,7 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_BRANCH> _d = new List<HS_BRANCH>
             {
-                new HS_BRANCH{HS_HOSPITAL_ID=1, BRANCH_NAME="Care-1", BRANCH_NAME_BANGLA="Care-1", BRANCH_ADDRESS="Badda, Dhaka", BRANCH_ADDRESS_BANGLA="Badda, Dhaka", 
+                new HS_BRANCH{HOSPITAL_ID=1, BRANCH_NAME="Care-1", BRANCH_NAME_BANGLA="Care-1", BRANCH_ADDRESS="Badda, Dhaka", BRANCH_ADDRESS_BANGLA="Badda, Dhaka", 
                     BRANCH_MOBILE="01946358034",  BRANCH_PHONE="01946358034", BRANCH_HOTLINE="123", BRANCH_EMAIL="care1@gmail.com",  BRANCH_BIN_NO="123"},
             };
             _unitOfWork.HS_BRANCH.AddRange(_d);
@@ -63,7 +63,7 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_DEPARTMENT_ASSIGN> _d = new List<HS_DEPARTMENT_ASSIGN>
             {
-                new HS_DEPARTMENT_ASSIGN{HS_BRANCH_ID=1, HS_DEPARTMENT_ID=1, REMARKS="Test"},
+                new HS_DEPARTMENT_ASSIGN{BRANCH_ID=1, DEPARTMENT_ID=1, REMARKS="Test"},
             };
             _unitOfWork.HS_DEPARTMENT_ASSIGN.AddRange(_d);
             _unitOfWork.Save();
@@ -182,7 +182,7 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_DOCTOR> _d = new List<HS_DOCTOR>
             {
-                new HS_DOCTOR{ID=1, HS_HOSPITAL_ID=1, DOCTOR_NAME="Mr. Careful", DOCTOR_NAME_BANGLA="Mr. Careful", DOCTOR_DEGREE="FCPS,MBBS", DOCTOR_DEGREE_BANGLA="FCPS,MBBS",
+                new HS_DOCTOR{ID=1, HOSPITAL_ID=1, DOCTOR_NAME="Mr. Careful", DOCTOR_NAME_BANGLA="Mr. Careful", DOCTOR_DEGREE="FCPS,MBBS", DOCTOR_DEGREE_BANGLA="FCPS,MBBS",
                 DOCTOR_SPECIALITY="Medicine", DOCTOR_SPECIALITY_BANGLA="Medicine", DOCTOR_OTHERS="BSMMU", DOCTOR_OTHERS_BANGLA="BSMMU", DOCTOR_REG_NO="123",DOCTOR_REG_NO_BANGLA="123",
                 US_GENDER_ID=1, US_BLOOD_GROUP_ID=1, HS_DOCTOR_TYPE_ID=1, US_RELIGION_ID=1, US_MARITAIL_STATUS_ID=1, DOCTOR_NATIONAL_ID="123" },
             };
@@ -206,9 +206,9 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_EMPLOYEE> _d = new List<HS_EMPLOYEE>
             {
-                new  HS_EMPLOYEE{ID=1, HS_HOSPITAL_ID=1, EMPLOYEE_NAME="Mr. X", PRESENT_ADDRESS="Badda, Dhaka-1212", PERMANENT_ADDRESS="Naogaon, Rajshahi",
+                new  HS_EMPLOYEE{ID=1, HOSPITAL_ID=1, EMPLOYEE_NAME="Mr. X", PRESENT_ADDRESS="Badda, Dhaka-1212", PERMANENT_ADDRESS="Naogaon, Rajshahi",
                 EMPLOYEE_DEGREE="Msc in CSE", EMPLOYEE_SPECIALITY="Computer Science", EMPLOYEE_REG_NO="123",
-                US_GENDER_ID=1, US_MARITAIL_STATUS_ID=1, US_BLOOD_GROUP_ID=1, HS_EMPLOYEE_TYPE_ID=1, US_RELIGION_ID=1, EMPLOYEE_NATIONAL_ID="123" },
+                GENDER_ID=1, MARITAIL_STATUS_ID=1, BLOOD_GROUP_ID=1, EMPLOYEE_TYPE_ID=1, RELIGION_ID=1, EMPLOYEE_NATIONAL_ID="123" },
             };
             _unitOfWork.HS_EMPLOYEE.AddRange(_d);
             _unitOfWork.Save();
@@ -236,11 +236,11 @@ namespace hms.Areas.Outdoor.Controllers
         {
             List<HS_ITEM> _d = new List<HS_ITEM>
             {
-                new HS_ITEM{ID=1, ITEM_NAME="Napa Extra", US_UNIT_ID=1, DP_RATE=1, MRP_RATE= 1.1M},
-                new HS_ITEM{ID=2, ITEM_NAME="Seclo", US_UNIT_ID=1, DP_RATE=2, MRP_RATE= 2.1M},
-                new HS_ITEM{ID=3, ITEM_NAME="Metryl", US_UNIT_ID=1, DP_RATE=3, MRP_RATE= 3.1M},
-                new HS_ITEM{ID=4, ITEM_NAME="Histacin", US_UNIT_ID=1, DP_RATE=4, MRP_RATE= 4.1M},
-                new HS_ITEM{ID=5, ITEM_NAME="Tuska Plus", US_UNIT_ID=1, DP_RATE=5, MRP_RATE= 5.1M},
+                new HS_ITEM{ID=1, ITEM_NAME="Napa Extra", UNIT_ID=1, DP_RATE=1, MRP_RATE= 1.1M},
+                new HS_ITEM{ID=2, ITEM_NAME="Seclo", UNIT_ID=1, DP_RATE=2, MRP_RATE= 2.1M},
+                new HS_ITEM{ID=3, ITEM_NAME="Metryl", UNIT_ID=1, DP_RATE=3, MRP_RATE= 3.1M},
+                new HS_ITEM{ID=4, ITEM_NAME="Histacin", UNIT_ID=1, DP_RATE=4, MRP_RATE= 4.1M},
+                new HS_ITEM{ID=5, ITEM_NAME="Tuska Plus", UNIT_ID=1, DP_RATE=5, MRP_RATE= 5.1M},
             };
             _unitOfWork.HS_ITEM.AddRange(_d);
             _unitOfWork.Save();

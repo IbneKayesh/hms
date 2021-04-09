@@ -8,16 +8,16 @@ namespace hms.DataModel
         [Display(Name = "User")]
         [Key, Column(Order = 0)]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_USER_ID { get; set; }
-        [ForeignKey("US_USER_ID")]
+        public int USER_ID { get; set; }
+        [ForeignKey("USER_ID")]
         public US_USER US_USER { get; set; }
 
 
         [Display(Name = "Role")]
         [Key, Column(Order = 1)]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_ROLE_ID { get; set; }
-        [ForeignKey("US_ROLE_ID")]
+        public int ROLE_ID { get; set; }
+        [ForeignKey("ROLE_ID")]
         public US_ROLE US_ROLE { get; set; }
     }
 }

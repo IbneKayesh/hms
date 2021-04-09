@@ -15,9 +15,9 @@ namespace hms.DataModel
 
         [Display(Name = "Hospital")]
         [Required(ErrorMessage = "{0} is required")]
-        public int HS_HOSPITAL_ID { get; set; }
+        public int HOSPITAL_ID { get; set; }
 
-        [ForeignKey("HS_HOSPITAL_ID")]
+        [ForeignKey("HOSPITAL_ID")]
         public HS_HOSPITAL HS_HOSPITAL { get; set; }
 
         [Display(Name = "Branch Name")]

@@ -53,32 +53,32 @@ namespace hms.DataModel
 
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_GENDER_ID { get; set; }
-        [ForeignKey("US_GENDER_ID")]
+        public int GENDER_ID { get; set; }
+        [ForeignKey("GENDER_ID")]
         public US_GENDER US_GENDER { get; set; }
 
         [Display(Name = "Religion")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_RELIGION_ID { get; set; }
-        [ForeignKey("US_RELIGION_ID")]
+        public int RELIGION_ID { get; set; }
+        [ForeignKey("RELIGION_ID")]
         public US_RELIGION US_RELIGION { get; set; }
 
         [Display(Name = "Blood Group")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_BLOOD_GROUP_ID { get; set; }
-        [ForeignKey("US_BLOOD_GROUP_ID")]
+        public int BLOOD_GROUP_ID { get; set; }
+        [ForeignKey("BLOOD_GROUP_ID")]
         public US_BLOOD_GROUP US_BLOOD_GROUP { get; set; }
 
         [Display(Name = "Marital Status")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_MARITAIL_STATUS_ID { get; set; }
-        [ForeignKey("US_MARITAIL_STATUS_ID")]
+        public int MARITAIL_STATUS_ID { get; set; }
+        [ForeignKey("MARITAIL_STATUS_ID")]
         public US_MARITAIL_STATUS US_MARITAIL_STATUS { get; set; }
 
         [Display(Name = "User Type")]
         [Required(ErrorMessage = "{0} is required")]
-        public int US_TYPE_ID { get; set; }
-        [ForeignKey("US_TYPE_ID")]
+        public int TYPE_ID { get; set; }
+        [ForeignKey("TYPE_ID")]
         public US_TYPE US_TYPE { get; set; }
     }
 }

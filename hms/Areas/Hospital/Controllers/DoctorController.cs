@@ -7,23 +7,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hms.Areas.Outdoor.Controllers
+namespace hms.Areas.Hospital.Controllers
 {
-    [Area("Outdoor")]
-    public class PatientController : Controller
+    [Area("Hospital")]
+    public class DoctorController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public PatientController(IUnitOfWork unitOfWork)
+        public DoctorController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult ManagePatient(int? id)
+        public IActionResult ManageDoctor(int? id)
         {
-            HS_PATIENT _obj = new HS_PATIENT();
-            _obj.DATE_OF_BIRTH = DateTime.Now;
+            HS_DOCTOR _obj = new HS_DOCTOR();
             if (id != null)
             {
-                _obj = _unitOfWork.HS_PATIENT.Get(id.Value);
+                _obj = _unitOfWork.HS_DOCTOR.GetFirstOrDefult(x => x.ID == id);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();
@@ -32,23 +31,30 @@ namespace hms.Areas.Outdoor.Controllers
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManagePatient(HS_PATIENT _obj)
+        public IActionResult ManageDoctor(HS_DOCTOR _obj)
         {
             if (ModelState.IsValid)
             {
                 if (_obj.ID == 0)
                 {
-                    _obj.ID = _unitOfWork.HS_PATIENT.GetAll().Max(x => x.ID) + 1;
+                    try
+                    {
+                        _obj.ID = _unitOfWork.HS_DOCTOR.GetAll().Max(x => x.ID) + 1;
+                    }
+                    catch
+                    {
+                        _obj.ID = 1;
+                    }                    
                     _obj.IS_ACTIVE = true;
-                    _unitOfWork.HS_PATIENT.Add(_obj);
+                    _unitOfWork.HS_DOCTOR.Add(_obj);
                 }
                 else
                 {
-                    _unitOfWork.HS_PATIENT.Update(_obj);
+                    _unitOfWork.HS_DOCTOR.Update(_obj);
                 }
                 _unitOfWork.Save();
                 TempData["msg"] = SweetMsg.SaveSuccess();
-                return RedirectToAction(nameof(ManagePatient));
+                return RedirectToAction(nameof(ManageDoctor));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
             _obj.ID = 0;
@@ -57,14 +63,14 @@ namespace hms.Areas.Outdoor.Controllers
 
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.HS_PATIENT.GetAll();
+            var obj = _unitOfWork.HS_DOCTOR.GetAll();
             return Json(new { data = obj });
         }
 
         //[AcceptVerbs("PUT")]
-        public IActionResult Remove(Int64 id)
+        public IActionResult Remove(int id)
         {
-            bool result = _unitOfWork.HS_PATIENT.Delete(id);
+            bool result = _unitOfWork.HS_DOCTOR.Delete(id);
             if (result)
             {
                 _unitOfWork.Save();

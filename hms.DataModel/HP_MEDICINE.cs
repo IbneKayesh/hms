@@ -19,8 +19,8 @@ namespace hms.DataModel
 
         [Display(Name = "Item Id")]
         [Required(ErrorMessage = "{0} is required")]
-        public Int64 HS_ITEM_ID { get; set; }
-        [ForeignKey("HS_ITEM_ID")]
+        public Int64 ITEM_ID { get; set; }
+        [ForeignKey("ITEM_ID")]
         public HS_ITEM HS_ITEM { get; set; }
 
         [Display(Name = "Name")]
@@ -29,7 +29,7 @@ namespace hms.DataModel
         public string ITEM_NAME { get; set; }
 
         [Display(Name = "Duration")]
-        public int DOSAGE_DURATION { get; set; }
+        public string DOSAGE_DURATION { get; set; }
 
         [Display(Name = "Frequency")]
         public string DOSAGE_FREQUENCY { get; set; }

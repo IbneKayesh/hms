@@ -27,8 +27,8 @@ namespace hms.DataAccess.Repository
                 dBobj.AREA_NAME = obj.AREA_NAME;
                 dBobj.CONTROLLER_NAME = obj.CONTROLLER_NAME;
                 dBobj.ACTION_NAME = obj.ACTION_NAME;
-                dBobj.US_MODULE_ID = obj.US_MODULE_ID;
-                dBobj.US_PARENT_MENU_ID = obj.US_PARENT_MENU_ID;
+                dBobj.MODULE_ID = obj.MODULE_ID;
+                dBobj.PARENT_MENU_ID = obj.PARENT_MENU_ID;
                 dBobj.IS_ACTIVE = obj.IS_ACTIVE;
 
                 dBobj.UPDATE_BY = new DEFAULT().UPDATE_BY;

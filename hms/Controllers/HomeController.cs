@@ -112,10 +112,10 @@ namespace hms.Controllers
                 if (_obj == null)
                 {
                     _obj = (from cm in _unitOfWork.US_CHILD_MENU.GetAll(x => x.IS_ACTIVE == true)
-                            join pm in _unitOfWork.US_PARENT_MENU.GetAll(x => x.IS_ACTIVE == true) on cm.US_PARENT_MENU_ID equals pm.ID
-                            join md in _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true) on cm.US_MODULE_ID equals md.ID
-                            join rm in _unitOfWork.US_ROLE_MENU.GetAll(x => x.IS_ACTIVE == true) on cm.ID equals rm.US_CHILD_MENU_ID
-                            join ur in _unitOfWork.US_USER_ROLE.GetAll(x => x.IS_ACTIVE == true && x.US_USER_ID == UserId) on rm.US_ROLE_ID equals ur.US_ROLE_ID
+                            join pm in _unitOfWork.US_PARENT_MENU.GetAll(x => x.IS_ACTIVE == true) on cm.PARENT_MENU_ID equals pm.ID
+                            join md in _unitOfWork.US_MODULE.GetAll(x => x.IS_ACTIVE == true) on cm.MODULE_ID equals md.ID
+                            join rm in _unitOfWork.US_ROLE_MENU.GetAll(x => x.IS_ACTIVE == true) on cm.ID equals rm.CHILD_MENU_ID
+                            join ur in _unitOfWork.US_USER_ROLE.GetAll(x => x.IS_ACTIVE == true && x.USER_ID == UserId) on rm.ROLE_ID equals ur.ROLE_ID
                             select new US_USER_MODULE_ROLE_MENU_VM
                             {
                                 Module_Id = md.ID,

@@ -19,12 +19,13 @@ namespace hms.DataAccess
             modelBuilder.Entity<HS_ITEM>().Property(x => x.DP_RATE).HasPrecision(7, 2);
             modelBuilder.Entity<HS_ITEM>().Property(x => x.MRP_RATE).HasPrecision(7, 2);
 
+            modelBuilder.Entity<HB_BILL_MASTER>().Property(x => x.TOTAL_AMOUNT).HasPrecision(18, 2);
             // composite key
             modelBuilder.Entity<US_USER_ROLE>()
-                .HasKey(c => new { c.US_USER_ID, c.US_ROLE_ID })
+                .HasKey(c => new { c.USER_ID, c.ROLE_ID })
                 .HasName("PK_US_USER_ROLE_ID");
             modelBuilder.Entity<US_ROLE_MENU>()
-                .HasKey(c => new { c.US_ROLE_ID, c.US_CHILD_MENU_ID })
+                .HasKey(c => new { c.ROLE_ID, c.CHILD_MENU_ID })
                 .HasName("PK_US_ROLE_MENU_ID");
 
 
