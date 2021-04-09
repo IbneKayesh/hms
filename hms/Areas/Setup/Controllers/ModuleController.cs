@@ -21,7 +21,7 @@ namespace hms.Areas.Setup.Controllers
             US_MODULE _obj = new US_MODULE();
             if (id != null)
             {
-                _obj = _unitOfWork.US_MODULE.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.US_MODULE.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();

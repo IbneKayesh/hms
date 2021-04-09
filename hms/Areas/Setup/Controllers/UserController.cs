@@ -33,7 +33,7 @@ namespace hms.Areas.Setup.Controllers
             _obj.DATE_OF_BIRTH = DateTime.Now;
             if (id != null)
             {
-                _obj = _unitOfWork.US_USER.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.US_USER.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();

@@ -25,7 +25,7 @@ namespace hms.Areas.Outdoor.Controllers
             _obj.TOKEN_DATE = DateTime.Now;
             if (id != null)
             {
-                _obj = _unitOfWork.HP_TOKEN.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.HP_TOKEN.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();

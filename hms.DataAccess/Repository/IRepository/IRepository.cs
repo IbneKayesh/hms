@@ -9,7 +9,7 @@ namespace hms.DataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        T Get(int id);
+        T Get(Int64 id);
 
         //======================
         T Gets(Int64 id);

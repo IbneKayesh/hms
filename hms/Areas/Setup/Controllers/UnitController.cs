@@ -26,7 +26,7 @@ namespace hms.Areas.Setup.Controllers
             US_UNIT _obj = new US_UNIT();
             if (id != null)
             {
-                _obj = _unitOfWork.US_UNIT.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.US_UNIT.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();

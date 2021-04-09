@@ -21,7 +21,7 @@ namespace hms.Areas.Setup.Controllers
             US_ROLE _obj = new US_ROLE();
             if (id != null)
             {
-                _obj = _unitOfWork.US_ROLE.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.US_ROLE.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();

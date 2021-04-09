@@ -24,7 +24,7 @@ namespace hms.Areas.Outdoor.Controllers
             HS_ITEM _obj = new HS_ITEM();
             if (id != null)
             {
-                _obj = _unitOfWork.HS_ITEM.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.HS_ITEM.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();

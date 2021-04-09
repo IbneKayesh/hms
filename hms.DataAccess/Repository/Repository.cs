@@ -29,7 +29,7 @@ namespace hms.DataAccess.Repository
             dbSet.AddRange(entity);
         }
 
-        public T Get(int id)
+        public T Get(Int64 id)
         {
             return dbSet.Find(id);
         }

@@ -23,7 +23,7 @@ namespace hms.Areas.Setup.Controllers
             US_CHILD_MENU _obj = new US_CHILD_MENU();
             if (id != null)
             {
-                _obj = _unitOfWork.US_CHILD_MENU.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.US_CHILD_MENU.Get(id.Value);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();
