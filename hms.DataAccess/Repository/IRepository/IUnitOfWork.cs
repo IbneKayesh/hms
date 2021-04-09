@@ -32,9 +32,16 @@ namespace hms.DataAccess.Repository.IRepository
         IHP_SHOW_TYPERepository HP_SHOW_TYPE { get; }
         IHP_SUGGESSIONRepository HP_SUGGESSION { get; }
         IHP_TOKENRepository HP_TOKEN { get; }
+
+
         IHS_DOCTOR_TYPERepository HS_DOCTOR_TYPE { get; }
         IHS_DOCTORRepository HS_DOCTOR { get; }
+        IHS_EMPLOYEE_TYPERepository HS_EMPLOYEE_TYPE { get; }
+        IHS_EMPLOYEERepository HS_EMPLOYEE { get; }
+        IHS_DEPARTMENTRepository HS_DEPARTMENT { get; }
         IHS_HOSPITALRepository HS_HOSPITAL { get; }
+        IHS_BRANCHRepository HS_BRANCH { get; }
+        IHS_DEPARTMENT_ASSIGNRepository HS_DEPARTMENT_ASSIGN { get; }
         IHS_ITEMRepository HS_ITEM { get; }
         IHS_PATIENTRepository HS_PATIENT { get; }
         IHS_TESTSRepository HS_TESTS { get; }

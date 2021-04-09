@@ -28,16 +28,13 @@ namespace hms.DataModel
         [StringLength(15)]
         public string CREATE_BY { get; set; }
 
-        //[Display(Name = "Device")]
         [StringLength(50)]
         public string CREATE_DEVICE { get; set; }
         public DateTime UPDATE_DATE { get; set; }
 
-        //[Display(Name = "Login Id")]
         [StringLength(15)]
         public string UPDATE_BY { get; set; }
 
-        //[Display(Name = "Device")]
         [StringLength(50)]
         public string UPDATE_DEVICE { get; set; }
         
