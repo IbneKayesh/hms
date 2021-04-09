@@ -29,10 +29,17 @@ namespace hms.DataAccess.Repository
             dbSet.AddRange(entity);
         }
 
-        public T Get(Int64 id)
+        public T Get(int id)
         {
             return dbSet.Find(id);
         }
+
+        //======================
+        public T Gets(Int64 id)
+        {
+            return dbSet.Find(id);
+        }
+        //======================
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
@@ -72,7 +79,7 @@ namespace hms.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public void Remove(Int64 id)
+        public void Remove(int id)
         {
             T entity = dbSet.Find(id);
             Remove(entity);
@@ -81,6 +88,18 @@ namespace hms.DataAccess.Repository
         {
             dbSet.Remove(entity);
         }
+
+        //======================
+        public void Removes(Int64 id)
+        {
+            T entity = dbSet.Find(id);
+            Removes(entity);
+        }
+        public void Removes(T entity)
+        {
+            dbSet.Remove(entity);
+        }
+        //======================
 
         public void RemoveRange(IEnumerable<T> entity)
         {

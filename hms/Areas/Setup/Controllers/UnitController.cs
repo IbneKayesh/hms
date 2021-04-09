@@ -42,7 +42,14 @@ namespace hms.Areas.Setup.Controllers
             {
                 if (_obj.ID == 0)
                 {
-                    _obj.ID = _unitOfWork.US_UNIT.GetAll().Max(x => x.ID) + 1;
+                    try
+                    {
+                        _obj.ID = _unitOfWork.US_UNIT.GetAll().Max(x => x.ID) + 1;
+                    }
+                    catch
+                    {
+                        _obj.ID = 1;
+                    }                    
                     _obj.IS_ACTIVE = true;
                     _unitOfWork.US_UNIT.Add(_obj);
                 }
