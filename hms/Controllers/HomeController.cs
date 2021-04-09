@@ -27,6 +27,75 @@ namespace hms.Controllers
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
+
+        //[AllowAnonymous]
+        public IActionResult Login(string nexturl)
+        {
+            //FormsAuthentication.SignOut();
+            //ViewBag.ReturnUrl = returnUrl;
+            US_USER obj = new US_USER();
+            obj.LOGIN_ID = "admin";
+            obj.PASSWORD = "a";
+            return View(obj);
+        }
+
+        //[AllowAnonymous]
+        [HttpPost]
+        public IActionResult Login(US_USER _obj, string nexturl)
+        {
+            try
+            {
+                //FormsAuthentication.SetAuthCookie(user.LOGIN_ID.ToUpper().Trim(), false);
+                if (_obj.LOGIN_ID == null || _obj.PASSWORD == null)
+                {
+                    TempData["message"] = "Enter Valid Information !!!";
+                    return View(_obj);
+                }
+                string userId = _obj.LOGIN_ID.ToLower().Trim();
+                string userPass = TextEncryption.EncryptionWithSh(_obj.PASSWORD);
+
+                US_USER _data = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID.ToLower() == userId && x.PASSWORD == userPass && x.IS_ACTIVE == true);
+                if (_data == null)
+                {
+                    TempData["message"] = "Enter Valid Information !!!";
+                    return View(_obj);
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32("sessionID", _data.ID);
+                    HttpContext.Session.SetString("sessionLOGIN_ID", _data.LOGIN_ID);
+                    //LeaderBoard();
+                    Index();
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["message"] = ex.Message.ToString();
+                return View(_obj);
+            }
+
+            return RedirectToLocal(nexturl);
+        }
+
+        private IActionResult RedirectToLocal(string nexturl)
+        {
+            if (Url.IsLocalUrl(nexturl))
+            {
+                return Redirect(nexturl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            //HttpContext.Session.Remove("sessionKeyInt");
+            //HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
         public IActionResult Index()
         {
             //return View();
@@ -123,76 +192,6 @@ namespace hms.Controllers
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "_menus", data.DistinctBy(x => x.CHILD_NAME));
             }
             return View("Index", obj);
-        }
-
-        //[AllowAnonymous]
-        public IActionResult Login(string nexturl)
-        {
-            //FormsAuthentication.SignOut();
-            //ViewBag.ReturnUrl = returnUrl;
-            US_USER obj = new US_USER();
-            obj.LOGIN_ID = "admin";
-            obj.PASSWORD = "a";
-            return View(obj);
-        }
-
-
-        //[AllowAnonymous]
-        [HttpPost]
-        public IActionResult Login(US_USER _obj, string nexturl)
-        {
-            try
-            {
-                //FormsAuthentication.SetAuthCookie(user.LOGIN_ID.ToUpper().Trim(), false);
-                if (_obj.LOGIN_ID == null || _obj.PASSWORD ==null)
-                {
-                    TempData["message"] = "Enter Valid Information !!!";
-                    return View(_obj);
-                }
-                string userId = _obj.LOGIN_ID.ToLower().Trim();
-                string userPass = TextEncryption.EncryptionWithSh(_obj.PASSWORD);
-
-                US_USER _data = _unitOfWork.US_USER.GetFirstOrDefult(x => x.LOGIN_ID.ToLower() == userId && x.PASSWORD == userPass);
-                if (_data == null)
-                {
-                    TempData["message"] = "Enter Valid Information !!!";
-                    return View(_obj);
-                }
-                else
-                {
-                    HttpContext.Session.SetInt32("sessionID", _data.ID);
-                    HttpContext.Session.SetString("sessionLOGIN_ID", _data.LOGIN_ID);
-                    //LeaderBoard();
-                    Index();
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["message"] = ex.Message.ToString();
-                return View(_obj);
-            }
-
-            return RedirectToLocal(nexturl);
-        }
-
-        private IActionResult RedirectToLocal(string nexturl)
-        {
-            if (Url.IsLocalUrl(nexturl))
-            {
-                return Redirect(nexturl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            //HttpContext.Session.Remove("sessionKeyInt");
-            //HttpContext.SignOutAsync();
-            return RedirectToAction(nameof(Login));
         }
 
         public IActionResult ChangePassword()

@@ -36,6 +36,7 @@ namespace hms.DataAccess.Repository
             HP_SHOW_TYPE = new HP_SHOW_TYPERepository(_db);
             HP_SUGGESSION = new HP_SUGGESSIONRepository(_db);
             HP_TOKEN = new HP_TOKENRepository(_db);
+            HS_DOCTOR_TYPE = new HS_DOCTOR_TYPERepository(_db);
             HS_DOCTOR = new HS_DOCTORRepository(_db);
             HS_HOSPITAL = new HS_HOSPITALRepository(_db);
             HS_ITEM = new HS_ITEMRepository(_db);
@@ -67,6 +68,7 @@ namespace hms.DataAccess.Repository
         public IHP_SHOW_TYPERepository HP_SHOW_TYPE { get; private set; }
         public IHP_SUGGESSIONRepository HP_SUGGESSION { get; private set; }
         public IHP_TOKENRepository HP_TOKEN { get; private set; }
+        public IHS_DOCTOR_TYPERepository HS_DOCTOR_TYPE { get; private set; }
         public IHS_DOCTORRepository HS_DOCTOR { get; private set; }
         public IHS_HOSPITALRepository HS_HOSPITAL { get; private set; }
         public IHS_ITEMRepository HS_ITEM { get; private set; }
