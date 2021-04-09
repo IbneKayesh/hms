@@ -11,6 +11,7 @@ namespace hms.DataAccess
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // decimal value precision
             modelBuilder.Entity<HP_CHECKUP>().Property(x => x.BODY_TEMPERATURE).HasPrecision(3, 2);
             modelBuilder.Entity<HP_CHECKUP>().Property(x => x.WEIGHT).HasPrecision(3, 2);
             modelBuilder.Entity<HP_CHECKUP>().Property(x => x.HEIGHT).HasPrecision(3, 2);
@@ -18,14 +19,33 @@ namespace hms.DataAccess
             modelBuilder.Entity<HS_ITEM>().Property(x => x.DP_RATE).HasPrecision(7, 2);
             modelBuilder.Entity<HS_ITEM>().Property(x => x.MRP_RATE).HasPrecision(7, 2);
 
-
+            // composite key
             modelBuilder.Entity<US_USER_ROLE>()
                 .HasKey(c => new { c.US_USER_ID, c.US_ROLE_ID })
                 .HasName("PK_US_USER_ROLE_ID");
-
             modelBuilder.Entity<US_ROLE_MENU>()
                 .HasKey(c => new { c.US_ROLE_ID, c.US_CHILD_MENU_ID })
                 .HasName("PK_US_ROLE_MENU_ID");
+
+
+            // non clustered index - 09-APR-2021 Kayesh
+            modelBuilder.Entity<HP_PRESCRIPTION>()
+                .HasIndex(x => new { x.PRESCRIPTION_NUMBER, x.PRESCRIPTION_DATE }).HasDatabaseName("IX_PRESCRIPTION_NCI");
+            modelBuilder.Entity<HS_ITEM>()
+                .HasIndex(x => new { x.ITEM_NAME }).HasDatabaseName("IX_ITEM_NCI");
+            modelBuilder.Entity<HS_TESTS>()
+                .HasIndex(x => new { x.TESTS_NAME }).HasDatabaseName("IX_TESTS_NCI");
+            modelBuilder.Entity<HS_PARTNERSHIP>()
+                .HasIndex(x => new { x.PARTNERSHIP_NAME, x.ACCOUNT_NUMBER }).HasDatabaseName("IX_PARTNERSHIP_NCI");
+            modelBuilder.Entity<HS_EMPLOYEE>()
+                .HasIndex(x => new { x.EMPLOYEE_NAME, x.EMPLOYEE_REG_NO }).HasDatabaseName("IX_EMPLOYEE_NCI");
+            modelBuilder.Entity<US_PAYMENT_METHOD>()
+                .HasIndex(x => new { x.PAYMENT_METHOD_NAME }).HasDatabaseName("IX_PAYMENT_METHOD_NCI");
+            modelBuilder.Entity<HB_BILL_MASTER>()
+               .HasIndex(x => new { x.BILL_NO,x.BILL_DATE }).HasDatabaseName("IX_BILL_MASTER_NCI");
+            modelBuilder.Entity<HS_PATIENT>()
+               .HasIndex(x => new { x.PATIENT_NAME, x.DATE_OF_BIRTH }).HasDatabaseName("IX_PATIENT_NCI");
+
         }
         public DbSet<US_BLOOD_GROUP> US_BLOOD_GROUP { get; set; }
         public DbSet<US_CHILD_MENU> US_CHILD_MENU { get; set; }

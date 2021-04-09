@@ -10,6 +10,7 @@ namespace hms.DataModel
     {
         public Int64 ID { get; set; }
         public string BILL_NO { get; set; }
+        public DateTime BILL_DATE { get; set; }
         public int BRANCH_ID { get; set; }
         public Int64 PATIENT_ID { get; set; }
         public string PAYMENT_METHOD { get; set; }
