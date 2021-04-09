@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_EMPLOYEE_TYPE
+    public class HS_EMPLOYEE_TYPE : DEFAULT
     {
         public int ID { get; set; }
         public string EMPLOYEE_TYPE_NAME { get; set; } //Only Employee Nurse, Anesthesia

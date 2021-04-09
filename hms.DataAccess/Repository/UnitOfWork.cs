@@ -36,9 +36,15 @@ namespace hms.DataAccess.Repository
             HP_SHOW_TYPE = new HP_SHOW_TYPERepository(_db);
             HP_SUGGESSION = new HP_SUGGESSIONRepository(_db);
             HP_TOKEN = new HP_TOKENRepository(_db);
+
             HS_DOCTOR_TYPE = new HS_DOCTOR_TYPERepository(_db);
             HS_DOCTOR = new HS_DOCTORRepository(_db);
+            HS_EMPLOYEE_TYPE = new HS_EMPLOYEE_TYPERepository(_db);
+            HS_EMPLOYEE = new HS_EMPLOYEERepository(_db);
             HS_HOSPITAL = new HS_HOSPITALRepository(_db);
+            HS_DEPARTMENT = new HS_DEPARTMENTRepository(_db);
+            HS_BRANCH = new HS_BRANCHRepository(_db);
+            HS_DEPARTMENT_ASSIGN = new HS_DEPARTMENT_ASSIGNRepository(_db);
             HS_ITEM = new HS_ITEMRepository(_db);
             HS_PATIENT = new HS_PATIENTRepository(_db);
             HS_TESTS = new HS_TESTSRepository(_db);
@@ -68,9 +74,16 @@ namespace hms.DataAccess.Repository
         public IHP_SHOW_TYPERepository HP_SHOW_TYPE { get; private set; }
         public IHP_SUGGESSIONRepository HP_SUGGESSION { get; private set; }
         public IHP_TOKENRepository HP_TOKEN { get; private set; }
+
+
         public IHS_DOCTOR_TYPERepository HS_DOCTOR_TYPE { get; private set; }
         public IHS_DOCTORRepository HS_DOCTOR { get; private set; }
+        public IHS_EMPLOYEE_TYPERepository HS_EMPLOYEE_TYPE { get; private set; }
+        public IHS_EMPLOYEERepository HS_EMPLOYEE { get; private set; }
         public IHS_HOSPITALRepository HS_HOSPITAL { get; private set; }
+        public IHS_DEPARTMENTRepository HS_DEPARTMENT { get; private set; }
+        public IHS_BRANCHRepository HS_BRANCH { get; private set; }
+        public IHS_DEPARTMENT_ASSIGNRepository HS_DEPARTMENT_ASSIGN { get; private set; }
         public IHS_ITEMRepository HS_ITEM { get; private set; }
         public IHS_PATIENTRepository HS_PATIENT { get; private set; }
         public IHS_TESTSRepository HS_TESTS { get; private set; }      
