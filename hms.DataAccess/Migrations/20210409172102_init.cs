@@ -579,7 +579,8 @@ namespace hms.DataAccess.Migrations
                 name: "HS_DOCTOR",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     HOSPITAL_ID = table.Column<int>(type: "int", nullable: false),
                     DOCTOR_NAME = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DOCTOR_NAME_BANGLA = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -1003,8 +1004,8 @@ namespace hms.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PRESCRIPTION_NUMBER = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     PRESCRIPTION_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HOSPITAL_ID = table.Column<int>(type: "int", nullable: false),
-                    DOCTOR_ID = table.Column<int>(type: "int", nullable: false),
+                    HOSPITAL_ID = table.Column<int>(type: "int", nullable: true),
+                    DOCTOR_ID = table.Column<int>(type: "int", nullable: true),
                     PATIENT_ID = table.Column<long>(type: "bigint", nullable: false),
                     SHOW_TYPE_ID = table.Column<int>(type: "int", nullable: false),
                     TOKEN_ID = table.Column<long>(type: "bigint", nullable: false),
@@ -1039,13 +1040,13 @@ namespace hms.DataAccess.Migrations
                         column: x => x.DOCTOR_ID,
                         principalTable: "HS_DOCTOR",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_HP_PRESCRIPTION_HS_HOSPITAL_HOSPITAL_ID",
                         column: x => x.HOSPITAL_ID,
                         principalTable: "HS_HOSPITAL",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_HP_PRESCRIPTION_HS_PATIENT_PATIENT_ID",
                         column: x => x.PATIENT_ID,

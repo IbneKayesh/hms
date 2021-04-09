@@ -24,16 +24,16 @@ namespace hms.DataModel
 
 
         [Display(Name = "Hospital")]
-        public int HOSPITAL_ID { get; set; }
+        public Nullable<int> HOSPITAL_ID { get; set; }
         [ForeignKey("HOSPITAL_ID")]
         public HS_HOSPITAL HS_HOSPITAL { get; set; }
 
-        [Display(Name = "Doctor Id")]
-        public int DOCTOR_ID { get; set; }
+        [Display(Name = "Doctor")]
+        public Nullable<int> DOCTOR_ID { get; set; }
         [ForeignKey("DOCTOR_ID")]
         public HS_DOCTOR HS_DOCTOR { get; set; }
 
-        [Display(Name = "Patient Id")]
+        [Display(Name = "Patient")]
         [Required(ErrorMessage = "{0} is required")]
         public Int64 PATIENT_ID { get; set; }
         [ForeignKey("PATIENT_ID")]

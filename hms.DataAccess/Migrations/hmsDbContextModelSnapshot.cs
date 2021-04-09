@@ -374,10 +374,10 @@ namespace hms.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("DOCTOR_ID")
+                    b.Property<int?>("DOCTOR_ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("HOSPITAL_ID")
+                    b.Property<int?>("HOSPITAL_ID")
                         .HasColumnType("int");
 
                     b.Property<bool>("IS_ACTIVE")
@@ -785,7 +785,9 @@ namespace hms.DataAccess.Migrations
             modelBuilder.Entity("hms.DataModel.HS_DOCTOR", b =>
                 {
                     b.Property<int>("ID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CREATE_BY")
                         .HasMaxLength(15)
@@ -2159,15 +2161,11 @@ namespace hms.DataAccess.Migrations
                 {
                     b.HasOne("hms.DataModel.HS_DOCTOR", "HS_DOCTOR")
                         .WithMany()
-                        .HasForeignKey("DOCTOR_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DOCTOR_ID");
 
                     b.HasOne("hms.DataModel.HS_HOSPITAL", "HS_HOSPITAL")
                         .WithMany()
-                        .HasForeignKey("HOSPITAL_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HOSPITAL_ID");
 
                     b.HasOne("hms.DataModel.HS_PATIENT", "HS_PATIENT")
                         .WithMany()
