@@ -82,11 +82,11 @@ namespace hms.Areas.Outdoor.Controllers
 
 
         [AcceptVerbs("GET", "POST")]
-        public IActionResult VerifyItemName(string ITEM_NAME, int ID)
+        public IActionResult VerifyItemName(string ITEM_NAME, Int64 ID)
         {
             if (ID != 0)
             {
-                var obj = _unitOfWork.HS_ITEM.Get(ID);
+                var obj = _unitOfWork.HS_ITEM.Gets(ID);
                 if (obj.IS_ACTIVE == false && obj.ITEM_NAME == ITEM_NAME)
                 {
                     return Json(true);
