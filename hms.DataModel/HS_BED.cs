@@ -12,5 +12,6 @@ namespace hms.DataModel
         public string BED_CATEGORY_NAME_ID { get; set; }
         public Int64 BRANCH_ID { get; set; } //hospital branch
         public decimal DAILY_RENT { get; set; }
+        public bool IS_BOOKED { get; set; }
     }
 }
