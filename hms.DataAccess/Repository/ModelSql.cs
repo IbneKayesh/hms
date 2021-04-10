@@ -1,4 +1,5 @@
 ﻿using hms.DataAccess.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,30 @@ using System.Threading.Tasks;
 
 namespace hms.DataAccess.Repository
 {
-    public class ModelSql<T> : IModelSql<T> where T : class
+    public class ModelSql<T> : IModelSql<T>, IDisposable where T : class
     {
-        string IModelSql<T>.ModelSql(T model)
+        private readonly hmsDbContext db;
+        internal DbSet<T> dbSet;
+        public ModelSql(hmsDbContext _db)
         {
-            throw new NotImplementedException();
-            //Test
+            this.db = _db;
+            this.dbSet = _db.Set<T>();
         }
-        public List<string> ModelSqlList(List<T> model)
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            if (db != null)
+                db.Dispose();
+        }
+        public IEnumerable<T> ExecuteSqlQuery(string query, object[] parameters = null)
+        {
+            if(parameters == null)
+            {
+                return dbSet.FromSqlRaw<T>(query);
+            }
+            else
+            {
+                return dbSet.FromSqlRaw<T>(query, parameters);
+            }
         }
     }
 }

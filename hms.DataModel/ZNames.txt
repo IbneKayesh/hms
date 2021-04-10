@@ -2,6 +2,6 @@
 =======================Please maintain descending order================
 US For User
 HS For Hospital
-HP For
-HI For
-HB For
+HP For Hospital Prescriptions
+HI For Hospital Indoor
+HB For Hospital Billing

@@ -8,6 +8,6 @@ namespace hms.DataAccess.Repository.IRepository
 {
     public interface IRawSql
     {
-        void ExecuteSqlCommand(string query, params object[] parameters);
+        void ExecuteSqlCommand(string query,  object[] parameters=null);
     }
 }

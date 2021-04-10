@@ -1,7 +1,6 @@
 ﻿using hms.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 
 namespace hms.DataAccess.Repository
 {
@@ -13,10 +12,11 @@ namespace hms.DataAccess.Repository
             _db = db;
         }
 
-        public void ExecuteSqlCommand(string query, params object[] parameters)
+        public void ExecuteSqlCommand(string query, object[] parameters = null)
         {
             _db.Database.ExecuteSqlRaw(query, parameters);
         }
+
         public void Dispose()
         {
             if (_db != null)
