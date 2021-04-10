@@ -12,6 +12,7 @@ namespace hms.DataAccess.Repository
         string IModelSql<T>.ModelSql(T model)
         {
             throw new NotImplementedException();
+            //Test
         }
         public List<string> ModelSqlList(List<T> model)
         {
