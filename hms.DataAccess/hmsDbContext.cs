@@ -63,12 +63,12 @@ namespace hms.DataAccess
         public DbSet<US_UNIT> US_UNIT { get; set; }
 
 
+
         public DbSet<HP_CHECKUP> HP_CHECKUP { get; set; }
         public DbSet<HP_DURATION> HP_DURATION { get; set; }
         public DbSet<HP_FREQUENCY> HP_FREQUENCY { get; set; }
         public DbSet<HP_INVESTIGATION> HP_INVESTIGATION { get; set; }
         public DbSet<HP_MEDICINE> HP_MEDICINE { get; set; }
-        public DbSet<HP_PRESCRIPTION> HP_PRESCRIPTION { get; set; }
         public DbSet<HP_SHOW_TYPE> HP_SHOW_TYPE { get; set; }
         public DbSet<HP_SUGGESSION> HP_SUGGESSION { get; set; }
         public DbSet<HP_TOKEN> HP_TOKEN { get; set; }
@@ -85,6 +85,10 @@ namespace hms.DataAccess
         public DbSet<HS_ITEM> HS_ITEM { get; set; }
         public DbSet<HS_PATIENT> HS_PATIENT { get; set; }
         public DbSet<HS_TESTS> HS_TESTS { get; set; }
+
+
+
+        public DbSet<HP_PRESCRIPTION> HP_PRESCRIPTION { get; set; }
 
     }
 }
