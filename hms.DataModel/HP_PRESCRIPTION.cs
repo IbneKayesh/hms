@@ -23,22 +23,17 @@ namespace hms.DataModel
 
 
 
-        [Display(Name = "Branch")]
-        public int HS_BRANCH_ID { get; set; }
+        [Display(Name = "Hospital")]
+        public int HOSPITAL_ID { get; set; }
+        [ForeignKey("HOSPITAL_ID")]
+        public HS_HOSPITAL HS_HOSPITAL { get; set; }
 
-        [ForeignKey("HS_BRANCH_ID")]
-        public HS_BRANCH HS_BRANCH { get; set; }
-
-
-        [Display(Name = "Doctor")]
-        public int HS_DOCTOR_ID { get; set; }
-
-        [ForeignKey("HS_DOCTOR_ID")]
+        [Display(Name = "Doctor Id")]
+        public int DOCTOR_ID { get; set; }
+        [ForeignKey("DOCTOR_ID")]
         public HS_DOCTOR HS_DOCTOR { get; set; }
 
-
-        [Display(Name = "Patient")]
-
+        [Display(Name = "Patient Id")]
         [Required(ErrorMessage = "{0} is required")]
         public Int64 HS_PATIENT_ID { get; set; }
 

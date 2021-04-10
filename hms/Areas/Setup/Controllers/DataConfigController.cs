@@ -139,8 +139,10 @@ namespace hms.Areas.Setup.Controllers
             {
                 new US_MODULE{ ID=1, MODULE_NAME="Setup", MODULE_BN_NAME="Setup", MODULE_ICON="fas fa-cogs",VIEW_ORDER=1,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
                 new US_MODULE{ ID=2,MODULE_NAME="Order", MODULE_BN_NAME="Order", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
-                new US_MODULE{ ID=3,MODULE_NAME="Outdoor", MODULE_BN_NAME="Outdoor", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
-                new US_MODULE{ ID=4,MODULE_NAME="Hospital", MODULE_BN_NAME="Hospital", MODULE_ICON="fas fa-cubes",VIEW_ORDER=2,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
+                new US_MODULE{ ID=3,MODULE_NAME="Outdoor", MODULE_BN_NAME="Outdoor", MODULE_ICON="fas fa-cubes",VIEW_ORDER=4,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
+                new US_MODULE{ ID=4,MODULE_NAME="Hospital", MODULE_BN_NAME="Hospital", MODULE_ICON="fas fa-cubes",VIEW_ORDER=3,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
+                new US_MODULE{ ID=5,MODULE_NAME="Indoor", MODULE_BN_NAME="Indoor", MODULE_ICON="fas fa-cubes",VIEW_ORDER=5,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
+                new US_MODULE{ ID=6,MODULE_NAME="OT", MODULE_BN_NAME="OT", MODULE_ICON="fas fa-cubes",VIEW_ORDER=6,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
             };
             _unitOfWork.US_MODULE.AddRange(_d);
             _unitOfWork.Save();
@@ -153,6 +155,8 @@ namespace hms.Areas.Setup.Controllers
                 new US_PARENT_MENU{ ID=2,PARENT_NAME="Sales", PARENT_BN_NAME="Sales", PARENT_ICON="fa fa-cubes" },
                 new US_PARENT_MENU{ ID=3,PARENT_NAME="Outdoor", PARENT_BN_NAME="Outdoor", PARENT_ICON="fa fa-cubes" },
                 new US_PARENT_MENU{ ID=4,PARENT_NAME="Hospital", PARENT_BN_NAME="Hospital", PARENT_ICON="fa fa-cubes" },
+                new US_PARENT_MENU{ ID=5,PARENT_NAME="Indoor", PARENT_BN_NAME="Indoor", PARENT_ICON="fa fa-cubes" },
+                new US_PARENT_MENU{ ID=6,PARENT_NAME="OT", PARENT_BN_NAME="OT", PARENT_ICON="fa fa-cubes" },
             };
             _unitOfWork.US_PARENT_MENU.AddRange(_d);
             _unitOfWork.Save();
@@ -180,10 +184,15 @@ namespace hms.Areas.Setup.Controllers
                  new US_CHILD_MENU{ ID=101, CHILD_NAME="Prescription", CHILD_BN_NAME="Prescription", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Prescription", ACTION_NAME="Prescribe", MODULE_ID=3, PARENT_MENU_ID=3 },
                  new US_CHILD_MENU{ ID=102, CHILD_NAME="Token", CHILD_BN_NAME="Token", CHILD_ICON="fa fa-users", AREA_NAME="Outdoor", CONTROLLER_NAME="Token", ACTION_NAME="ManageToken", MODULE_ID=3, PARENT_MENU_ID=3 },
                  
-                 //=================Outdoor==================== 151 to 200
+                 //=================Hospital==================== 151 to 200
                  new US_CHILD_MENU{ ID=151, CHILD_NAME="Doctor", CHILD_BN_NAME="Doctor", CHILD_ICON="fa fa-users", AREA_NAME="Hospital", CONTROLLER_NAME="Doctor", ACTION_NAME="ManageDoctor", MODULE_ID=4, PARENT_MENU_ID=4 },
                  new US_CHILD_MENU{ ID=152, CHILD_NAME="Patient", CHILD_BN_NAME="Patient", CHILD_ICON="fa fa-users", AREA_NAME="Hospital", CONTROLLER_NAME="Patient", ACTION_NAME="ManagePatient", MODULE_ID=4, PARENT_MENU_ID=4 },
                  new US_CHILD_MENU{ ID=153, CHILD_NAME="Item", CHILD_BN_NAME="Item", CHILD_ICON="fa fa-users", AREA_NAME="Hospital", CONTROLLER_NAME="Item", ACTION_NAME="ManageItem", MODULE_ID=4, PARENT_MENU_ID=4 },
+
+                  //=================Indoor==================== 201 to 250
+                 new US_CHILD_MENU{ ID=201, CHILD_NAME="Home", CHILD_BN_NAME="Home", CHILD_ICON="fa fa-users", AREA_NAME="Indoor", CONTROLLER_NAME="Home", ACTION_NAME="Index", MODULE_ID=5, PARENT_MENU_ID=5 },
+                 //=================OT==================== 251 to 300
+                 new US_CHILD_MENU{ ID=251, CHILD_NAME="Home", CHILD_BN_NAME="Home", CHILD_ICON="fa fa-users", AREA_NAME="OT", CONTROLLER_NAME="Home", ACTION_NAME="Index", MODULE_ID=6, PARENT_MENU_ID=6 },
             };
             _unitOfWork.US_CHILD_MENU.AddRange(_d);
             _unitOfWork.Save();
@@ -210,6 +219,10 @@ namespace hms.Areas.Setup.Controllers
                 new US_ROLE_MENU{ ROLE_ID=1,CHILD_MENU_ID=151 },
                 new US_ROLE_MENU{ ROLE_ID=1,CHILD_MENU_ID=152 },
                 new US_ROLE_MENU{ ROLE_ID=1,CHILD_MENU_ID=153 },
+
+                new US_ROLE_MENU{ ROLE_ID=1,CHILD_MENU_ID=201 },
+
+                new US_ROLE_MENU{ ROLE_ID=1,CHILD_MENU_ID=251 },
             };
             _unitOfWork.US_ROLE_MENU.AddRange(_d);
             _unitOfWork.Save();
