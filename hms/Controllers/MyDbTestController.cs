@@ -16,6 +16,7 @@ namespace hms.Controllers
         {
             _db = db;
         }
+        //Sql Command
         public IActionResult ExecuteSqlCommand()
         {
             var p1 = new SqlParameter("@p1", "New Value");
