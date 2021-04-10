@@ -27,7 +27,6 @@ namespace hms.Controllers
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
-
         //[AllowAnonymous]
         public IActionResult Login(string nexturl)
         {

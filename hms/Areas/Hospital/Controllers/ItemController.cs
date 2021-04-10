@@ -86,7 +86,7 @@ namespace hms.Areas.Hospital.Controllers
         {
             if (ID != 0)
             {
-                var obj = _unitOfWork.HS_ITEM.Gets(ID);
+                var obj = _unitOfWork.HS_ITEM.Get(ID);
                 if (obj.IS_ACTIVE == false && obj.ITEM_NAME == ITEM_NAME)
                 {
                     return Json(true);

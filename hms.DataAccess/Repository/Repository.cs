@@ -19,27 +19,16 @@ namespace hms.DataAccess.Repository
             _db = db;
             this.dbSet = _db.Set<T>();
         }
-        public void Add(T entity)
-        {
-            dbSet.Add(entity);
-        }
 
-        public void AddRange(IEnumerable<T> entity)
-        {
-            dbSet.AddRange(entity);
-        }
 
+        public T Get(int id)
+        {
+            return dbSet.Find(id);
+        }
         public T Get(Int64 id)
         {
             return dbSet.Find(id);
         }
-
-        //======================
-        public T Gets(Int64 id)
-        {
-            return dbSet.Find(id);
-        }
-        //======================
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
@@ -61,7 +50,6 @@ namespace hms.DataAccess.Repository
             }
             return query.ToList();
         }
-
         public T GetFirstOrDefult(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -79,36 +67,34 @@ namespace hms.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
+        public void Add(T entity)
+        {
+            dbSet.Add(entity);
+        }
+        public void AddRange(IEnumerable<T> entity)
+        {
+            dbSet.AddRange(entity);
+        }
+
+        
         public void Remove(int id)
         {
             T entity = dbSet.Find(id);
-            Remove(entity);
+            dbSet.Remove(dbSet.Find(id));
+        }
+        public void Remove(Int64 id)
+        {
+            T entity = dbSet.Find(id);
+            dbSet.Remove(dbSet.Find(id));
         }
         public void Remove(T entity)
         {
             dbSet.Remove(entity);
         }
 
-        //======================
-        public void Removes(Int64 id)
-        {
-            T entity = dbSet.Find(id);
-            Removes(entity);
-        }
-        public void Removes(T entity)
-        {
-            dbSet.Remove(entity);
-        }
-        //======================
-
         public void RemoveRange(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);
         }
-        public void ExecuteSqlCommand(string _sql, params object[] _parameters)
-        {
-            _db.Database.ExecuteSqlRaw(sql: _sql, parameters: _parameters);
-        }
-
     }
 }

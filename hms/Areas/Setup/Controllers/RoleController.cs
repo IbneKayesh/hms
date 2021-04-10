@@ -2,6 +2,7 @@
 using hms.DataModel;
 using hms.Utility;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 
 namespace hms.Areas.Setup.Controllers
@@ -16,7 +17,7 @@ namespace hms.Areas.Setup.Controllers
             _unitOfWork = unitOfWork;
         }
         [HttpGet]
-        public IActionResult ManageRole(int? id)
+        public IActionResult ManageRole(Int64? id)
         {
             US_ROLE _obj = new US_ROLE();
             if (id != null)

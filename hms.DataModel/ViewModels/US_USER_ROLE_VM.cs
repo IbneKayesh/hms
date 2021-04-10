@@ -18,7 +18,7 @@ namespace hms.DataModel.ViewModels
     }
     public class user_role_list_vm
     {
-        public int RoleId { get; set; }
+        public Int64 RoleId { get; set; }
         public string RoleName { get; set; }
         public bool Active { get; set; }
     }

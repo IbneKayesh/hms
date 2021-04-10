@@ -26,6 +26,7 @@ namespace hms
         {
             services.AddDbContext<hmsDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IRawSql, RawSql>();
             //services.Configure<RazorViewEngineOptions>(options =>
             //{
             //    options.AreaViewLocationFormats.Clear();
