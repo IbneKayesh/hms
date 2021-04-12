@@ -37,7 +37,7 @@ namespace hms.Areas.Hospital.Controllers
                 HS_ITEM_Ins();
                 return Content("Data Config Iniliazation Succeeded");
             }
-            catch (Exception ex) { return Content(ex.Message); }
+            catch (Exception ex) { return Content(ex.InnerException.Message); }
         }
         private void HS_HOSPITAL_Ins()
         {
@@ -108,7 +108,7 @@ namespace hms.Areas.Hospital.Controllers
         {
             List<HS_EMPLOYEE> _d = new List<HS_EMPLOYEE>
             {
-                new  HS_EMPLOYEE{ID=1, HOSPITAL_ID=1, EMPLOYEE_NAME="Mr. X", PRESENT_ADDRESS="Badda, Dhaka-1212", PERMANENT_ADDRESS="Naogaon, Rajshahi",
+                new  HS_EMPLOYEE{ID=1, HOSPITAL_ID=1, EMPLOYEE_NAME="Mr. X",EMPLOYEE_NAME_BANGLA="MR.X", PRESENT_ADDRESS="Badda, Dhaka-1212", PERMANENT_ADDRESS="Naogaon, Rajshahi",
                 EMPLOYEE_DEGREE="Msc in CSE", EMPLOYEE_SPECIALITY="Computer Science", EMPLOYEE_REG_NO="123",
                 GENDER_ID=1, MARITAIL_STATUS_ID=1, BLOOD_GROUP_ID=1, EMPLOYEE_TYPE_ID=1, RELIGION_ID=1, EMPLOYEE_NATIONAL_ID="123" },
             };

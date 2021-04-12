@@ -35,7 +35,7 @@ namespace hms.DataModel
 
         [Display(Name = "Patient Id")]
         [Required(ErrorMessage = "{0} is required")]
-        public Int64 HS_PATIENT_ID { get; set; }
+        public Nullable<Int64> HS_PATIENT_ID { get; set; }
 
         [ForeignKey("HS_PATIENT_ID")]
         public HS_PATIENT HS_PATIENT { get; set; }

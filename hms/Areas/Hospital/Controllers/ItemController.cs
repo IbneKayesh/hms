@@ -59,7 +59,7 @@ namespace hms.Areas.Hospital.Controllers
 
         private void DropDownFor_ManageItem()
         {
-            ViewBag.US_UNIT_ID = _unitOfWork.US_UNIT.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.UNIT_NAME });
+            ViewBag.UNIT_ID = _unitOfWork.US_UNIT.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.UNIT_NAME });
         }
 
         public IActionResult GetAll()
