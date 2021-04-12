@@ -10,7 +10,7 @@ namespace hms.DataModel
 {
     public class HP_FREQUENCY:DEFAULT
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Display(Name = "Name")]

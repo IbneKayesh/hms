@@ -8,7 +8,8 @@ namespace hms.DataModel
 {
     public class HS_EMPLOYEE_SCHEDULE
     {
-        public Int64 BRANCH_ID { get; set; }
+        public Int64 ID { get; set; }
+        public int BRANCH_ID { get; set; }
         public int EMPLOYEE_ID { get; set; }
         public string SATURDAY { get; set; }
         public string SUNDAY { get; set; }
