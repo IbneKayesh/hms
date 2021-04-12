@@ -10,8 +10,8 @@ namespace hms.DataModel
 {
     public class HS_TESTS:DEFAULT
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Int64 ID { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
         [Display(Name = "Name")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
