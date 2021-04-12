@@ -31,12 +31,14 @@ namespace hms.Areas.Setup.Controllers
         {
             try
             {
-         US_BLOOD_GROUP_Ins();
+                US_BLOOD_GROUP_Ins();
                 US_GENDER_Ins();
                 US_MARITAIL_STATUS_Ins();
                 US_RELIGION_Ins();
+
                 US_ROLE_Ins();
                 US_TYPE_Ins();
+
                 US_MODULE_Ins();
                 US_PARENT_MENU_Ins();
                 US_CHILD_MENU_Ins();
@@ -49,9 +51,9 @@ namespace hms.Areas.Setup.Controllers
             catch (Exception ex) { return Content(ex.InnerException.Message); }
         }
 
-        #region No Change
         private void US_BLOOD_GROUP_Ins()
         {
+            #region US_BLOOD_GROUP_Ins
             List<US_BLOOD_GROUP> _d = new List<US_BLOOD_GROUP>
             {
                 new US_BLOOD_GROUP{ ID=1, BLOOD_GROUP_NAME="A+" },
@@ -65,9 +67,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_BLOOD_GROUP.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_GENDER_Ins()
         {
+            #region US_GENDER_Ins
             List<US_GENDER> _d = new List<US_GENDER>
             {
                 new US_GENDER{ID=1, GENDER_NAME="Male" },
@@ -76,9 +80,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_GENDER.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_MARITAIL_STATUS_Ins()
         {
+            #region US_MARITAIL_STATUS_Ins
             List<US_MARITAIL_STATUS> _d = new List<US_MARITAIL_STATUS>
             {
                 new US_MARITAIL_STATUS{ID=1, MARITAIL_STATUS_NAME="Single" },
@@ -89,9 +95,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_MARITAIL_STATUS.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_RELIGION_Ins()
         {
+            #region US_RELIGION_Ins
             List<US_RELIGION> _d = new List<US_RELIGION>
             {
                 new US_RELIGION{ ID=1,RELIGION_NAME="Islam" },
@@ -102,12 +110,13 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_RELIGION.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
-        #endregion
 
-        #region Role and Type
+      
         private void US_ROLE_Ins()
         {
+            #region US_ROLE_Ins
             List<US_ROLE> _d = new List<US_ROLE>
             {
                 new US_ROLE{ ID=1,ROLE_NAME="SuperAdmin" },
@@ -118,9 +127,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_ROLE.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_TYPE_Ins()
         {
+            #region US_TYPE_Ins
             List<US_TYPE> _d = new List<US_TYPE>
             {
                 new US_TYPE{ ID=1,TYPE_NAME="General" },
@@ -130,11 +141,12 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_TYPE.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
-        #endregion
 
         private void US_MODULE_Ins()
         {
+            #region US_MODULE_Ins
             List<US_MODULE> _d = new List<US_MODULE>
             {
                 new US_MODULE{ ID=1, MODULE_NAME="Setup", MODULE_BN_NAME="Setup", MODULE_ICON="fas fa-cogs",VIEW_ORDER=1,CONTROLLER_NAME="Home",METHOD_NAME="IndexOptions" },
@@ -146,9 +158,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_MODULE.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_PARENT_MENU_Ins()
         {
+            #region US_PARENT_MENU_Ins
             List<US_PARENT_MENU> _d = new List<US_PARENT_MENU>
             {
                 new US_PARENT_MENU{ ID=1,PARENT_NAME="Setup", PARENT_BN_NAME="Setup", PARENT_ICON="fa fa-cogs" },
@@ -160,9 +174,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_PARENT_MENU.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_CHILD_MENU_Ins()
         {
+            #region US_CHILD_MENU_Ins
             List<US_CHILD_MENU> _d = new List<US_CHILD_MENU>
             {
                 //=================Setup==================== 1 to 50 
@@ -196,9 +212,11 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_CHILD_MENU.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_ROLE_MENU_Ins()
         {
+            #region US_ROLE_MENU_Ins
             List<US_ROLE_MENU> _d = new List<US_ROLE_MENU>
             {
                 new US_ROLE_MENU{ ROLE_ID=1,CHILD_MENU_ID=1 },
@@ -226,28 +244,34 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_ROLE_MENU.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
 
         private void US_USER_Ins()
         {
+            #region US_USER_Ins
             List<US_USER> _d = new List<US_USER>
             {
                 new US_USER{ ID=1, LOGIN_ID ="admin",PASSWORD=TextEncryption.EncryptionWithSh("a"),USER_NAME="Administrator",MOBILE_NO="01000000000",EMAIL_ID="admin@hms.com",DATE_OF_BIRTH=DateTime.Now.Date,PROFILE_IMAGE="-",GENDER_ID=1,RELIGION_ID=1,BLOOD_GROUP_ID=1,MARITAIL_STATUS_ID=1,TYPE_ID=1}
             };
             _unitOfWork.US_USER.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_USER_ROLE_Ins()
         {
+            #region US_USER_ROLE_Ins
             List<US_USER_ROLE> _d = new List<US_USER_ROLE>
             {
                 new US_USER_ROLE{ ROLE_ID=1,USER_ID=1 }
             };
             _unitOfWork.US_USER_ROLE.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void US_UNIT_Ins()
         {
+            #region US_UNIT_Ins
             List<US_UNIT> _d = new List<US_UNIT>
             {
                 new US_UNIT{ ID=1, UNIT_NAME="Pcs" },
@@ -256,6 +280,7 @@ namespace hms.Areas.Setup.Controllers
             };
             _unitOfWork.US_UNIT.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
 
 
@@ -272,20 +297,16 @@ namespace hms.Areas.Setup.Controllers
 
                 //sql_ls.Add(@"DELETE FROM US_USER_ROLE");
                 //sql_ls.Add(@"DELETE FROM US_ROLE_MENU");
-
                 //sql_ls.Add(@"DELETE FROM US_USER");
-
                 //sql_ls.Add(@"DELETE FROM US_TYPE");
                 //sql_ls.Add(@"DELETE FROM US_ROLE");
                 //sql_ls.Add(@"DELETE FROM US_RELIGION");
                 //sql_ls.Add(@"DELETE FROM US_MARITAIL_STATUS");
                 //sql_ls.Add(@"DELETE FROM US_GENDER");
                 //sql_ls.Add(@"DELETE FROM US_BLOOD_GROUP");
-
                 //sql_ls.Add(@"DELETE FROM US_CHILD_MENU");
                 //sql_ls.Add(@"DELETE FROM US_PARENT_MENU");
                 //sql_ls.Add(@"DELETE FROM US_MODULE");
-
                 //sql_ls.Add(@"DELETE FROM US_EMAIL_SERVER");
                 //sql_ls.Add(@"DELETE FROM US_EMAIL_BOX");
 

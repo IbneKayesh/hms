@@ -29,9 +29,9 @@ namespace hms.DataModel
         public HS_HOSPITAL HS_HOSPITAL { get; set; }
 
         [Display(Name = "Doctor Id")]
-        public int DOCTOR_ID { get; set; }
-        [ForeignKey("DOCTOR_ID")]
-        public HS_DOCTOR HS_DOCTOR { get; set; }
+        public int EMPLOYEE_ID { get; set; }
+        [ForeignKey("EMPLOYEE_ID")]
+        public HS_EMPLOYEE HS_EMPLOYEE { get; set; }
 
         [Display(Name = "Patient Id")]
         [Required(ErrorMessage = "{0} is required")]

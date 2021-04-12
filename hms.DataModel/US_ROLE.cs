@@ -7,10 +7,7 @@ namespace hms.DataModel
 {
     public class US_ROLE : DEFAULT
     {
-        //[Display(Name = "Id")]
-        //[Required(ErrorMessage = "{0} is required")]
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //[Remote(action: "VerifyRoleId", controller: "Role")]
         public int ID { get; set; }
 
         [Display(Name = "Role Name")]

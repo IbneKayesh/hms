@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace hms.DataModel
 {
-    public class HS_DOCTOR_SCHEDULE
+    public class HS_EMPLOYEE_SCHEDULE
     {
         public Int64 BRANCH_ID { get; set; }
-        public int DOCTOR_ID { get; set; }
+        public int EMPLOYEE_ID { get; set; }
         public string SATURDAY { get; set; }
         public string SUNDAY { get; set; }
         public string MONDAY { get; set; }

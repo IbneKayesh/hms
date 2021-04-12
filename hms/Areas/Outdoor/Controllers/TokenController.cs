@@ -77,7 +77,7 @@ namespace hms.Areas.Outdoor.Controllers
         }
         private void DropDownFor_ManageToken()
         {
-            ViewBag.HS_DOCTOR_ID = _unitOfWork.HS_DOCTOR.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.DOCTOR_NAME });
+            ViewBag.EMPLOYEE_ID = _unitOfWork.HS_EMPLOYEE.GetAll().Select(i => new SelectListItem { Value = i.ID.ToString(), Text = i.EMPLOYEE_NAME });
         }
         public IActionResult GetAll()
         {

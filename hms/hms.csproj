@@ -71,10 +71,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\Areas\Outdoor\item.js" />
+    <None Include="wwwroot\js\Areas\Hospital\item.js" />
     <None Include="wwwroot\js\Areas\Outdoor\token.js" />
-    <None Include="wwwroot\js\Areas\Outdoor\patient.js" />
-    <None Include="wwwroot\js\Areas\Outdoor\doctor.js" />
+    <None Include="wwwroot\js\Areas\Hospital\patient.js" />
+    <None Include="wwwroot\js\Areas\Hospital\employee.js" />
     <None Include="wwwroot\js\Areas\Setup\bloodgroup.js" />
     <None Include="wwwroot\js\Areas\Setup\unit.js" />
     <None Include="wwwroot\js\Areas\Setup\userrole.js" />

@@ -4,7 +4,7 @@ $(document).ready(function () {
     loadTable();
 });
 function loadTable() {
-    let url = "/Outdoor/Doctor/GetAll";
+    let url = "/Hospital/Patient/GetAll";
     myTable = $('#myTable1').DataTable({
         "ajax": url,
         "type": "GET",
@@ -16,7 +16,8 @@ function loadTable() {
         ],
         "columns": [
             { "mData": "id" },
-            { "mData": "doctoR_NAME" },
+            { "mData": "patienT_NAME" },
+            { "mData": "datE_OF_BIRTH" },
             {
                 "mData": "iS_ACTIVE",
                 render: function (mData) {
@@ -30,7 +31,7 @@ function loadTable() {
             {
                 "mData": "id",
                 render: function (mData) {
-                    return '<a href="/Outdoor/Doctor/ManageDoctor/?id=' + mData + '"><i class="fas fa-edit"></i></a> <a onClick=Delete("/Outdoor/Doctor/Remove/?id=' + mData + '")><i class="fas fa-trash"></i></a>'
+                    return '<a href="/Hospital/Patient/ManagePatient/?id=' + mData + '"><i class="fas fa-edit"></i></a> <a onClick=Delete("/Hospital/Patient/Remove/?id=' + mData + '")><i class="fas fa-trash"></i></a>'
                 }
             },
 

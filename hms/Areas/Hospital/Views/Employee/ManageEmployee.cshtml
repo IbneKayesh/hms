@@ -1,7 +1,7 @@
-﻿@model hms.DataModel.HS_DOCTOR
+﻿@model hms.DataModel.HS_EMPLOYEE
 
 @{
-    ViewData["Title"] = "Doctor";
+    ViewData["Title"] = "Employee";
 }
 <div class="card card-secondary card-outline">
 
@@ -12,7 +12,7 @@
         </h3>
     </div>
 
-    <form asp-action="ManageDoctor" asp-controller="Doctor" method="post">
+    <form asp-action="ManageEmployee" asp-controller="Employee" method="post">
         <div class="card-body">
             <div class="col-md-12">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -20,9 +20,9 @@
                     <input hidden asp-for="ID" />
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="DOCTOR_NAME" class="control-label"></label>
-                            <input asp-for="DOCTOR_NAME" class="form-control form-control-sm" />
-                            <span asp-validation-for="DOCTOR_NAME" class="text-danger"></span>
+                            <label asp-for="EMPLOYEE_NAME" class="control-label"></label>
+                            <input asp-for="EMPLOYEE_NAME" class="form-control form-control-sm" />
+                            <span asp-validation-for="EMPLOYEE_NAME" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -67,5 +67,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/Areas/Outdoor/doctor.js"></script>
+    <script src="~/js/Areas/Hospital/employee.js"></script>
 }

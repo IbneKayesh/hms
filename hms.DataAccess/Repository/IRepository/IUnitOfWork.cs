@@ -30,8 +30,6 @@ namespace hms.DataAccess.Repository.IRepository
         IHP_TOKENRepository HP_TOKEN { get; }
 
 
-        IHS_DOCTOR_TYPERepository HS_DOCTOR_TYPE { get; }
-        IHS_DOCTORRepository HS_DOCTOR { get; }
         IHS_EMPLOYEE_TYPERepository HS_EMPLOYEE_TYPE { get; }
         IHS_EMPLOYEERepository HS_EMPLOYEE { get; }
         IHS_DEPARTMENTRepository HS_DEPARTMENT { get; }

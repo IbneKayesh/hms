@@ -30,8 +30,16 @@ namespace hms.DataModel
         [Required(ErrorMessage = "{0} is required")]
         public string OFFICE_TIME { get; set; }
 
+        [Display(Name = "Office Time Bangla")]
+        [StringLength(150, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        public string OFFICE_TIME_BANGLA { get; set; }
+
         [Display(Name = "Remarks")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         public string REMARKS { get; set; }
+
+        [Display(Name = "Remarks Bangla")]
+        [StringLength(150, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
+        public string REMARKS_BANGLA { get; set; }
     }
 }

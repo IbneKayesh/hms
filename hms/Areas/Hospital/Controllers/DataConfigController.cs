@@ -24,16 +24,15 @@ namespace hms.Areas.Hospital.Controllers
             {
                 HS_HOSPITAL_Ins();
                 HS_BRANCH_Ins();
+                HS_DEPARTMENT_Ins();
                 HS_DEPARTMENT_ASSIGN_Ins();
+                HS_EMPLOYEE_TYPE_Ins();
+
                 HP_DURATION_Ins();
                 HP_SUGGESSION_Ins();
                 HP_FREQUENCY_Ins();
                 HP_SHOW_TYPE_Ins();
-                HS_DOCTOR_TYPE_Ins();
-                HS_DOCTOR_Ins();
-                HS_EMPLOYEE_TYPE_Ins();
                 HS_EMPLOYEE_Ins();
-                HS_DEPARTMENT_Ins();
                 HS_PATIENT_Ins();
                 HS_ITEM_Ins();
                 return Content("Data Config Iniliazation Succeeded");
@@ -42,32 +41,85 @@ namespace hms.Areas.Hospital.Controllers
         }
         private void HS_HOSPITAL_Ins()
         {
+            #region HS_HOSPITAL_Ins
             List<HS_HOSPITAL> _d = new List<HS_HOSPITAL>
             {
-                new HS_HOSPITAL{HOSPITAL_NAME="My Care Pvt. Ltd.", HOSPITAL_ADDRESS="Dhaka, Bangladesh", HOSPITAL_MOBILE="01946358034", HOSPITAL_PHONE="01946358034",HOSPITAL_HOTLINE="123",HOSPITAL_EMAIL="care@gmail.com", HOSPITAL_BIN_NO="123"},
+                new HS_HOSPITAL{ID=1,HOSPITAL_NAME="My Care Pvt. Ltd.", HOSPITAL_ADDRESS="Dhaka, Bangladesh", HOSPITAL_MOBILE="01946358034", HOSPITAL_PHONE="01946358034",HOSPITAL_HOTLINE="123",HOSPITAL_EMAIL="care@gmail.com", HOSPITAL_BIN_NO="123"},
             };
             _unitOfWork.HS_HOSPITAL.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
         private void HS_BRANCH_Ins()
         {
+            #region HS_BRANCH_Ins
             List<HS_BRANCH> _d = new List<HS_BRANCH>
             {
-                new HS_BRANCH{HOSPITAL_ID=1, BRANCH_NAME="Care-1", BRANCH_NAME_BANGLA="Care-1", BRANCH_ADDRESS="Badda, Dhaka", BRANCH_ADDRESS_BANGLA="Badda, Dhaka", 
+                new HS_BRANCH{ID=1, HOSPITAL_ID=1, BRANCH_NAME="Care-1", BRANCH_NAME_BANGLA="Care-1", BRANCH_ADDRESS="Badda, Dhaka", BRANCH_ADDRESS_BANGLA="Badda, Dhaka", 
                     BRANCH_MOBILE="01946358034",  BRANCH_PHONE="01946358034", BRANCH_HOTLINE="123", BRANCH_EMAIL="care1@gmail.com",  BRANCH_BIN_NO="123"},
+                new HS_BRANCH{ID=2, HOSPITAL_ID=1, BRANCH_NAME="Care-2", BRANCH_NAME_BANGLA="Care-2", BRANCH_ADDRESS="Uttara, Dhaka", BRANCH_ADDRESS_BANGLA="Uttara, Dhaka",
+                    BRANCH_MOBILE="01946358034",  BRANCH_PHONE="01946358034", BRANCH_HOTLINE="123", BRANCH_EMAIL="care2@gmail.com",  BRANCH_BIN_NO="123"},
             };
             _unitOfWork.HS_BRANCH.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
+        }
+        private void HS_DEPARTMENT_Ins()
+        {
+            #region HS_DEPARTMENT_Ins
+            List<HS_DEPARTMENT> _d = new List<HS_DEPARTMENT>
+            {
+                new  HS_DEPARTMENT{ID=1, DEPARTMENT_NAME="Urology", DEPARTMENT_NAME_BANGLA="Urology" },
+                new  HS_DEPARTMENT{ID=2, DEPARTMENT_NAME="Nephrology & Medicine", DEPARTMENT_NAME_BANGLA="Urology" },
+                new  HS_DEPARTMENT{ID=3, DEPARTMENT_NAME="Gastroenterology", DEPARTMENT_NAME_BANGLA="Urology" },
+            };
+            _unitOfWork.HS_DEPARTMENT.AddRange(_d);
+            _unitOfWork.Save();
+            #endregion
         }
         private void HS_DEPARTMENT_ASSIGN_Ins()
         {
+            #region HS_DEPARTMENT_ASSIGN_Ins
             List<HS_DEPARTMENT_ASSIGN> _d = new List<HS_DEPARTMENT_ASSIGN>
             {
-                new HS_DEPARTMENT_ASSIGN{BRANCH_ID=1, DEPARTMENT_ID=1, REMARKS="Test"},
+                new HS_DEPARTMENT_ASSIGN{BRANCH_ID=1, DEPARTMENT_ID=1, REMARKS="Test1"},
+                new HS_DEPARTMENT_ASSIGN{BRANCH_ID=1, DEPARTMENT_ID=2, REMARKS="Test2"},
+                new HS_DEPARTMENT_ASSIGN{BRANCH_ID=1, DEPARTMENT_ID=3, REMARKS="Test3"},
             };
             _unitOfWork.HS_DEPARTMENT_ASSIGN.AddRange(_d);
             _unitOfWork.Save();
+            #endregion
         }
+        private void HS_EMPLOYEE_TYPE_Ins()
+        {
+            #region HS_EMPLOYEE_TYPE_Ins
+            List<HS_EMPLOYEE_TYPE> _d = new List<HS_EMPLOYEE_TYPE>
+            {
+                new HS_EMPLOYEE_TYPE{ID=1, EMPLOYEE_TYPE_NAME= "Doctor" },
+                new HS_EMPLOYEE_TYPE{ID=2, EMPLOYEE_TYPE_NAME= "Nurse" },
+                new HS_EMPLOYEE_TYPE{ID=3, EMPLOYEE_TYPE_NAME= "Anesthesia" },
+                new HS_EMPLOYEE_TYPE{ID=4, EMPLOYEE_TYPE_NAME= "General Employee" },
+            };
+            _unitOfWork.HS_EMPLOYEE_TYPE.AddRange(_d);
+            _unitOfWork.Save();
+            #endregion
+        }
+        private void HS_EMPLOYEE_Ins()
+        {
+            List<HS_EMPLOYEE> _d = new List<HS_EMPLOYEE>
+            {
+                new  HS_EMPLOYEE{ID=1, HOSPITAL_ID=1, EMPLOYEE_NAME="Mr. X", PRESENT_ADDRESS="Badda, Dhaka-1212", PERMANENT_ADDRESS="Naogaon, Rajshahi",
+                EMPLOYEE_DEGREE="Msc in CSE", EMPLOYEE_SPECIALITY="Computer Science", EMPLOYEE_REG_NO="123",
+                GENDER_ID=1, MARITAIL_STATUS_ID=1, BLOOD_GROUP_ID=1, EMPLOYEE_TYPE_ID=1, RELIGION_ID=1, EMPLOYEE_NATIONAL_ID="123" },
+            };
+            _unitOfWork.HS_EMPLOYEE.AddRange(_d);
+            _unitOfWork.Save();
+        }
+
+
+
+
+
         private void HP_DURATION_Ins()
         {
             #region HP_DURATION_Ins
@@ -165,63 +217,6 @@ namespace hms.Areas.Hospital.Controllers
             _unitOfWork.HP_SHOW_TYPE.AddRange(_d);
             _unitOfWork.Save();
             #endregion
-        }
-
-        private void HS_DOCTOR_TYPE_Ins()
-        {
-            #region HS_DOCTOR_TYPE_Ins
-            List<HS_DOCTOR_TYPE> _d = new List<HS_DOCTOR_TYPE>
-            {
-                new HS_DOCTOR_TYPE{DOCTOR_TYPE_NAME="Medicine" },
-            };
-            _unitOfWork.HS_DOCTOR_TYPE.AddRange(_d);
-            _unitOfWork.Save();
-            #endregion
-        }
-        private void HS_DOCTOR_Ins()
-        {
-            List<HS_DOCTOR> _d = new List<HS_DOCTOR>
-            {
-                new HS_DOCTOR{HOSPITAL_ID=1, DOCTOR_NAME="Mr. Careful", DOCTOR_NAME_BANGLA="Mr. Careful", DOCTOR_DEGREE="FCPS,MBBS", DOCTOR_DEGREE_BANGLA="FCPS,MBBS",
-                DOCTOR_SPECIALITY="Medicine", DOCTOR_SPECIALITY_BANGLA="Medicine", DOCTOR_OTHERS="BSMMU", DOCTOR_OTHERS_BANGLA="BSMMU", DOCTOR_REG_NO="123",DOCTOR_REG_NO_BANGLA="123",
-                US_GENDER_ID=1, US_BLOOD_GROUP_ID=1, HS_DOCTOR_TYPE_ID=1, US_RELIGION_ID=1, US_MARITAIL_STATUS_ID=1, DOCTOR_NATIONAL_ID="123" },
-            };
-            _unitOfWork.HS_DOCTOR.AddRange(_d);
-            _unitOfWork.Save();
-        }
-
-        private void HS_EMPLOYEE_TYPE_Ins()
-        {
-            #region HS_EMPLOYEE_TYPE_Ins
-            List<HS_EMPLOYEE_TYPE> _d = new List<HS_EMPLOYEE_TYPE>
-            {
-                new HS_EMPLOYEE_TYPE{EMPLOYEE_TYPE_NAME= "General" },
-                new HS_EMPLOYEE_TYPE{EMPLOYEE_TYPE_NAME= "Nurse" },
-            };
-            _unitOfWork.HS_EMPLOYEE_TYPE.AddRange(_d);
-            _unitOfWork.Save();
-            #endregion
-        }
-        private void HS_EMPLOYEE_Ins()
-        {
-            List<HS_EMPLOYEE> _d = new List<HS_EMPLOYEE>
-            {
-                new  HS_EMPLOYEE{ID=1, HOSPITAL_ID=1, EMPLOYEE_NAME="Mr. X", PRESENT_ADDRESS="Badda, Dhaka-1212", PERMANENT_ADDRESS="Naogaon, Rajshahi",
-                EMPLOYEE_DEGREE="Msc in CSE", EMPLOYEE_SPECIALITY="Computer Science", EMPLOYEE_REG_NO="123",
-                GENDER_ID=1, MARITAIL_STATUS_ID=1, BLOOD_GROUP_ID=1, EMPLOYEE_TYPE_ID=1, RELIGION_ID=1, EMPLOYEE_NATIONAL_ID="123" },
-            };
-            _unitOfWork.HS_EMPLOYEE.AddRange(_d);
-            _unitOfWork.Save();
-        }
-
-        private void HS_DEPARTMENT_Ins()
-        {
-            List<HS_DEPARTMENT> _d = new List<HS_DEPARTMENT>
-            {
-                new  HS_DEPARTMENT{ DEPARTMENT_NAME="Urology" },
-            };
-            _unitOfWork.HS_DEPARTMENT.AddRange(_d);
-            _unitOfWork.Save();
         }
         private void HS_PATIENT_Ins()
         {

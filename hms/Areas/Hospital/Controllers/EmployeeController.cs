@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 namespace hms.Areas.Hospital.Controllers
 {
     [Area("Hospital")]
-    public class DoctorController : Controller
+    public class EmployeeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DoctorController(IUnitOfWork unitOfWork)
+        public EmployeeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult ManageDoctor(int? id)
+        public IActionResult ManageEmployee(int? id)
         {
-            HS_DOCTOR _obj = new HS_DOCTOR();
+            HS_EMPLOYEE _obj = new HS_EMPLOYEE();
             if (id != null)
             {
-                _obj = _unitOfWork.HS_DOCTOR.GetFirstOrDefult(x => x.ID == id);
+                _obj = _unitOfWork.HS_EMPLOYEE.GetFirstOrDefult(x => x.ID == id);
                 if (_obj == null)
                 {
                     TempData["msg"] = SweetMsg.SaveWarningOK();
@@ -31,7 +31,7 @@ namespace hms.Areas.Hospital.Controllers
             return View(_obj);
         }
         [HttpPost]
-        public IActionResult ManageDoctor(HS_DOCTOR _obj)
+        public IActionResult ManageEmployee(HS_EMPLOYEE _obj)
         {
             if (ModelState.IsValid)
             {
@@ -39,22 +39,22 @@ namespace hms.Areas.Hospital.Controllers
                 {
                     try
                     {
-                        _obj.ID = _unitOfWork.HS_DOCTOR.GetAll().Max(x => x.ID) + 1;
+                        _obj.ID = _unitOfWork.HS_EMPLOYEE.GetAll().Max(x => x.ID) + 1;
                     }
                     catch
                     {
                         _obj.ID = 1;
                     }                    
                     _obj.IS_ACTIVE = true;
-                    _unitOfWork.HS_DOCTOR.Add(_obj);
+                    _unitOfWork.HS_EMPLOYEE.Add(_obj);
                 }
                 else
                 {
-                    _unitOfWork.HS_DOCTOR.Update(_obj);
+                    _unitOfWork.HS_EMPLOYEE.Update(_obj);
                 }
                 _unitOfWork.Save();
                 TempData["msg"] = SweetMsg.SaveSuccess();
-                return RedirectToAction(nameof(ManageDoctor));
+                return RedirectToAction(nameof(ManageEmployee));
             }
             TempData["msg"] = SweetMsg.SaveErrorOK();
             _obj.ID = 0;
@@ -63,14 +63,14 @@ namespace hms.Areas.Hospital.Controllers
 
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.HS_DOCTOR.GetAll();
+            var obj = _unitOfWork.HS_EMPLOYEE.GetAll();
             return Json(new { data = obj });
         }
 
         //[AcceptVerbs("PUT")]
         public IActionResult Remove(int id)
         {
-            bool result = _unitOfWork.HS_DOCTOR.Delete(id);
+            bool result = _unitOfWork.HS_EMPLOYEE.Delete(id);
             if (result)
             {
                 _unitOfWork.Save();

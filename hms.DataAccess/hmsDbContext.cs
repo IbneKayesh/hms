@@ -74,8 +74,6 @@ namespace hms.DataAccess
         public DbSet<HP_TOKEN> HP_TOKEN { get; set; }
 
 
-        public DbSet<HS_DOCTOR_TYPE> HS_DOCTOR_TYPE { get; set; }
-        public DbSet<HS_DOCTOR> HS_DOCTOR { get; set; }
         public DbSet<HS_EMPLOYEE_TYPE> HS_EMPLOYEE_TYPE { get; set; }
         public DbSet<HS_EMPLOYEE> HS_EMPLOYEE { get; set; }
         public DbSet<HS_DEPARTMENT> HS_DEPARTMENT { get; set; }

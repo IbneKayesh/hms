@@ -25,14 +25,17 @@ namespace hms.DataModel
         [Required(ErrorMessage = "{0} is required")]
         public string EMPLOYEE_NAME { get; set; }
 
+        [Display(Name = "Name Bangla")]
+        [StringLength(150, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        [Required(ErrorMessage = "{0} is required")]
+        public string EMPLOYEE_NAME_BANGLA { get; set; }
+
         [Display(Name = "Present Address")]
         [StringLength(250, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
-        [Required(ErrorMessage = "{0} is required")]
         public string PRESENT_ADDRESS { get; set; }
 
         [Display(Name = "Permanent Address")]
         [StringLength(250, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
-        [Required(ErrorMessage = "{0} is required")]
         public string PERMANENT_ADDRESS { get; set; }
 
         [Display(Name = "Degree")]
@@ -40,14 +43,33 @@ namespace hms.DataModel
         [Required(ErrorMessage = "{0} is required")]
         public string EMPLOYEE_DEGREE { get; set; }
 
+        [Display(Name = "Degree Bangla")]
+        [StringLength(300, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        public string EMPLOYEE_DEGREE_BANGLA { get; set; }
+
         [Display(Name = "Speciality")]
         [StringLength(150, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
-        //[Required(ErrorMessage = "{0} is required")]
         public string EMPLOYEE_SPECIALITY { get; set; }
+
+        [Display(Name = "Speciality Bangla")]
+        [StringLength(200, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        public string EMPLOYEE_SPECIALITY_BANGLA { get; set; }
+
+        [Display(Name = "Others")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        public string EMPLOYEE_OTHERS { get; set; }
+
+        [Display(Name = "Others Bangla")]
+        [StringLength(150, MinimumLength = 5, ErrorMessage = "{0} length is {2} between {1}")]
+        public string EMPLOYEE_OTHERS_BANGLA { get; set; }
 
         [Display(Name = "Reg. No")]
         [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
         public string EMPLOYEE_REG_NO { get; set; }
+
+        [Display(Name = "Reg. No Bangla")]
+        [StringLength(25, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
+        public string EMPLOYEE_REG_NO_BANGLA { get; set; }
 
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "{0} is required")]
@@ -81,7 +103,6 @@ namespace hms.DataModel
 
         [Display(Name = "National Id")]
         [StringLength(20, MinimumLength = 1, ErrorMessage = "{0} length is {2} between {1}")]
-        [Required(ErrorMessage = "{0} is required")]
         public string EMPLOYEE_NATIONAL_ID { get; set; }
 
         //Need to Link Table Father's, Mother's, Degree, Spouse, Children, Salary and Others Info
